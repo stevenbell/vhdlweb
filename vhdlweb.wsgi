@@ -14,16 +14,70 @@ def safe_run(command, timeout=5, **kwargs):
         if e.returncode == -sp.signal.SIGSEGV:
             return(b"Program segfaulted")
         else:
-            # We don't know what students will return from main, so assume
-            # anything other than a segfault is ok.
+            # TODO: could check for error return value
             result = e.output
     except sp.TimeoutExpired as e:
             return(b"Program timed out after {} seconds".format(timeout))
 
-    # Just leave the result as utf-8, since that's what we gotta send out
+    # Just leave the result as bytes, since that's what we gotta send out
     return result
 
+def readfile(filename):
+  """ read a file's contents into a string. """
+  f = open(filename)
+  s = f.read()
+  f.close()
+  return s
+
+def show_problem(problem):
+  prompt = readfile("problems/{}/prompt".format(problem))
+  startercode = readfile("problems/{}/startercode".format(problem))
+  page = """<html>
+<meta charset="UTF-8"> 
+<head>
+<script>
+function compile() {
+
+  // Read the code from the form
+  var code = document.getElementById("code").value;
+
+  // Send the code to the server
+  if (code.length == 0) {
+      document.getElementById("txtHint").innerHTML = "";
+      return;
+  } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("buildlog").innerHTML = "<pre>" + this.responseText + "</pre>";
+          }
+      };
+      xmlhttp.open("POST", "/compile/""" + problem + """", true);
+	    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(code);
+  }
+}
+</script>
+</head>
+<body>""" + prompt + \
+"""<br/>
+<textarea rows="20" cols="120" id="code" type="text">""" + \
+startercode + \
+"""</textarea>
+<br/>
+
+<button onClick="compile()">Build!</button>
+<p>Build output:<br/>
+  <span id="buildlog"></span></p>
+
+</body>
+</html>
+"""
+  return page
+
+
 def findpath():
+  """ Create a unique temporary working directory and return the path to it. """
   wdir = None
   while wdir is None:
     # Pick a number
@@ -37,10 +91,10 @@ def findpath():
 
   return wdir + '/'
 
-def compile(wdir):
+def compile(wdir, problem):
     # Copy the files into the working directory
-    safe_run(["cp", "/home/vhdlweb/vhdlweb/example_src/abc/Makefile", wdir])
-    safe_run(["cp", "/home/vhdlweb/vhdlweb/example_src/abc/abc_test.vhd", wdir])
+    safe_run(["cp", "/home/vhdlweb/vhdlweb/problems/{}/Makefile".format(problem), wdir])
+    safe_run(["cp", "/home/vhdlweb/vhdlweb/problems/{}/testbench.vhd".format(problem), wdir])
     
     # Try to jam it through GHDL and capture the result
     output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"], stderr = sp.STDOUT)
@@ -50,9 +104,26 @@ def compile(wdir):
 
 def application(environ, start_response):
     status = '200 OK'
+    response_type = 'text/plain'
 
-    # Get the POST content from the form
-    if environ['REQUEST_METHOD'] == 'POST':
+    # Quick hack to print the environment
+    # output = [
+    #     '%s: %s' % (key, value) for key, value in sorted(environ.items())
+    # ]
+    # output = '\n'.join(output)
+ 
+    uri = environ['REQUEST_URI'].strip('/').split('/')
+    request = None
+    if len(uri) >= 2:
+        request = uri[0] # Either "problem" or "compile"
+        problem = uri[1]
+
+    if request == "problem":
+        output = show_problem(problem).encode('utf-8')
+        response_type = 'text/html'
+
+    elif request == "compile" and environ['REQUEST_METHOD'] == 'POST':
+        # Get the POST content from the form
         try:
             length = int(environ['CONTENT_LENGTH'])
         except ValueError:
@@ -63,15 +134,15 @@ def application(environ, start_response):
             fp = open(wdir + 'submission.vhd', 'w')
             fp.write(code.decode('utf-8'))
             fp.close()
-            output = compile(wdir)
+            output = compile(wdir, problem)
         else:
-            output = b'Empty or malformed HTML request.'
+            output = b"Failed to parse HTTP request."
 
     else:
-        output = b'Error receiving or parsing HTML request.'
+        # TODO: set to 404?
+        output = b"Page not found."
 
-
-    response_headers = [('Content-type', 'text/plain'),
+    response_headers = [('Content-type', response_type),
                         ('Content-Length', str(len(output)))]
     start_response(status, response_headers)
 

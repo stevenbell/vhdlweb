@@ -1,0 +1,5 @@
+Fill in the architecture to implement a 7-bit thermometer decoder.<br/>
+The 3-bit input represents the values 0-7, and the result should have the
+corresponding number of bits set high on the output.  The bits should go on
+from "least" to "greatest", like mercury rising in a thermometer.<br/>
+

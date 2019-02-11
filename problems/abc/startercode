@@ -12,7 +12,6 @@ end abc;
 
 architecture synth of abc is
 begin
-  --y <= (a and b) or ((not b) and c);
-  y <= (a and b) or (b and (not c));
+  -- Your code here
 end;
 

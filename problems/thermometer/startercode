@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity thermometer is
+  port(
+	  value : in std_logic_vector(2 downto 0);
+	  therm : out std_logic_vector(6 downto 0)
+  );
+end thermometer;
+
+architecture synth of thermometer is
+begin
+  -- This doesn't work for most of the cases...
+  therm <= "0000000";
+end;
+
