@@ -1,0 +1,5 @@
+You may have noticed that you can't do math on std_logic_vector.  That's because `std_logic_vector`s are just collections of bits; they don't have any math operations defined.  To enlist VHDL's help to do math with bits, we need the `unsigned` type.
+<br/>
+<br/>
+Complete the architecture below to add 1 to the 8-bit input.  It should overflow to 0 after it reaches the maximum value.
+

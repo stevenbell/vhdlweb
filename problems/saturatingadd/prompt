@@ -1,0 +1,6 @@
+
+Complete the architecture below to build an 8-bit saturating adder: add the two operands, but if the sum is greater than what can be represented by the 8-bit output, let it saturate (take its maximum value) rather than rolling over.  For example, 200 + 100 should equal 255, not 44.
+<br/>
+<br/>
+Hint: you'll know you need to saturate if the 8-bit result would overflow.  One or more intermediate signals might help here.
+

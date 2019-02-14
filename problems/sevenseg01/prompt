@@ -1,0 +1,17 @@
+std_logic_vector makes it easy to compare and assign whole buses, which dramatically simplifies the work necessary to specify combinational logic.
+
+For example, if `value` is a 4-bit bus, we could compare it with a constant:
+<pre>
+    value = "1101"
+</pre>
+
+Similarly, if `output` is an 8-bit bus, we could set all the bits at once with
+<pre>
+    output <= "0001111"
+</pre>
+
+Complete the architecture below to display the value of S using the digits 0 and 1 on a 7-segment display.  The output should be a vector of bits corresponding to the LED segments, in the order "abcdefg".
+
+<br/>
+<img src="/images/sevenseg_labels.svg" />
+

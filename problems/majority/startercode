@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity majority is
+  port(
+	  votes : in std_logic_vector(2 downto 0);
+	  y : out std_logic
+  );
+end majority;
+
+architecture synth of majority is
+begin
+  y <= '0'; -- A broken clock is right twice a day...
+end;
+

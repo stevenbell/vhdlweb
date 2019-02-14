@@ -1,0 +1,7 @@
+A powerful construct for specifying combinational logic is `when/else`:
+<pre>
+OUTPUT <= VALUE when (CONDITION) else OTHER_VALUE;
+</pre>
+
+Complete the architecture below to build a 8-bit 2:1 multiplexer.  The inputs A and B are each 8 bits, and select line S is a single bit.  When S is low, all 8 bits of A should be connected to the output Y; when S is high, the 8 bits of B should go to the output.
+
