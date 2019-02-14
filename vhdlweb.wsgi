@@ -35,11 +35,19 @@ def show_problem(problem):
   page = """<html>
 <meta charset="UTF-8"> 
 <head>
+
+<style type="text/css" media="screen">
+    #editor { 
+        width: 800px;
+        height: 400px;
+    }
+</style>
+
 <script>
 function compile() {
 
   // Read the code from the form
-  var code = document.getElementById("code").value;
+  var code = editor.getValue();
 
   // Send the code to the server
   if (code.length == 0) {
@@ -61,10 +69,18 @@ function compile() {
 </head>
 <body>""" + prompt + \
 """<br/>
-<textarea rows="20" cols="120" id="code" type="text">""" + \
+<div id="editor">
+""" + \
 startercode + \
-"""</textarea>
-<br/>
+"""</div>
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.session.setMode("ace/mode/vhdl");
+    document.getElementById("editor").style.fontSize='16px';
+</script>
 
 <button onClick="compile()">Build!</button>
 <p>Build output:<br/>
