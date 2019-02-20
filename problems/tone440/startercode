@@ -1,0 +1,17 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity tone440 is
+  port(
+	  clk : in std_logic;
+	  reset : in std_logic;
+	  tone : out std_logic
+  );
+end tone440;
+
+architecture synth of tone440 is
+begin
+  tone <= '0'; -- A very flat tone
+end;
+

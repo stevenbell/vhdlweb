@@ -1,0 +1,17 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity ledduty is
+  port(
+	  clk : in std_logic;
+	  reset : in std_logic;
+	  led : out std_logic
+  );
+end ledduty;
+
+architecture synth of ledduty is
+begin
+  led <= '0'; -- Not the kind of dimming the customer was hoping for
+end;
+

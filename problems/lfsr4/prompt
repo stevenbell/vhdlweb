@@ -1,0 +1,10 @@
+Build a 4-bit <a href="https://en.wikipedia.org/wiki/Linear-feedback_shift_register">linear-feedback shift register (LFSR) </a>.<br/>
+
+An LFSR is essentially a shift register where a few of the bits are set to result of XOR-ing other bits in the register.  This results in the shift register producing a pseudo-random series of numbers.  With careful construction, the pattern can be made to cycle through all possible combinations of bits (except for all 0s) before repeating.<br/>
+
+Your 4-bit LFSR should use the design below.  When reset, the value should be 0000_0001.<br/>
+
+<br/>
+<img src="/images/lfsr4_diagram.svg" height="150px"/>
+<br/>
+<br/>

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="190"
+   height="50"
+   viewBox="0 0 50.270833 13.229166"
+   version="1.1"
+   id="svg1232"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="lfsr4_diagram.svg">
+  <defs
+     id="defs1226" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="120.02339"
+     inkscape:cy="-0.057232345"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="2171"
+     inkscape:window-height="1879"
+     inkscape:window-x="28"
+     inkscape:window-y="58"
+     inkscape:window-maximized="0"
+     inkscape:snap-text-baseline="true"
+     units="px">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1777" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1229">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-283.77083)">
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-41.010415,27.822921)"
+       id="g4155-6">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 222,1002.3622 h 8 v -5 h 5"
+         id="path3152-8-4-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 195,997.3622 11.50508,-2e-5"
+         id="path3152-8-3-0-85"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 200,1007.3622 h 6.50508"
+         id="path3152-8-3-1-9-4"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 222,1002.3622 c -2,-4.80002 -8,-8.00004 -17,-8.00004 3,4.26672 3,11.73334 0,16.00004 9,0 15,-4.2667 17,-8 z"
+         id="path3114-8-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 203,994.36216 c 3,4.26672 3,11.73334 0,16.00004"
+         id="path3114-8-2-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 47.625001,291.70833 h 1.322916 v 3.96875 H 1.3229167 v -3.96875 h 1.322917"
+       id="path1916"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 12.170834,294.35416 h -0.264583 v 1.32292"
+       id="path1918"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1.3229167,286.41667 42.3333343,-1e-5 v 2.64584"
+       id="path1920"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-63.499998,18.562504)"
+       id="g1175">
+      <rect
+         y="1022.3622"
+         x="255"
+         height="20"
+         width="20"
+         id="rect1163"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#050505;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1165"
+         d="m 255,1032.3622 h -5"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 280,1032.3622 h -5"
+         id="path1167"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path1169"
+         d="m 262.5,1022.2372 2.5,3.125 2.5,-3.125"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="257"
+         y="1034.3622"
+         id="text1179"><tspan
+           sodipodi:role="line"
+           id="tspan1177"
+           x="257"
+           y="1034.3622"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella'">D</tspan></text>
+      <text
+         id="text1183"
+         y="1034.3622"
+         x="273"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:end;text-anchor:end"
+           y="1034.3622"
+           x="273"
+           id="tspan1181"
+           sodipodi:role="line">Q</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-44.979165,18.562504)"
+       id="g1175-8">
+      <rect
+         y="1022.3622"
+         x="255"
+         height="20"
+         width="20"
+         id="rect1163-2"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#050505;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1165-7"
+         d="m 255,1032.3622 h -5"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 280,1032.3622 h -5"
+         id="path1167-3"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path1169-5"
+         d="m 262.5,1022.2372 2.5,3.125 2.5,-3.125"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="257"
+         y="1034.3622"
+         id="text1179-3"><tspan
+           sodipodi:role="line"
+           id="tspan1177-7"
+           x="257"
+           y="1034.3622"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella'">D</tspan></text>
+      <text
+         id="text1183-4"
+         y="1034.3622"
+         x="273"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:end;text-anchor:end"
+           y="1034.3622"
+           x="273"
+           id="tspan1181-8"
+           sodipodi:role="line">Q</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-35.718748,18.562504)"
+       id="g1175-0">
+      <rect
+         y="1022.3622"
+         x="255"
+         height="20"
+         width="20"
+         id="rect1163-0"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#050505;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1165-1"
+         d="M 255,1032.3622 H 245"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 280,1032.3622 h -5"
+         id="path1167-6"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path1169-4"
+         d="m 262.5,1022.2372 2.5,3.125 2.5,-3.125"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="257"
+         y="1034.3622"
+         id="text1179-5"><tspan
+           sodipodi:role="line"
+           id="tspan1177-8"
+           x="257"
+           y="1034.3622"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella'">D</tspan></text>
+      <text
+         id="text1183-3"
+         y="1034.3622"
+         x="273"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:end;text-anchor:end"
+           y="1034.3622"
+           x="273"
+           id="tspan1181-1"
+           sodipodi:role="line">Q</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-26.458332,18.562504)"
+       id="g1175-2">
+      <rect
+         y="1022.3622"
+         x="255"
+         height="20"
+         width="20"
+         id="rect1163-29"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#050505;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1165-5"
+         d="M 255,1032.3622 H 245"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 280,1032.3622 h -5"
+         id="path1167-5"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path1169-46"
+         d="m 262.5,1022.2372 2.5,3.125 2.5,-3.125"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="257"
+         y="1034.3622"
+         id="text1179-31"><tspan
+           sodipodi:role="line"
+           id="tspan1177-2"
+           x="257"
+           y="1034.3622"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella'">D</tspan></text>
+      <text
+         id="text1183-0"
+         y="1034.3622"
+         x="273"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:end;text-anchor:end"
+           y="1034.3622"
+           x="273"
+           id="tspan1181-6"
+           sodipodi:role="line">Q</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 34.395833,289.0625 v -2.64584"
+       id="path2027"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.135417,289.0625 v -2.64584"
+       id="path2029"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 6.6145837,289.0625 v -2.64584"
+       id="path2031"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:2.11666656px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="1.3229166"
+       y="285.88751"
+       id="text2035"><tspan
+         sodipodi:role="line"
+         id="tspan2033"
+         x="1.3229166"
+         y="285.88751"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';stroke-width:0.26458332">clk</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:2.11666679px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ce5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="9.7895832"
+       y="290.91458"
+       id="text2043"><tspan
+         sodipodi:role="line"
+         id="tspan2041"
+         x="9.7895832"
+         y="290.91458"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';fill:#ce5c00;stroke-width:0.26458332">R<tspan
+   style="font-size:64.99999762%;baseline-shift:sub;fill:#ce5c00"
+   id="tspan2057">3</tspan></tspan></text>
+    <text
+       id="text2063"
+       y="290.91458"
+       x="28.310419"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:2.11666679px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ce5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';fill:#ce5c00;stroke-width:0.26458332"
+         y="290.91458"
+         x="28.310419"
+         id="tspan2061"
+         sodipodi:role="line">R<tspan
+   id="tspan2059"
+   style="font-size:64.99999762%;baseline-shift:sub;fill:#ce5c00">2</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:2.11666679px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ce5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="37.570831"
+       y="290.91458"
+       id="text2069"><tspan
+         sodipodi:role="line"
+         id="tspan2067"
+         x="37.570831"
+         y="290.91458"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';fill:#ce5c00;stroke-width:0.26458332">R<tspan
+   style="font-size:64.99999762%;baseline-shift:sub;fill:#ce5c00"
+   id="tspan2065">1</tspan></tspan></text>
+    <text
+       id="text2075"
+       y="290.91458"
+       x="46.831249"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:2.11666679px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ce5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';fill:#ce5c00;stroke-width:0.26458332"
+         y="290.91458"
+         x="46.831249"
+         id="tspan2073"
+         sodipodi:role="line">R<tspan
+   id="tspan2071"
+   style="font-size:64.99999762%;baseline-shift:sub;fill:#ce5c00">0</tspan></tspan></text>
+  </g>
+</svg>

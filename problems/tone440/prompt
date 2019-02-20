@@ -1,0 +1,4 @@
+Build a tone generator which takes a 24.000 MHz clock signal, and produces a 440 Hz (A4) square wave (i.e., low for half the period and then high for half the period).
+<br/>
+Since the hardware has no concept of time, you'll need to keep track of clock cycles to do the timing.
+
