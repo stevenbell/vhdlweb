@@ -1,15 +1,16 @@
 
 GHDL=/home/vhdlweb/ghdl/build/ghdl_mcode
+FLAGS="--std=08"
 
 all: run
 
 gold:
-	@$(GHDL) -a testbench.vhd thermometer_gold.vhd
-	@$(GHDL) -e thermometer_test
-	@$(GHDL) -r thermometer_test
+	@$(GHDL) -a $(FLAGS) testbench.vhd thermometer_gold.vhd
+	@$(GHDL) -e $(FLAGS) thermometer_test
+	@$(GHDL) -r $(FLAGS) thermometer_test --stop-time=1us
 
 run:
-	@$(GHDL) -a testbench.vhd submission.vhd
-	@$(GHDL) -e thermometer_test
-	@$(GHDL) -r thermometer_test
+	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
+	@$(GHDL) -e $(FLAGS) thermometer_test
+	@$(GHDL) -r $(FLAGS) thermometer_test --stop-time=1us
 
