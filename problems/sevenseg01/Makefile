@@ -1,15 +1,16 @@
 
 GHDL=/home/vhdlweb/ghdl/build/ghdl_mcode
+FLAGS="--std=08"
 
 all: run
 
 gold:
-	@$(GHDL) -a testbench.vhd sevenseg01_gold.vhd
-	@$(GHDL) -e sevenseg01_test
-	@$(GHDL) -r sevenseg01_test
+	@$(GHDL) -a $(FLAGS) testbench.vhd sevenseg01_gold.vhd
+	@$(GHDL) -e $(FLAGS) sevenseg01_test
+	@$(GHDL) -r $(FLAGS) sevenseg01_test --stop-time=1us
 
 run:
-	@$(GHDL) -a testbench.vhd submission.vhd
-	@$(GHDL) -e sevenseg01_test
-	@$(GHDL) -r sevenseg01_test
+	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
+	@$(GHDL) -e $(FLAGS) sevenseg01_test
+	@$(GHDL) -r $(FLAGS) sevenseg01_test --stop-time=1us
 

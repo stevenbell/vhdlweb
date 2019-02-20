@@ -42,7 +42,35 @@ begin
 
   begin
 
-      write(l, String'("This test is under construction."));
+    a <= to_unsigned(1, 8);
+    b <= to_unsigned(1, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(2, 8), "Test failed for 1 + 1, got " & integer'image(to_integer(result)));
+
+    a <= to_unsigned(150, 8);
+    b <= to_unsigned(100, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(250, 8), "Test failed for 150 + 100, got " & integer'image(to_integer(result)));
+
+    a <= to_unsigned(255, 8);
+    b <= to_unsigned(1, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(255, 8), "Test failed for 255 + 1, got " & integer'image(to_integer(result)));
+
+    a <= to_unsigned(128, 8);
+    b <= to_unsigned(128, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(255, 8), "Test failed for 128 + 128, got " & integer'image(to_integer(result)));
+
+    a <= to_unsigned(127, 8);
+    b <= to_unsigned(127, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(254, 8), "Test failed for 127 + 127, got " & integer'image(to_integer(result)));
+
+    a <= to_unsigned(254, 8);
+    b <= to_unsigned(254, 8);
+    wait for 10 ns;
+    check(result = to_unsigned(255, 8), "Test failed for 254 + 254, got " & integer'image(to_integer(result)));
 
     if errors = 0 then
       write(l, String'("Test passed."));

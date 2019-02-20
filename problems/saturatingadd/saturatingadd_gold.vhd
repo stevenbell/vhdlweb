@@ -11,7 +11,10 @@ entity saturatingadd is
 end saturatingadd;
 
 architecture synth of saturatingadd is
+signal temp : unsigned(8 downto 0);
 begin
-  result <= a + b;
+  temp <= ('0' & a) + ('0' & b);
+  result <= temp(7 downto 0) when temp(8) = '0' else "11111111";
+  --result <= 8x"cc";
 end;
 

@@ -10,6 +10,6 @@ end sevenseg01;
 
 architecture synth of sevenseg01 is
 begin
-  segments <= "0000000";
+  segments <= "1111110" when S = '0' else "0110000";
 end;
 

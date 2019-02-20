@@ -1,4 +1,4 @@
---  Testbench for AB+!BC
+--  Testbench for seven segment display that only shows 1 bit
 library IEEE;
 use IEEE.std_logic_1164.all;
 use std.textio.all;
@@ -36,9 +36,47 @@ begin
       end if;
     end check;
 
+    -- Draw a single character: '#' if true, ' ' if false
+    -- This writes to the process variable line
+    procedure dc(value : std_logic) is
+    begin
+      if value = '1' then
+        write(l, String'("#"));
+      else
+        write(l, String'(" "));
+      end if;
+    end dc;
+
+    procedure draw_sevenseg(segs : std_logic_vector(6 downto 0)) is
+    begin
+      dc(segs(6) or segs(1)); dc(segs(6)); dc(segs(6)); dc(segs(6) or segs(5));
+      writeline (output, l);
+      dc(segs(1)); dc('0'); dc('0'); dc(segs(5));
+      writeline (output, l);
+      dc(segs(1) or segs(0)); dc(segs(0)); dc(segs(0)); dc(segs(5) or segs(0));
+      writeline (output, l);
+      dc(segs(2)); dc('0'); dc('0'); dc(segs(4));
+      writeline (output, l);
+      dc(segs(2) or segs(3)); dc(segs(3)); dc(segs(3)); dc(segs(4) or segs(3));
+      writeline (output, l);
+    end draw_sevenseg;
+
   begin
 
-    write(l, String'("This test is still under construction"));
+    write(l, String'("Test digit 0 -------"));
+    writeline (output, l);
+
+    S <= '0'; wait for 10 ns;
+    draw_sevenseg(segments);
+  
+
+    write(l, String'("Testing digit 1 -------"));
+    writeline (output, l);
+
+    S <= '1'; wait for 10 ns;
+    draw_sevenseg(segments);
+
+    write(l, String'("Test complete."));
     writeline (output, l);
     wait;
   end process;
