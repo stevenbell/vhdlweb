@@ -4,23 +4,24 @@ import os
 import sys
 import cgi
 
-def safe_run(command, timeout=5, **kwargs):
-    """ Wrapper around check_output which handles timeouts and catches segfaults.
-        A brief informative message is logged with the failure."""
+def safe_run(command, timeout=3, **kwargs):
+  # Workaround for check_output which can kill child processes that are holding things up
+  # i.e., the Makefile runs ghdl_mcode, and it's not quitting.
+  # https://stackoverflow.com/questions/36952245/subprocess-timeout-failure
+  with sp.Popen(command, stdout=sp.PIPE, preexec_fn=os.setsid, **kwargs) as process:
     try:
-        result = sp.check_output(command, timeout=timeout, **kwargs)
-
+      output = process.communicate(timeout=timeout)[0]
+      # Just leave the result as bytes, since that's what we gotta send out
+      return(output)
     except sp.CalledProcessError as e:
         if e.returncode == -sp.signal.SIGSEGV:
             return(b"Program segfaulted")
-        else:
-            # TODO: could check for error return value
-            result = e.output
-    except sp.TimeoutExpired as e:
-            return(b"Program timed out after {} seconds".format(timeout))
-
-    # Just leave the result as bytes, since that's what we gotta send out
-    return result
+    except sp.TimeoutExpired:
+      os.killpg(process.pid, sp.signal.SIGINT) # Kill the whole process group, pronto.
+      output = process.communicate()[0] # Read what came out so far
+      # Print a notice and the first bit of output
+      return("Program timed out after {} seconds. Output up to this point was:\n\n"\
+             .format(timeout).encode('utf-8') + output[0:5000])
 
 def readfile(filename):
   """ read a file's contents into a string. """
@@ -99,7 +100,7 @@ def findpath():
     # Pick a number
     idnum = random.randint(0, 10000)
     # Check if it already exists
-    tmpdir = '/tmp/vhdlweb/{}'.format(idnum)
+    tmpdir = '/tmp/vhdlweb-www/{}'.format(idnum)
     if not os.path.isdir(tmpdir):
       # If not, make it and claim it
       os.mkdir(tmpdir)
@@ -109,8 +110,8 @@ def findpath():
 
 def compile(wdir, problem):
     # Copy the files into the working directory
-    safe_run(["cp", "/home/vhdlweb/vhdlweb/problems/{}/Makefile".format(problem), wdir])
-    safe_run(["cp", "/home/vhdlweb/vhdlweb/problems/{}/testbench.vhd".format(problem), wdir])
+    safe_run(["cp", "/var/www/vhdlweb/problems/{}/Makefile".format(problem), wdir])
+    safe_run(["cp", "/var/www/vhdlweb/problems/{}/testbench.vhd".format(problem), wdir])
     
     # Try to jam it through GHDL and capture the result
     output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"], stderr = sp.STDOUT)
