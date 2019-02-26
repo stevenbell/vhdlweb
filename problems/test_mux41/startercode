@@ -1,0 +1,25 @@
+--  Testbench for 4:1 multiplexer
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity mux41_test is
+-- No ports, since this is a testbench
+end mux41_test;
+
+architecture test of mux41_test is
+
+component mux41 is
+  port(
+	  d : in std_logic_vector(3 downto 0); -- Data port
+	  s : in std_logic_vector(1 downto 0); -- Select
+	  y : out std_logic -- Result
+  );
+end component;
+
+begin
+
+  -- Good luck!
+
+end test;
+
