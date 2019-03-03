@@ -1,0 +1,24 @@
+--  Testbench for AB+!BC
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity abc_test is
+-- No ports, since this is a testbench
+end abc_test;
+
+architecture test of abc_test is
+
+component abc is
+  port(
+	  a : in std_logic;
+	  b : in std_logic;
+	  c : in std_logic;
+	  y : out std_logic
+  );
+end component;
+
+begin
+
+end test;
+

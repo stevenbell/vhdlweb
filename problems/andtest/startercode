@@ -1,0 +1,61 @@
+--  Testbench for AND gate
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity and_test is
+-- No ports, since this is a testbench
+end and_test;
+
+architecture test of and_test is
+
+component andgate is
+  port(
+	  a : in std_logic;
+	  b : in std_logic;
+	  y : out std_logic
+  );
+end component;
+
+signal in1 : std_logic;
+signal in2 : std_logic;
+signal result : std_logic;
+
+begin
+
+  -- Instantiate the `andgate` module, and call it `dut`.
+  -- Connect in1, in2, and result to the ports a, b, and y respectively.
+  dut : andgate port map(in1, in2, result);
+
+  -- Now let's run the test
+  process begin
+    -- No sensitivity list means it runs immediately,
+    -- and repeats as soon as it finishes.
+
+    in1 <= '0';
+    in2 <= '0';
+    wait for 10 ns;
+    assert (result = '0') report "Failed for 00; expected 0, got " & to_string(result);
+
+    in1 <= '0';
+    in2 <= '1';
+    wait for 10 ns;
+    assert (result = '0') report "Failed for 01; expected 0, got " & to_string(result);
+
+    in1 <= '1';
+    in2 <= '0';
+    wait for 10 ns;
+    assert (result = '0') report "Failed for 10; expected 0, got " & to_string(result);
+
+    in1 <= '1';
+    in2 <= '1';
+    wait for 10 ns;
+    assert (result = '1') report "Failed for 11; expected 1, got " & to_string(result);
+
+    report "Test complete!";
+    wait; -- Stop here indefinitely (don't repeat)
+          -- The simulator will detect when all processes have stopped and then exit
+  end process;
+
+end test;
+

@@ -1,0 +1,24 @@
+--  Testbench for 4-bit adder
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use std.textio.all;
+
+entity adder_test is
+-- No ports, since this is a testbench
+end adder_test;
+
+architecture test of adder_test is
+
+component adder is
+  port(
+	  a : in unsigned(3 downto 0);
+	  b : in unsigned(3 downto 0);
+	  sum : out unsigned(3 downto 0)
+  );
+end component;
+
+begin
+
+end test;
+

@@ -1,0 +1,10 @@
+Write a VHDL module which streams the genome through, and asserts (makes high) the `is_c` signal every time the output is a C.  The output should be a copy of the input without any delay.
+
+<br/>
+<br/>
+<table>
+<tr><td>Adenine  </td><td>A</td><td>00</td></tr>
+<tr><td>Thymine  </td><td>T</td><td>01</td></tr>
+<tr><td>Guanine  </td><td>G</td><td>10</td></tr>
+<tr><td>Cytosine </td><td>C</td><td>11</td></tr>
+<table>
