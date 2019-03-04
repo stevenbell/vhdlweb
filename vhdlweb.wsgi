@@ -66,6 +66,23 @@ function compile() {
       xmlhttp.send(code);
   }
 }
+
+function saveFile( ) {
+	var editor = ace.edit("editor");
+	var filename = "testfile.vhdl";
+	var data = editor.getValue();
+    	var file = new Blob([data], {type: "text/plain"});
+    	if (window.navigator.msSaveOrOpenBlob) // IE10+
+        	window.navigator.msSaveOrOpenBlob(file, filename);
+    	else { // Others
+        	var button = document.getElementById("save");
+                url = URL.createObjectURL(file);
+        	button.href = URL.createObjectURL(file);
+        	button.download = filename;
+    }
+}
+
+
 </script>
 </head>
 <body>""" + prompt + \
@@ -84,6 +101,11 @@ startercode + \
 </script>
 
 <button onClick="compile()">Build!</button>
+
+<a id = "save">
+<button  onClick="saveFile()"> Download File </button>
+</a>
+
 <p>Build output:<br/>
   <span id="buildlog"></span></p>
 
