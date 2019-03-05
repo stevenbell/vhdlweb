@@ -103,7 +103,9 @@ startercode + \
 <button onClick="compile()">Build!</button>
 
 <a id = "save">
-<button  onClick="saveFile()"> saveFile </button>
+
+<button  onClick="saveFile()"> Download File </button>
+
 </a>
 
 <p>Build output:<br/>

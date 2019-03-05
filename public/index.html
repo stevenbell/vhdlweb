@@ -1,0 +1,81 @@
+<html>
+<meta charset="UTF-8"> 
+<head>
+
+<style type="text/css" media="screen">
+    #editor { 
+        width: 800px;
+        height: 400px;
+    }
+</style>
+
+<script>
+function compile() {
+
+  // Read the code from the form
+  var code = editor.getValue();
+
+  // Send the code to the server
+  if (code.length == 0) {
+      document.getElementById("txtHint").innerHTML = "";
+      return;
+  } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("buildlog").innerHTML = "<pre>" + this.responseText + "</pre>";
+          }
+      };
+      xmlhttp.open("POST", "/compile/""" + problem + """", true);
+	    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(code);
+  }
+}
+
+function saveFile( ) {
+	var editor = ace.edit("editor");
+	var filename = "testfile.vhdl";
+	var data = editor.getValue();
+    	var file = new Blob([data], {type: "text/plain"});
+    	if (window.navigator.msSaveOrOpenBlob) // IE10+
+        	window.navigator.msSaveOrOpenBlob(file, filename);
+    	else { // Others
+        	var button = document.getElementById("save");
+                url = URL.createObjectURL(file);
+        	button.href = URL.createObjectURL(file);
+        	button.download = filename;
+    }
+}
+
+
+</script>
+</head>
+<body>
+
+<!--  prompt goes here-->
+
+<br/>
+<div id="editor">
+
+<!-- startercode goes here-->
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.session.setMode("ace/mode/vhdl");
+    document.getElementById("editor").style.fontSize='16px';
+</script>
+
+<button onClick="compile()">Build!</button>
+
+<a id = "save">
+<button  onClick="saveFile()"> Download File </button>
+</a>
+
+<p>Build output:<br/>
+<span id="buildlog"></span></p>
+
+</body>
+</html>
