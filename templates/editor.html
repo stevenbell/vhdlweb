@@ -1,0 +1,83 @@
+<html>
+<meta charset="UTF-8">
+<head>
+
+<style type="text/css" media="screen">
+    #editor {
+        width: 800px;
+        height: 400px;
+    }
+</style>
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+  function compile() {
+    var code = editor.getValue();
+    if (code.length == 0) {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+      console.log("Sennding a post request!");
+      $.ajax({
+       type:    "POST",
+       url:     "http://127.0.0.1:5000/compile/",
+       contentType: "application/json",
+       data: JSON.stringify({
+         "code" : code,
+         "problem" : "{{message.problem}}"
+       }),
+       success: function(d) {
+           document.getElementById("txtHint").innerHTML = d["output"];
+       }
+   }); }
+  }
+
+  function saveFile( ) {
+  	var editor = ace.edit("editor");
+  	var filename = "testfile.vhdl";
+  	var data = editor.getValue();
+      	var file = new Blob([data], {type: "text/plain"});
+      	if (window.navigator.msSaveOrOpenBlob) // IE10+
+          	window.navigator.msSaveOrOpenBlob(file, filename);
+      	else { // Others
+          	var button = document.getElementById("save");
+                  url = URL.createObjectURL(file);
+          	button.href = URL.createObjectURL(file);
+          	button.download = filename;
+      }
+  }
+</script>
+
+</head>
+<body>
+
+{{message.prompt}}
+
+<br/>
+<div id="editor">
+
+{{message.startercode}}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.session.setMode("ace/mode/vhdl");
+    document.getElementById("editor").style.fontSize='16px';
+</script>
+
+<button onClick="compile()">Build!</button>
+
+<a id = "save">
+<button  onClick="saveFile()"> Download File </button>
+</a>
+
+<p>Build output:<br/>
+<span id="buildlog"></span></p>
+
+</body>
+</html>
