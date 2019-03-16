@@ -48,8 +48,8 @@ def safe_run(command, timeout=3, **kwargs):
 
 def compile(wdir, problem):
     print(os.listdir("problems/{}".format("abc")))
-    safe_run(["cp", "problems/{}/Makefile".format(problem), wdir])
-    safe_run(["cp", "problems/{}/testbench.vhd".format(problem), wdir])
+    safe_run(["cp", "/var/www/problems/{}/Makefile".format(problem), wdir])
+    safe_run(["cp", "/var/www/problems/{}/testbench.vhd".format(problem), wdir])
 
     # Try to jam it through GHDL and capture the result
     output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"], stderr = sp.STDOUT)
