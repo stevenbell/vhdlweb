@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import json
 import time
+from vhdlweb_build import * 
 
 app = Flask(__name__)
 app.secret_key = b'ap9283hjpfa3jP(*#J(*$' # Used for session encryption
@@ -48,28 +49,38 @@ def showAssignments():
   return render_template('assignments.html', assignments = assignments)
 
 @app.route('/compile/<problemId>', methods=['POST'])
-def compile(problemId):
+def compilerequest(problemId):
   if request.method == 'POST':
     requestblob = request.json
-
-    # wdir = findpath()
-    #         fp = open(wdir + 'submission.vhd', 'w')
-    #         fp.write(code.decode('utf-8'))
-    #         fp.close()
-    #         output = compile(wdir, problem)
 
     if 'username' in session:
       username = session['username']
     else:
       username = "anonymous"
-    
-    return "username: {}\n \
-            button: {}\n \
-            changetext: {}\n \
-            pagetime: {}\n \
-            date: {}\n \
-            code:\n{} ".format(username, requestblob['button'], requestblob['changetext'], requestblob['pagetime'], time.ctime(), requestblob['code']  )
-  # TODO: return a pass/fail indicator
+ 
+    # Get a working directory for this submission
+    wdir = findpath(username, problemId)
+
+    # Write a metadata file into the directory
+    # Username/problem are captured by the directory name
+    metadata = {'button':requestblob['button'],
+                'changetext':requestblob['changetext'],
+                'pagetime':requestblob['pagetime'],
+                'time':time.ctime()}
+    metafile = open(wdir + '/metadata.json', 'w')
+    json.dump(metadata, metafile)
+    metafile.close()
+
+    # Write the code file into the directory
+    codefile = open(wdir + '/submission.vhd', 'w')
+    codefile.write(requestblob['code'])# code.decode('utf-8')
+    codefile.close()
+
+    # Copy build files and execute the build
+    output = compile(wdir, problemId)
+
+    # TODO: return success/failure along with the compilation results
+    return output
 
 @app.route('/problem/<problemId>')
 def showProblem(problemId):

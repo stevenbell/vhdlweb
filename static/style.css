@@ -51,11 +51,12 @@ body {
 
 h1, h2 {
     font-family: open-sans, sans-serif;
+    font-size: 24px;
 }
 
 .inlineheading {
     font-family: open-sans, sans-serif;
-    font-size: 27px; /* Match H2 */
+    font-size: 24px; /* Match H2 */
     font-weight: bold;
     margin-right: 10px;
 }
@@ -85,6 +86,9 @@ input {
   padding: 8px 15px 8px 15px;
 }
 
+#buildlog {
+  font-size: 14px;
+}
 
 ul {
   list-style: none;
