@@ -1,0 +1,40 @@
+{
+"In class problems (2/10/20)": [
+    {"title":"3-variable boolean equation", "id":"abc"},
+    {"title":"Thermometer decoder", "id":"thermometer"},
+    {"title":"4-bit ALU", "id":"alu"}
+],
+
+"Homework 3 problems": [
+    {"title":"3-input NAND gate", "id":"nand3"},
+    {"title":"Majority encoder", "id":"majority"},
+    {"title":"An 8-bit multiplexer", "id":"mux21"},
+    {"title":"A 1-bit 7-segment display", "id":"sevenseg01"},
+    {"title":"Divide by two", "id":"div2"},
+    {"title":"Three bit adder", "id":"adderlogic"},
+    {"title":"Add one", "id":"add1"},
+    {"title":"Saturating adder", "id":"saturatingadd"}
+],
+
+"In class problems (2/20/20)": [
+    {"title":"Testing an AND gate", "id":"andtest"},
+    {"title":"Testing the 3-variable boolean equation", "id":"abctest"}
+],
+
+"Homework 4 problems": [
+    {"title":"Testing a 4:1 multiplexer", "id":"testmux41"},
+    {"title":"Testing a 4-bit adder", "id":"testadder"}
+],
+
+"Homework 5 problems": [
+    {"title":"One-hot counter", "id":"onehot"},
+    {"title":"4-bit LFSR", "id":"lfsr5"}
+]
+
+
+}
+
+
+
+
+

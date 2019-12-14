@@ -1,0 +1,40 @@
+<html>
+<meta charset="UTF-8"> 
+<head>
+
+<script src="//use.edgefonts.net/open-sans:n3,n7;crimson-text:n4,i4.js"></script>
+<link rel="stylesheet" href="/static/style.css" />
+
+{% block scripts %}
+{% endblock %}
+
+</head>
+<body>
+<div id="navbar"><a href="/">
+<span class="header">VHDLweb</span></a>
+<span class="login">
+{% if 'username' in session %}
+{{ session['username'] }}<br/>
+<a href="/logout">log out</a>
+{% else %}
+<a href="/login">log in</a>
+{% endif %}
+</span>
+<br/>
+<a href="/assignments">problems</a> | <a href="/sandbox">sandbox</a> | <a href="/reference">reference</a>
+</div>
+
+<div id="content">
+{% block content %}
+{% endblock %}
+</div>
+
+<div id="footer">
+Tufts Electrical and Computer Engineering<br/>
+VHDLweb.com &copy; 2018-2019 <a href="stevenbell.me">Steven Bell</a>
+</div>
+
+
+</body>
+</html>
+

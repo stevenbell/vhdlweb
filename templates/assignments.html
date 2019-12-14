@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+{% if 'username' not in session: %}
+Please <a href="login">log in</a> to see your assignments.
+{% endif %}
+
+{# For each assignment, print all of the problems #}
+{% for a in assignments %}
+<h2>{{ a }}</h2>
+<ul>
+{% for p in assignments[a] %}
+<li class="incomplete"><a href="problem/{{p.id}}">{{ p.title }}</a>
+{% endfor %}
+</ul>
+{% endfor %}
+
+{% endblock %}
+
