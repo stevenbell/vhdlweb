@@ -1,0 +1,12 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity top is
+  port(
+	  leds : out std_logic_vector(1 downto 0);
+  );
+end top;
+
+-- You're on your own for the rest!
+

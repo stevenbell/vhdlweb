@@ -1,0 +1,12 @@
+Complete the design to implement the DDDD.<br/>
+<br/>
+When you run it, you should see the value of the digits 0-63.
+<br/>
+To perform the mod operation correctly, you should use
+<pre>
+lowBCD <= count mod 4d"10";
+</pre>
+
+Make sure to use an unsigned constant (e.g., 4d"10", rather than the integer constant 10).  If you don't, then the behavior depends on the synthesis/simulation tool, and you may get some ugly surprises.  Some things work fine here and fail in Radiant, and vice-versa.
+<br/>
+

@@ -4,6 +4,11 @@ import os
 import sys
 import cgi
 
+## Configuration settings
+#SRCDIR="/var/www/vhdlweb/problems"
+SRCDIR="/home/vhdlweb/vhdlweb/problems"
+WORKDIR="/tmp/vhdlweb-dev"
+
 def safe_run(command, timeout=3, **kwargs):
   # Workaround for check_output which can kill child processes that are holding things up
   # i.e., the Makefile runs ghdl_mcode, and it's not quitting.
@@ -122,7 +127,7 @@ def findpath():
     # Pick a number
     idnum = random.randint(0, 10000)
     # Check if it already exists
-    tmpdir = '/tmp/vhdlweb-www/{}'.format(idnum)
+    tmpdir = '{workdir}/{idnum}'.format(workdir=WORKDIR, idnum=idnum)
     if not os.path.isdir(tmpdir):
       # If not, make it and claim it
       os.mkdir(tmpdir)
@@ -132,11 +137,16 @@ def findpath():
 
 def compile(wdir, problem):
     # Copy the files into the working directory
-    safe_run(["cp", "/var/www/vhdlweb/problems/{}/Makefile".format(problem), wdir])
-    safe_run(["cp", "/var/www/vhdlweb/problems/{}/testbench.vhd".format(problem), wdir])
-    
-    # Try to jam it through GHDL and capture the result
-    output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"], stderr = sp.STDOUT)
+    try:
+      filelist = open("{path}/{problem}/filelist".format(path=SRCDIR, problem=problem))
+      for filename in filelist:
+        safe_run(["cp", "{path}/{problem}/{filename}".format(path=SRCDIR, problem=problem, filename=filename.strip()), wdir])
+
+      # Try to jam it through GHDL and capture the result
+      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"], stderr = sp.STDOUT)
+
+    except:
+      output = b"A server error occured while compiling your code."
 
     return(output)
 

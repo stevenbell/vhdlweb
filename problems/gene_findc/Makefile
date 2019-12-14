@@ -6,11 +6,11 @@ all: run
 
 gold:
 	@$(GHDL) -a $(FLAGS) testbench.vhd gene_findc_gold.vhd
-	@$(GHDL) -e $(FLAGS) gene_findc_test
-	@$(GHDL) -r $(FLAGS) gene_findc_test --stop-time=1us
+	@$(GHDL) -e $(FLAGS) test_findc
+	@$(GHDL) -r $(FLAGS) test_findc --stop-time=1us
 
 run:
 	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
-	@$(GHDL) -e $(FLAGS) gene_findc_test
-	@$(GHDL) -r $(FLAGS) gene_findc_test --stop-time=1us
+	@$(GHDL) -e $(FLAGS) test_findc
+	@$(GHDL) -r $(FLAGS) test_findc --stop-time=1us
 

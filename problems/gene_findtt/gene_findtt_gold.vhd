@@ -6,14 +6,29 @@ entity gene_findtt is
     clk : in std_logic;
     nuc_in : in std_logic_vector(1 downto 0); -- Input nucleotide
     nuc_out : out std_logic_vector(1 downto 0); -- Input nucleotide
-    is_double : out std_logic -- Whether the output nucleotide is part of a pair of thymines
+    foundtt : out std_logic -- Whether the output nucleotide is a cytosine
   );
 end;
 
 architecture synth of gene_findtt is
-begin
-  -- We don't even have to clock this...
-  nuc_out <= nuc_in;
-  is_double <= '1' when (nuc_in = "11") else '0';
-end;
+constant NUC_T : std_logic_vector(1 downto 0) :=  "01";
 
+signal double : std_logic; -- Only need 1 bit of state
+begin
+
+  process (clk) is
+  begin
+    if rising_edge(clk) then
+      -- If we enountered a second T, then we need to go into "double" mode
+      if (nuc_out = NUC_T) and (nuc_in = NUC_T) then
+        double <= '1';
+      else -- nuc_in must not be a T, time to leave double mode
+        double <= '0';
+      end if;
+      nuc_out <= nuc_in;
+    end if;
+  end process;
+
+  foundtt <= '1' when ((nuc_in = NUC_T) and (nuc_out = NUC_T)) or (double = '1') else '0';
+
+end;

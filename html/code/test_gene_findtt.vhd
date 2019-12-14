@@ -49,8 +49,6 @@ begin
     -- Delay counting
     variable delay : integer := 0;
     variable expected_delay : std_logic_vector(MAX_DELAY-1 downto 0);
-    type NucChain is array(natural range <>) of std_logic_vector(1 downto 0);
-    variable nuc_delay : NucChain(MAX_DELAY-1 downto 0);
 
     -- Error counting
     variable errors : integer := 0;
@@ -77,6 +75,10 @@ begin
       read(l, separator); -- Eat the underscore
       read(l, expected); -- Should be 1 or 0
 
+      -- Shift all the bits down the delay chain
+      expected_delay(MAX_DELAY-1 downto 1) := expected_delay(MAX_DELAY-2 downto 0);
+      expected_delay(0) := expected;
+
       case nuc is
         when 'A' => nuc_in <= NUC_A;
         when 'T' => nuc_in <= NUC_T;
@@ -85,14 +87,6 @@ begin
         when others => report "Malformed genome file, encountered " & to_string(nuc);
       end case;
 
-      wait for 1 ns; -- HACK: wait for nuc_in to be assigned so we can use it below
-
-      -- Shift all the bits down the delay chain
-      expected_delay(MAX_DELAY-1 downto 1) := expected_delay(MAX_DELAY-2 downto 0);
-      expected_delay(0) := expected;
-      nuc_delay(MAX_DELAY-1 downto 1) := nuc_delay(MAX_DELAY-2 downto 0);
-      nuc_delay(0) := nuc_in;
-
       -- Check the outputs once everything has settled
       -- Just before the next rising edge would be ideal, but after the falling
       -- edge works just as well.
@@ -100,16 +94,10 @@ begin
       -- Eat unknown/invalid outputs; once we get something valid we can start checking
       if nuc_out = "XX" or nuc_out = "UU" then
         delay := delay + 1;
-        if delay >= MAX_DELAY then
-          report "Test failed: Design didn't produce valid nuc_out after " & to_string(MAX_DELAY) & " cycles." severity failure;
-
-        end if;
         --report "Delay is now: " & to_string(delay) & " delay line: " & to_string(expected_delay);
       else
         check(foundtt = expected_delay(delay),
-              "expected tt " & to_string(expected_delay(delay)) & " but got " & to_string(foundtt));
-        check(nuc_out = nuc_delay(delay),
-              "expected nuc_out " & to_string(nuc_delay(delay)) & " but got " & to_string(nuc_out));
+              "expected " & to_string(expected_delay(delay)) & " but got " & to_string(foundtt));
       end if;
 
     end loop;

@@ -1,4 +1,4 @@
-Write a VHDL module which streams the genome through, and asserts (makes high) the `found_c` signal every time the output is a C.  The output should be a copy of the input delayed by exactly one clock cycle.
+Implement a Mealy state machine which detects the code 'TGG'. The output nuc_out should be a copy of the input, with no delay. The tryp output should be high for one clock cycle synchronzied with the second G.
 
 <br/>
 <br/>

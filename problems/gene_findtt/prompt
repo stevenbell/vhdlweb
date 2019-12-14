@@ -1,6 +1,6 @@
 A common cause of skin cancer is when two adjacent thymine (’T’) base pairs are fused together by an incoming ultraviolet ray. This causes the strand to be mis-read, which under the right circumstances causes the cell to go haywire.
 
-Write a VHDL module which streams the genome through, and asserts (makes high) the `is_double` signal every time the module emits a `T` which is part of a pair of `T`s.  It should be able to handle more than two in sequence, such as `TTT` or `TTTT`.
+Write a VHDL module which streams the genome through, and asserts (makes high) the `foundtt` signal every time the module emits a `T` which is part of a pair of `T`s.  It should be able to handle more than two in sequence, such as `TTT` or `TTTT`.
 
 <br/>
 <br/>
