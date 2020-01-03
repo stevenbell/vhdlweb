@@ -39,6 +39,10 @@ body {
     padding: 10px 20px 10px 20px;
 }
 
+#footer a {
+    color: #ffffff;
+}
+
 .header {
     font-size: 40px;
     font-weight: bold;
