@@ -83,6 +83,17 @@ def compilerequest(problemId):
     # TODO: If the test passed, then mark this problem as complete
     return json.dumps(output)
 
+@app.route('/submission/<problemId>/<subId>')
+def retrieveSubmission(problemId, subId):
+  if subId == 'startercode':
+    return readfile("data/problems/{}/startercode".format(problemId))
+  else:
+    subpath = WORKDIR + '/' + session['username'] + '/' + problemId + '/' + subId + '/submission.vhd'
+    if os.path.isfile(subpath):
+      return readfile(subpath)
+    else:
+      return "Submission {} not found".format(subId), 404
+
 @app.route('/problem/<problemId>')
 def showProblem(problemId):
   prompt = readfile("data/problems/{}/prompt".format(problemId))
@@ -112,5 +123,9 @@ def showProblem(problemId):
     # Otherwise, use the starter code
     startercode = readfile("data/problems/{}/startercode".format(problemId))
 
+  # Finally, put the starter code in the list
+  submissions.append({'id':'startercode', 'status':'new', 'time':'Starter code'})
+
   return render_template('problem.html', problemId=problemId, prompt=prompt, submissions=submissions, startercode=startercode)
+
 

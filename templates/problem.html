@@ -12,6 +12,17 @@ function configureButtons(state) {
   // wild guess and "other" buttons are always visible
 }
 
+function rollback(submissionId) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            editor.setValue(this.responseText);
+          }
+      };
+      xmlhttp.open("GET", "/submission/{{problemId}}/" + submissionId, true);
+      xmlhttp.send();
+}
+
 function compile(buttonId) {
   // Set the build text to "building"
   outputlog = document.getElementById("buildlog");
@@ -60,12 +71,12 @@ function compile(buttonId) {
   <button id="historybutton">Rollback to previous</button>
   <div class="dropdown-content">
 {% for s in submissions %}
-    <a href="#">{{s['time']}}
+    <a href="#" onClick="rollback('{{s['id']}}')">{{s['time']}}
 {% if s['status'] == 'buildfail' %}
 &#10060;
 {% elif s['status'] == 'testfail' %}
 &#9654;
-{% else %}
+{% elif s['status'] == 'pass' %}
 &#9989; 
 {% endif %}
 </a>
