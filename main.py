@@ -79,8 +79,8 @@ def compilerequest(problemId):
     # Copy build files and execute the build
     output = compile(wdir, problemId)
 
-    # TODO: return success/failure along with the compilation results
-    return output
+    # TODO: If the test passed, then mark this problem as complete
+    return json.dumps(output)
 
 @app.route('/problem/<problemId>')
 def showProblem(problemId):

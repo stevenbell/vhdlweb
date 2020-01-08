@@ -2,6 +2,16 @@
 
 {% block scripts %}
 <script>
+
+function configureButtons(state) {
+  document.getElementById("b_syntaxfix").hidden = !(state == "buildfail");
+  document.getElementById("b_typefix").hidden = !(state == "buildfail");
+  document.getElementById("b_bugfix").hidden = !(state == "testfail");
+  document.getElementById("b_testing").hidden = !(state == "new" | state == "pass");
+  document.getElementById("b_newcode").hidden = !(state == "new" | state == "testfail");
+  // wild guess and "other" buttons are always visible
+}
+
 function compile(buttonId) {
   // Set the build text to "building"
   outputlog = document.getElementById("buildlog");
@@ -18,7 +28,19 @@ function compile(buttonId) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("buildlog").innerHTML = "<pre>" + this.responseText + "</pre>";
+              result = JSON.parse(this.responseText);
+              if(!result.buildOk){
+                document.getElementById("buildlabel").innerHTML = "Build failed:";
+                configureButtons("buildfail");
+              } else if(!result.testPassed){
+                document.getElementById("buildlabel").innerHTML = "Test failed:";
+                configureButtons("testfail");
+              } else {
+                document.getElementById("buildlabel").innerHTML = "Test passed!";
+                configureButtons("pass");
+              }
+
+              document.getElementById("buildlog").innerHTML = "<pre>" + result.buildOutput + "</pre>";
           }
       };
       changetext = document.getElementById("changetype").value;
@@ -33,7 +55,7 @@ function compile(buttonId) {
 {% endblock %}
 
 {% block content %}
-<!--<h1>One-hot counter</h1> &#10004; -->
+<!--<h1>One-hot counter <span id="completecheck">&#10004;</span></h1>-->
 {{ prompt|safe }}
 <br/>
 <div id="editor">
@@ -52,20 +74,20 @@ function compile(buttonId) {
 <span class="inlineheading">This change is a:</span> (select one to recompile) <br/>
 <br/>
 
-<button onClick="compile('testing')" style="color: #268bd2">just testing</button>
 
-<button onClick="compile('syntax')" style="color: #b58900">syntax fix</button>
-<button onClick="compile('type')" style="color: #dc322f">type fix</button>
+<button id="b_syntaxfix" hidden=true onClick="compile('syntax')" style="color: #b58900">syntax fix</button>
+<button id="b_typefix" hidden=true onClick="compile('type')" style="color: #dc322f">type fix</button>
 
-<button onClick="compile('bug')" style="color: #2aa198">bug fix</button>
-<button onClick="compile('newcode')" style="color: #859900">new functionality</button>
+<button id="b_bugfix" hidden=true onClick="compile('bug')" style="color: #2aa198">bug fix</button>
+<button id="b_newcode" onClick="compile('newcode')" style="color: #859900">new functionality</button>
 
-<button onClick="compile('guess')" style="color: #268bd2">wild guess</button>
+<button id="b_testing" onClick="compile('testing')" style="color: #268bd2">just testing</button>
+<button id="b_guess" onClick="compile('guess')" style="color: #6c71c4">wild guess</button>
 <br/>
 <button onClick="compile('other')" style="color: #586e75">something else:</button>
 <input id="changetype" type="text" placeholder="describe your change...">
 
-<h2>Compiler/test output:</h2>
+<h2 id="buildlabel">Compiler/test output:</h2>
 <span id="buildlog">
 </span>
 

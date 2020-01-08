@@ -62,7 +62,7 @@ begin
 
     
     if errors = 0 then
-      write(l, String'("Test passed."));
+      report "TEST PASSED.";
     else
       write (l, String'("Test failed with "));
       write (l, errors);
