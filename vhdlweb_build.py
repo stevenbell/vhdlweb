@@ -66,6 +66,13 @@ def compile(wdir, problem):
     matches = re.findall('^testbench\.vhd.*TEST PASSED', output, flags=re.M)
     testPassed = len(matches) is 1
 
-    return {"buildOk":buildOk, "testPassed":testPassed, "buildOutput":output}
+    if buildOk and testPassed:
+      status = "pass"
+    elif buildOk:
+      status = "testfail"
+    else:
+      status = "buildfail"
+
+    return {"status":status, "buildOutput":output}
     return output
 

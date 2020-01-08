@@ -61,16 +61,6 @@ def compilerequest(problemId):
     # Get a working directory for this submission
     wdir = findpath(username, problemId)
 
-    # Write a metadata file into the directory
-    # Username/problem are captured by the directory name
-    metadata = {'button':requestblob['button'],
-                'changetext':requestblob['changetext'],
-                'pagetime':requestblob['pagetime'],
-                'time':time.ctime()}
-    metafile = open(wdir + '/metadata.json', 'w')
-    json.dump(metadata, metafile)
-    metafile.close()
-
     # Write the code file into the directory
     codefile = open(wdir + '/submission.vhd', 'w')
     codefile.write(requestblob['code'])# code.decode('utf-8')
@@ -79,6 +69,17 @@ def compilerequest(problemId):
     # Copy build files and execute the build
     output = compile(wdir, problemId)
 
+    # Write a metadata file into the directory
+    # Username/problem are captured by the directory name
+    metadata = {'button':requestblob['button'],
+                'changetext':requestblob['changetext'],
+                'pagetime':requestblob['pagetime'],
+                'time':time.ctime(),
+                'status':output['status'] }
+    metafile = open(wdir + '/metadata.json', 'w')
+    json.dump(metadata, metafile)
+    metafile.close()
+
     # TODO: If the test passed, then mark this problem as complete
     return json.dumps(output)
 
@@ -86,10 +87,30 @@ def compilerequest(problemId):
 def showProblem(problemId):
   prompt = readfile("data/problems/{}/prompt".format(problemId))
 
-  # TODO: If the user has already tried this problem, give them their last attempt
-  # Otherwise, use the starter code
-  # TODO: need a starter-code reset button, and/or a history log
-  startercode = readfile("data/problems/{}/startercode".format(problemId))
+  # Build a list of the submissions
+# TODO: safety on username
+  basepath = WORKDIR + '/' + session['username'] + '/' + problemId
+  submissions = []
+  subdir = '0000' # Start at zero and count up
 
-  return render_template('problem.html', problemId=problemId, prompt=prompt, startercode=startercode)
+  while os.path.isdir(basepath + '/' + subdir):
+
+    subdata = json.load(open(basepath + '/' + subdir + '/metadata.json'))
+    submissions.append({'id':subdir, 'status':subdata['status'], 'time':subdata['time']})
+
+    # Find the next one
+    subdir = '{:04d}'.format(len(submissions))
+
+  # Reverse the list, so the most recent are first
+  submissions.reverse()
+
+  if len(submissions) > 0:
+    # If the user has already tried this problem, give them their last attempt
+    startercode = readfile(basepath + '/' + submissions[0]['id'] + '/submission.vhd')
+
+  else:
+    # Otherwise, use the starter code
+    startercode = readfile("data/problems/{}/startercode".format(problemId))
+
+  return render_template('problem.html', problemId=problemId, prompt=prompt, submissions=submissions, startercode=startercode)
 

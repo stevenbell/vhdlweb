@@ -29,15 +29,13 @@ function compile(buttonId) {
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
               result = JSON.parse(this.responseText);
-              if(!result.buildOk){
+              configureButtons(result.status);
+              if(result.status == "buildfail"){
                 document.getElementById("buildlabel").innerHTML = "Build failed:";
-                configureButtons("buildfail");
-              } else if(!result.testPassed){
+              } else if(result.status == "testfail"){
                 document.getElementById("buildlabel").innerHTML = "Test failed:";
-                configureButtons("testfail");
               } else {
                 document.getElementById("buildlabel").innerHTML = "Test passed!";
-                configureButtons("pass");
               }
 
               document.getElementById("buildlog").innerHTML = "<pre>" + result.buildOutput + "</pre>";
@@ -57,6 +55,23 @@ function compile(buttonId) {
 {% block content %}
 <!--<h1>One-hot counter <span id="completecheck">&#10004;</span></h1>-->
 {{ prompt|safe }}
+<br/>
+<div class="dropdown">
+  <button id="historybutton">Rollback to previous</button>
+  <div class="dropdown-content">
+{% for s in submissions %}
+    <a href="#">{{s['time']}}
+{% if s['status'] == 'buildfail' %}
+&#10060;
+{% elif s['status'] == 'testfail' %}
+&#9654;
+{% else %}
+&#9989; 
+{% endif %}
+</a>
+{% endfor %}
+  </div>
+</div>
 <br/>
 <div id="editor">
 {{ startercode }}
