@@ -1,11 +1,15 @@
 
 from flask import Flask, render_template, request, session, redirect, url_for
+from flask.ext.markdown import Markdown
 import json
 import time
 from vhdlweb_build import * 
 
 app = Flask(__name__)
 app.secret_key = b'ap9283hjpfa3jP(*#J(*$' # Used for session encryption
+
+# Set up the Markdown extension
+md = Markdown(app, extensions=['fenced_code'])
 
 def readfile(filename):
   """ Read a file's contents into a string. """

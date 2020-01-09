@@ -114,7 +114,7 @@ li:before {
 }
 
 /* TODO: This relies a bit too much on pixel-perfect positioning... make it better. */
-.dropdown {
+.dropdown-container {
   position: relative;
   display: block;
   height: 50px;
@@ -149,7 +149,8 @@ li:before {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-.dropdown:hover #historybutton {
+
+#historybutton:hover {
   background-color: #eee8d5;
 }
 
@@ -159,3 +160,20 @@ li:before {
   right: 0px;
 }
 
+/* Style items for writing prompts */
+.truthtable td {
+  padding: 4px 10px 4px 10px;
+}
+
+.truthtable th {
+  padding: 4px 10px 4px 10px;
+  text-align: left;
+}
+
+.truthtable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.code {
+  font-family: monospace;
+}
