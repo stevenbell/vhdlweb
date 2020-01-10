@@ -1,0 +1,4 @@
+export FLASK_ENV=development
+export VHDLWEB_CONFIG=debug.config
+flask run
+

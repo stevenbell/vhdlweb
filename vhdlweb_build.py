@@ -2,9 +2,6 @@ import subprocess as sp
 import re
 import os
 
-SRCDIR="/home/steven/Documents/teaching/es4/vhdlweb/data/problems"
-WORKDIR="/tmp/vhdlweb"
-
 def safe_run(command, timeout=3, **kwargs):
   # Workaround for check_output which can kill child processes that are holding things up
   # i.e., the Makefile runs ghdl_mcode, and it's not quitting.
@@ -24,10 +21,10 @@ def safe_run(command, timeout=3, **kwargs):
       return("Program timed out after {} seconds. Output up to this point was:\n\n"\
              .format(timeout).encode('utf-8') + output[0:5000])
 
-def findpath(student, problemId):
+def findpath(workdir, student, problemId):
   """ Create a unique temporary working directory corresponding to this student
       and problem, and return the path to it. """
-  basepath = WORKDIR + '/' + student + '/' + problemId
+  basepath = workdir + '/' + student + '/' + problemId
   if not os.path.isdir(basepath):
     os.mkdir(basepath)
 
@@ -46,15 +43,24 @@ def findpath(student, problemId):
   os.mkdir(wdir)
   return wdir + '/'
 
-def compile(wdir, problem):
+def runtest(config, wdir, problem):
+    """
+    Copy the files for a problem into a working directory, try to build it and
+    run the test, and report the result.
+    config: The app.config object, which has SRCDIR (the problem source) and
+      MAKE_ARGS (extra command line args for Make) defined.
+    wdir: The working directory to copy to and build in
+    problem: the id for the problem we're working on
+    """
+ 
     # Copy the files into the working directory
     try:
-      filelist = open("{path}/{problem}/filelist".format(path=SRCDIR, problem=problem))
+      filelist = open("{path}/{problem}/filelist".format(path=config['SRCDIR'], problem=problem))
       for filename in filelist:
-        safe_run(["cp", "{path}/{problem}/{filename}".format(path=SRCDIR, problem=problem, filename=filename.strip()), wdir])
+        safe_run(["cp", "{path}/{problem}/{filename}".format(path=config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
       # Try to jam it through GHDL and capture the result
-      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent", "GHDL=/home/steven/tools/ghdl/ghdl_mcode"], stderr = sp.STDOUT)
+      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except:
       output = "A server error occured while compiling your code."

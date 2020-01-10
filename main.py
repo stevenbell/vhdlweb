@@ -1,12 +1,11 @@
-
 from flask import Flask, render_template, request, session, redirect, url_for
-from flask.ext.markdown import Markdown
+from flaskext.markdown import Markdown
 import json
 import time
 from vhdlweb_build import * 
 
 app = Flask(__name__)
-app.secret_key = b'ap9283hjpfa3jP(*#J(*$' # Used for session encryption
+app.config.from_envvar('VHDLWEB_CONFIG')
 
 # Set up the Markdown extension
 md = Markdown(app, extensions=['fenced_code'])
@@ -63,7 +62,7 @@ def compilerequest(problemId):
       username = "anonymous"
  
     # Get a working directory for this submission
-    wdir = findpath(username, problemId)
+    wdir = findpath(app.config['WORKDIR'], username, problemId)
 
     # Write the code file into the directory
     codefile = open(wdir + '/submission.vhd', 'w')
@@ -71,7 +70,7 @@ def compilerequest(problemId):
     codefile.close()
 
     # Copy build files and execute the build
-    output = compile(wdir, problemId)
+    output = runtest(app.config, wdir, problemId)
 
     # Write a metadata file into the directory
     # Username/problem are captured by the directory name
@@ -92,7 +91,7 @@ def retrieveSubmission(problemId, subId):
   if subId == 'startercode':
     return readfile("data/problems/{}/startercode".format(problemId))
   else:
-    subpath = WORKDIR + '/' + session['username'] + '/' + problemId + '/' + subId + '/submission.vhd'
+    subpath = app.config['WORKDIR'] + '/' + session['username'] + '/' + problemId + '/' + subId + '/submission.vhd'
     if os.path.isfile(subpath):
       return readfile(subpath)
     else:
@@ -104,7 +103,7 @@ def showProblem(problemId):
 
   # Build a list of the submissions
 # TODO: safety on username
-  basepath = WORKDIR + '/' + session['username'] + '/' + problemId
+  basepath = app.config['WORKDIR'] + '/' + session['username'] + '/' + problemId
   submissions = []
   subdir = '0000' # Start at zero and count up
 
