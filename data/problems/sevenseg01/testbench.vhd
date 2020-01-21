@@ -27,7 +27,7 @@ begin
     variable errors : integer := 0;
     variable l : line; -- For y text
 
-    -- Function
+    -- Standard check function
     procedure check(condition : boolean; message : string) is
     begin
       if not condition then
@@ -63,21 +63,26 @@ begin
 
   begin
 
-    write(l, String'("Test digit 0 -------"));
-    writeline (output, l);
-
+    write(output, "Test digit 0 -------" & LF);
     S <= '0'; wait for 10 ns;
+    check(segments = "1111110", "Segments incorrect for digit 0");
     draw_sevenseg(segments);
   
+    write(output, to_string(LF)); -- Newline just for visual clarity
 
-    write(l, String'("Testing digit 1 -------"));
-    writeline (output, l);
-
+    write(output, "Test digit 1 -------" & LF);
     S <= '1'; wait for 10 ns;
+    check(segments = "0110000", "Segments incorrect for digit 1");
     draw_sevenseg(segments);
 
-    write(l, String'("Test complete."));
-    writeline (output, l);
+    write(output, to_string(LF)); -- Newline just for visual clarity
+
+    if errors = 0 then
+      write (output, "TEST PASSED." & LF);
+    else
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
+    end if;
+
     wait;
   end process;
 end test;

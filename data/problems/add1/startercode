@@ -11,6 +11,6 @@ end add1;
 
 architecture synth of add1 is
 begin
-  result <= to_unsigned(1, 8); -- 8-bit constant with the value 1
+  result <= 8d"1"; -- 8-bit constant with the decimal value 1
 end;
 

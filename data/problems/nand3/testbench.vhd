@@ -29,9 +29,8 @@ begin
 
   process
     variable errors : integer := 0;
-    variable l : line; -- For output text
 
-    -- Function
+    -- Standard check function
     procedure check(condition : boolean; message : string) is
     begin
       if not condition then
@@ -39,7 +38,6 @@ begin
         errors := errors + 1;
       end if;
     end check;
-
 
   begin
     -- !(ABC)
@@ -60,15 +58,12 @@ begin
     a <= '1'; b <= '1'; c <= '1'; wait for 10 ns;
     check(y = '0', "test failed for 111.");
 
-    
     if errors = 0 then
-      write(l, String'("Test passed."));
+      write (output, "TEST PASSED." & LF);
     else
-      write (l, String'("Test failed with "));
-      write (l, errors);
-      write (l, String'(" errors."));
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    writeline (output, l);
+
     wait;
   end process;
 end test;

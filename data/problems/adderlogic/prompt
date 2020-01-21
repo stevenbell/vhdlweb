@@ -1,7 +1,6 @@
 
 Just as it's helpful to define intermediate variables in a software program, it is often useful to define intermediate signals to represent part of a hardware computation.
-<br/>
-<br/>
+
 Declaring a signal is just like declaring an input or output port, except that it happens at the top of the architecture, and begins with the keyword `signal`.
 
 <pre>
@@ -13,9 +12,8 @@ begin
 end;
 </pre>
 
-Implement a 3-bit adder without using the addition operator, by writing boolean assignments for each bit.  A and B are 3-bit inputs; the result should be a 4-bit output (so there should be no overflow.)  This is identical to ES 4 lab 2.
-<br/>
-<br/>
+Implement a 3-bit adder without using the addition operator, by writing boolean assignments for each bit.  A and B are 3-bit inputs; the result should be a 4-bit output (so there should be no overflow.)
+
 Use intermediate signals for the carry bits.
 
 

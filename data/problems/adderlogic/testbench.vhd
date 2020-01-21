@@ -28,9 +28,8 @@ begin
 
   process
     variable errors : integer := 0;
-    variable l : line; -- For output text
 
-    -- Function
+    -- Standard check function
     procedure check(condition : boolean; message : string) is
     begin
       if not condition then
@@ -47,18 +46,16 @@ begin
         b <= std_logic_vector(to_unsigned(b_int, 3));
         wait for 10 ns;
         check(sum = std_logic_vector(to_unsigned(a_int + b_int, 4)),
-               "test failed for " & integer'image(a_int) & " + " & integer'image(b_int) & ".");
+               "test failed for " & to_string(a_int) & " + " & to_string(b_int) & ".");
       end loop;
     end loop;
 
     if errors = 0 then
-      write(l, String'("Test passed."));
+      write (output, "TEST PASSED." & LF);
     else
-      write (l, String'("Test failed with "));
-      write (l, errors);
-      write (l, String'(" errors."));
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    writeline (output, l);
+
     wait;
   end process;
 end test;

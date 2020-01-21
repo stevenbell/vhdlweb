@@ -1,7 +1,7 @@
-You can you the `&` operator to concatenate std_logc and std_logic_vector.  For example, the following assignment makes a 7-bit result, where the top two bits are '1', the bottom bit is 0, and the remaining 4 are from the vector `value`.
+You can use the `&` operator to concatenate `std_logic` and `std_logic_vector`.  For example, the following assignment makes a 7-bit result, where the top two bits are '1', the bottom bit is 0, and the remaining 4 are from the vector `value`.
 <pre>
   y <= "11" & value(3 downto 0) & '0';
 </pre>
 
-Complete the architecture below to divide the 8-bit unsigned input by 2, truncating (ignoring) any fraction.  The output should also be 8 bits.  Do *not* use the VHDL division or shift operators --- instead, think about what happens when you divide a binary number by 2, and figure out how do that by manipulating bits.  If it helps, think about what happens when you divide a decimal number by 10.
+Complete the architecture below to divide the 8-bit unsigned input by 2, truncating (ignoring) any fraction.  The output should also be 8 bits.  Do *not* use the VHDL division or shift operators &mdash; instead, think about what happens when you divide a binary number by 2, and figure out how do that by manipulating bits.  If it helps, think about what happens when you divide a decimal number by 10.
 

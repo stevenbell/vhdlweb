@@ -1,4 +1,4 @@
-A bus is a set of signals which are grouped together conceptually (and often physically).  One way to represent a bus is with std_logic_vector, which is somewhat similar to an array in software programming languages.
+A bus is a set of signals which are grouped together conceptually (and often physically).  One way to represent a bus is with `std_logic_vector`, which is somewhat similar to an array in software programming languages.
 
 We can declare a 3-bit input bus called `votes` with
 <pre>
