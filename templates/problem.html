@@ -78,7 +78,9 @@ function compile(buttonId) {
 {% if s['status'] == 'buildfail' %}
 &#10060;
 {% elif s['status'] == 'testfail' %}
+<span style="color:#268bd2">
 &#9654;
+</span>
 {% elif s['status'] == 'pass' %}
 &#9989; 
 {% endif %}
@@ -88,9 +90,7 @@ function compile(buttonId) {
 </div>
 </div>
 <br/>
-<div id="editor">
-{{ startercode }}
-</div>
+<div id="editor">{{ startercode }}</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
