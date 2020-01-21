@@ -69,8 +69,11 @@ def runtest(config, wdir, problem):
     buildOk = os.path.isfile(wdir + "work-obj08.cf")
 
     # See if the testbench emitted a "TEST PASSED" line
-    matches = re.findall('^testbench\.vhd.*TEST PASSED', output, flags=re.M)
-    testPassed = len(matches) is 1
+    passMatches = re.findall('TEST PASSED', output)
+    # And check that the word "fail" wasn't emitted
+    failMatches = re.findall('fail', output, flags=re.IGNORECASE)
+
+    testPassed = len(passMatches) is 1 and len(failMatches) is 0
 
     if buildOk and testPassed:
       status = "pass"
