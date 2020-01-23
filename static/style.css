@@ -58,6 +58,10 @@ h1, h2 {
     font-size: 24px;
 }
 
+.error {
+    color: #dc322f;
+}
+
 .inlineheading {
     font-family: open-sans, sans-serif;
     font-size: 24px; /* Match H2 */

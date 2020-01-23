@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flaskext.markdown import Markdown
 import json
 import time
@@ -44,8 +44,17 @@ def index():
 def login():
   if request.method == 'POST':
     # If it's a POST, then validate the info and log the user in
-    session['username'] = request.form['username']
-    return redirect(url_for('index'))
+    username = request.form['username']
+    password = request.form['password']
+
+    pwfile = app.config['WORKDIR'] + '/' + username + '/password'
+    if os.path.isfile(pwfile) and readfile(pwfile).strip() == password:
+      session['username'] = username
+      return redirect('assignments')
+
+    else:
+      flash("That username or password is incorrect.")
+      return render_template('login.html')
 
   # If it's a GET, show the login page
   return render_template('login.html')
