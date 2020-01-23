@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from flaskext.markdown import Markdown
 import json
 import time
+from random import choices
+from string import ascii_letters
 from vhdlweb_build import * 
 
 app = Flask(__name__)
@@ -16,6 +18,23 @@ def readfile(filename):
   s = f.read()
   f.close()
   return s
+
+def get_user(session):
+  """ Returns the identifier for this user.  If the user is not logged in,
+      returns a temporary identifier. """
+  if 'username' in session:
+    return session['username']
+  elif 'tempId' in session:
+    return session['tempId']
+  else:
+    tempId = "".join(choices(ascii_letters, k=25))
+    session['tempId'] = tempId
+    return tempId
+
+def logged_in(session):
+  """ Returns true if the user is logged in (and has a valid submission directory).
+      Returns false if the user just has a temporary identifier. """
+  return 'username' in session
 
 @app.route('/')
 def index():
@@ -43,11 +62,11 @@ def sandbox():
 
 @app.route('/assignments')
 def showAssignments():
-  if 'username' in session:
+  if logged_in(session):
     assignments = json.load(open('data/assignments.json'))
     # TODO: annotate this with the ones that are complete
   else:
-    assignments = []
+    assignments = json.load(open('data/assignments.json'))
 
   return render_template('assignments.html', assignments = assignments)
 
@@ -56,10 +75,7 @@ def compilerequest(problemId):
   if request.method == 'POST':
     requestblob = request.json
 
-    if 'username' in session:
-      username = session['username']
-    else:
-      username = "anonymous"
+    username = get_user(session)
  
     # Get a working directory for this submission
     wdir = findpath(app.config['WORKDIR'], username, problemId)
@@ -91,7 +107,7 @@ def retrieveSubmission(problemId, subId):
   if subId == 'startercode':
     return readfile("data/problems/{}/startercode".format(problemId))
   else:
-    subpath = app.config['WORKDIR'] + '/' + session['username'] + '/' + problemId + '/' + subId + '/submission.vhd'
+    subpath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId + '/' + subId + '/submission.vhd'
     if os.path.isfile(subpath):
       return readfile(subpath)
     else:
@@ -102,8 +118,7 @@ def showProblem(problemId):
   prompt = readfile("data/problems/{}/prompt".format(problemId))
 
   # Build a list of the submissions
-# TODO: safety on username
-  basepath = app.config['WORKDIR'] + '/' + session['username'] + '/' + problemId
+  basepath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId
   submissions = []
   subdir = '0000' # Start at zero and count up
 
