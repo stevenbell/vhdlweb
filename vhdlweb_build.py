@@ -24,7 +24,15 @@ def safe_run(command, timeout=3, **kwargs):
 def findpath(workdir, student, problemId):
   """ Create a unique temporary working directory corresponding to this student
       and problem, and return the path to it. """
-  basepath = workdir + '/' + student + '/' + problemId
+  # Check that the student directory exists and create it if necessary
+  # This should only happen for anonymous users
+  studentpath = workdir + '/' + student
+  if not os.path.isdir(studentpath):
+    os.mkdir(studentpath)
+
+  # Check that the problem subdirectory exists and create it if necessary
+  # This will happen the first time a user attempts a problem
+  basepath = studentpath + '/' + problemId
   if not os.path.isdir(basepath):
     os.mkdir(basepath)
 
