@@ -69,6 +69,10 @@ def logout():
 def sandbox():
   return "The sandbox is still under construction."
 
+@app.route('/reference')
+def reference():
+  return render_template('reference.html')
+
 @app.route('/assignments')
 def showAssignments():
   if logged_in(session):

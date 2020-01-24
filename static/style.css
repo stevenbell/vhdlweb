@@ -100,11 +100,11 @@ input {
   font-size: 14px;
 }
 
-ul {
+.checklist {
   list-style: none;
 }
 
-li:before {
+.checklist li:before {
   content: "\2713 ";
   padding-right: 10px;
 }
@@ -182,3 +182,9 @@ li:before {
 .code {
   font-family: monospace;
 }
+
+/* Style items for reference and other static pages */
+.booktitle {
+  font-style: italic;
+}
+
