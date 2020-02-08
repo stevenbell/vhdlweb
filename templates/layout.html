@@ -4,6 +4,9 @@
 
 <script src="//use.edgefonts.net/open-sans:n3,n4,n7;crimson-text:n4,i4.js"></script>
 <link rel="stylesheet" href="/static/style.css" />
+{% if config['BUILD'] != "production" %}
+<link rel="stylesheet" href="/static/betastyle.css" />
+{% endif %}
 
 {% block scripts %}
 {% endblock %}
@@ -11,7 +14,13 @@
 </head>
 <body>
 <div id="navbar"><a href="/">
-<span class="header">VHDLweb</span></a>
+
+<span class="header">VHDLweb
+{% if config['BUILD'] != "production" %}
+- {{ config['BUILD'] }}
+{% endif %}
+</span></a>
+
 <span class="login">
 {% if 'username' in session %}
 {{ session['username'] }}<br/>
