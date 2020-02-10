@@ -18,8 +18,8 @@ component saturatingadd is
   );
 end component;
 
-signal a : unsigned(7 downto 0);
-signal b : unsigned(7 downto 0);
+signal a : unsigned(7 downto 0) := 8d"0";
+signal b : unsigned(7 downto 0) := 8d"0";
 signal result : unsigned(7 downto 0);
 
 begin
@@ -28,9 +28,8 @@ begin
 
   process
     variable errors : integer := 0;
-    variable l : line; -- For y text
 
-    -- Function
+    -- Standard check function
     procedure check(condition : boolean; message : string) is
     begin
       if not condition then
@@ -45,41 +44,39 @@ begin
     a <= to_unsigned(1, 8);
     b <= to_unsigned(1, 8);
     wait for 10 ns;
-    check(result = to_unsigned(2, 8), "Test failed for 1 + 1, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(2, 8), "Test failed for 1 + 1, got " & to_string(to_integer(result)));
 
     a <= to_unsigned(150, 8);
     b <= to_unsigned(100, 8);
     wait for 10 ns;
-    check(result = to_unsigned(250, 8), "Test failed for 150 + 100, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(250, 8), "Test failed for 150 + 100, got " & to_string(to_integer(result)));
 
     a <= to_unsigned(255, 8);
     b <= to_unsigned(1, 8);
     wait for 10 ns;
-    check(result = to_unsigned(255, 8), "Test failed for 255 + 1, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(255, 8), "Test failed for 255 + 1, got " & to_string(to_integer(result)));
 
     a <= to_unsigned(128, 8);
     b <= to_unsigned(128, 8);
     wait for 10 ns;
-    check(result = to_unsigned(255, 8), "Test failed for 128 + 128, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(255, 8), "Test failed for 128 + 128, got " & to_string(to_integer(result)));
 
     a <= to_unsigned(127, 8);
     b <= to_unsigned(127, 8);
     wait for 10 ns;
-    check(result = to_unsigned(254, 8), "Test failed for 127 + 127, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(254, 8), "Test failed for 127 + 127, got " & to_string(to_integer(result)));
 
     a <= to_unsigned(254, 8);
     b <= to_unsigned(254, 8);
     wait for 10 ns;
-    check(result = to_unsigned(255, 8), "Test failed for 254 + 254, got " & integer'image(to_integer(result)));
+    check(result = to_unsigned(255, 8), "Test failed for 254 + 254, got " & to_string(to_integer(result)));
 
     if errors = 0 then
-      write(l, String'("Test passed."));
+      write (output, "TEST PASSED." & LF);
     else
-      write (l, String'("Test failed with "));
-      write (l, errors);
-      write (l, String'(" errors."));
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    writeline (output, l);
+
     wait;
   end process;
 end test;
