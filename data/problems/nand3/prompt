@@ -1,0 +1,4 @@
+VHDL uses '`<=`' for assignment (where most software languages use '`=`').
+
+Complete the architecture below to implement a three-input NAND gate: \\(Y = \overline{ABC}\\)
+

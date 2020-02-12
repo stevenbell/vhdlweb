@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+Please log in with the username and password that were provided to you.<br/>
+
+<span class="error">{{ "<br/>".join(get_flashed_messages()) }}</span>
+
+<form method="post">
+    <p><input type=text name=username placeholder="username">
+    <p><input type=password name=password placeholder="password">
+    <p><input type=submit value=Login>
+</form>
+{% endblock %}
+

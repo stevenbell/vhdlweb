@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block scripts %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
+
+<script>
+function configureButtons(state) {
+  document.getElementById("b_syntaxfix").hidden = !(state == "buildfail");
+  document.getElementById("b_typefix").hidden = !(state == "buildfail");
+  document.getElementById("b_bugfix").hidden = !(state == "testfail");
+  document.getElementById("b_testing").hidden = !(state == "new" | state == "pass");
+  document.getElementById("b_newcode").hidden = !(state == "new" | state == "testfail");
+  // wild guess and "other" buttons are always visible
+}
+
+function rollback(submissionId) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            editor.setValue(this.responseText);
+          }
+      };
+      xmlhttp.open("GET", "/submission/{{problemId}}/" + submissionId, true);
+      xmlhttp.send();
+}
+
+function compile(buttonId) {
+  // Set the build text to "building"
+  outputlog = document.getElementById("buildlog");
+  outputlog.innerHTML = "Building..."; // TODO: spinny logic gate
+
+  // Read the code from the form
+  var code = editor.getValue();
+
+  // Send the code to the server
+  if (code.length == 0) {
+      outputlog.innerHTML = "No code to compile!";
+      return;
+  } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              result = JSON.parse(this.responseText);
+              configureButtons(result.status);
+              if(result.status == "buildfail"){
+                document.getElementById("buildlabel").innerHTML = "Build failed:";
+              } else if(result.status == "testfail"){
+                document.getElementById("buildlabel").innerHTML = "Test failed:";
+              } else {
+                document.getElementById("buildlabel").innerHTML = "Test passed!";
+              }
+
+              document.getElementById("buildlog").innerHTML = "<pre>" + result.buildOutput + "</pre>";
+          }
+      };
+      changetext = document.getElementById("changetype").value;
+
+      xmlhttp.open("POST", "/compile/{{problemId}}", true);
+      xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      var blob = JSON.stringify({"code":code, "button":buttonId, "changetext":changetext, "pagetime":0});
+      xmlhttp.send(blob);
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!--<h1>One-hot counter <span id="completecheck">&#10004;</span></h1>-->
+{{ prompt|markdown }}
+<br/>
+<div class="dropdown-container">
+<div class="dropdown">
+  <button id="historybutton">Rollback to previous</button>
+  <div class="dropdown-content">
+{% for s in submissions %}
+    <a href="#" onClick="rollback('{{s['id']}}')">{{s['time']}}
+{% if s['status'] == 'buildfail' %}
+&#10060;
+{% elif s['status'] == 'testfail' %}
+<span style="color:#268bd2">
+&#9654;
+</span>
+{% elif s['status'] == 'pass' %}
+&#9989; 
+{% endif %}
+</a>
+{% endfor %}
+  </div>
+</div>
+</div>
+<br/>
+<div id="editor">{{ startercode }}</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.8/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.session.setMode("ace/mode/vhdl");
+    document.getElementById("editor").style.fontSize='16px';
+</script>
+
+<br/>
+<span class="inlineheading">This change is a:</span> (select one to recompile) <br/>
+<br/>
+
+
+<button id="b_syntaxfix" hidden=true onClick="compile('syntax')" style="color: #b58900">syntax fix</button>
+<button id="b_typefix" hidden=true onClick="compile('type')" style="color: #dc322f">type fix</button>
+
+<button id="b_bugfix" hidden=true onClick="compile('bug')" style="color: #2aa198">bug fix</button>
+<button id="b_newcode" onClick="compile('newcode')" style="color: #859900">new functionality</button>
+
+<button id="b_testing" onClick="compile('testing')" style="color: #268bd2">just testing</button>
+<button id="b_guess" onClick="compile('guess')" style="color: #6c71c4">wild guess</button>
+<br/>
+<button onClick="compile('other')" style="color: #586e75">something else:</button>
+<input id="changetype" type="text" placeholder="describe your change...">
+
+<h2 id="buildlabel">Compiler/test output:</h2>
+<span id="buildlog">
+</span>
+
+{% endblock %}
+
