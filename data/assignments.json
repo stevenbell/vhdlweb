@@ -22,8 +22,8 @@
 ],
 
 "Homework 5 problems": [
-    {"title":"Testing a 4:1 multiplexer", "id":"testmux41"},
-    {"title":"Testing a 4-bit adder", "id":"testadder"}
+    {"title":"Testing a 4:1 multiplexer", "id":"test_mux41"},
+    {"title":"Testing a 4-bit adder", "id":"test_adder"}
 ],
 
 "Homework 6 problems": [
