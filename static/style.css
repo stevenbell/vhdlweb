@@ -188,3 +188,7 @@ input {
   font-style: italic;
 }
 
+.booklist li {
+  margin: 15px 0;
+}
+
