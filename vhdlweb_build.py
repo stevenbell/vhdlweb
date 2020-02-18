@@ -78,10 +78,8 @@ def runtest(config, wdir, problem):
 
     # See if the testbench emitted a "TEST PASSED" line
     passMatches = re.findall('TEST PASSED', output)
-    # And check that the word "fail" wasn't emitted
-    failMatches = re.findall('fail', output, flags=re.IGNORECASE)
 
-    testPassed = len(passMatches) is 1 and len(failMatches) is 0
+    testPassed = len(passMatches) is 1
 
     if buildOk and testPassed:
       status = "pass"

@@ -1,3 +1,4 @@
+-- Broken, correct version would compute AB + (!B)C
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -12,7 +13,6 @@ end abc;
 
 architecture synth of abc is
 begin
-  --y <= (a and b) or ((not b) and c);
-  y <= (a and b) or (b and (not c));
+  y <= (a and b) or ((not a) and (not b) and c);
 end;
 
