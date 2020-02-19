@@ -1,5 +1,5 @@
-Write a testbench to check that the module `mux41` actually performs correctly as a 4:1 multiplexer. (Hint: it doesn't.)
+Write a testbench to check that the module `mux41` actually performs correctly as a 4:1 multiplexer.
 <br/>
 <br/>
-Your code should print the word "failed" if the DUT fails any of your tests.  We'll do some automated testing later to ensure that a correct module passes your tests.
+Your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.
 
