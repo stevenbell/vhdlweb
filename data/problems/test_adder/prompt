@@ -7,5 +7,5 @@ for INDEXVAR in MIN to MAX loop
 end loop;
 </pre>
 
-Note that INDEXVAR is an integer (not an unsigned or std_logic_vector), so you'll need to convert it to the appropriate type if you hope to do any comparisons.
+Note that INDEXVAR is an integer (not an unsigned or std_logic_vector), so you'll need to convert it to the appropriate type if you hope to do any comparisons.  Take a look at the reference sheet for how to do conversions.
 <br/>
