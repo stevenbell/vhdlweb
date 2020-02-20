@@ -1,5 +1,6 @@
 Complete the architecture below to display the value of the 4-bit input `S` on a 7-segment display.  The output should be a vector of bits corresponding to the LED segments, in the order "abcdefg".
 
-<br/>
-<img src="/images/sevenseg_labels.svg" />
+<img src="/static/images/sevenseg_labels.svg" />
+
+Note that there is more than one correct way to do this, so ignore the pass/fail result of the test and just examine the output to confirm that it's what you wanted.
 

@@ -21,6 +21,11 @@
     {"title":"Testing the 3-variable boolean equation", "id":"abctest"}
 ],
 
+"Lab 3 starter code": [
+    {"title":"Seven-segment decoder", "id":"sevenseg"}
+],
+
+
 "Homework 5 problems": [
     {"title":"Testing a 4:1 multiplexer", "id":"test_mux41"},
     {"title":"Testing a 4-bit adder", "id":"test_adder"}
