@@ -1,5 +1,5 @@
-Instantiate the iCE40UP's onboard 48MHz oscillator and use it to drive a counter.  Use a bit of the counter as an LED output, and observe the resulting frequency.<br/>
-<br/>
-The lab handout says to use a 26-bit counter, to get an LED blinking at human-visible timescales.  However, simulating 2^26 clock cycles will bring the poor server to a halt and cause your simulation to time out.  Please use the 10th or maybe 15th bit, and you can switch to 26 bits when you try the real hardware.<br/>
-<br/>
+Instantiate the iCE40UP's onboard 48MHz oscillator and use it to drive a counter.  Use a bit of the counter as an LED output, and observe the resulting frequency.  One LED should be driven by the counter bit, the other should be the same bit but inverted (i.e., exactly one of the two LEDs is on at any given time).
+
+The lab handout says to use a 26-bit counter, to get an LED blinking at human-visible timescales.  However, simulating \\(2^{26}\\) clock cycles will bring the poor server to a halt and cause your simulation to time out.  Instead, pick a bit that will give you a period between 100 and 200 microseconds.  You can go back to bit 26 when you switch over to the FPGA.
+
 Also be sure to initialize the counter -- otherwise it'll start at X, and incrementing will just give X, getting you nowhere.

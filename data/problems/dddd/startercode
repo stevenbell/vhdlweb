@@ -10,5 +10,18 @@ entity dddd is
   );
 end dddd;
 
+architecture sim of dddd is
+
+component sevenseg is
+  port(
+	  S : in unsigned(3 downto 0);
+	  segments : out std_logic_vector(6 downto 0)
+  );
+end component;
+
+begin
+
 -- Good luck!
+
+end;
 

@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 entity top is
   port(
-	  leds : out std_logic_vector(1 downto 0);
+	  leds : out std_logic_vector(1 downto 0)
   );
 end top;
 

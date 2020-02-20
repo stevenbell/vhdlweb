@@ -23,8 +23,19 @@ begin
 
   -- Check the results: time one output cycle and see how long it is
   process
+    variable errors : integer := 0;
     variable starttime : time;
     variable endtime : time;
+    variable dt : time;
+
+    -- Function
+    procedure check(condition : boolean; message : string) is
+    begin
+      if not condition then
+        report message;
+        errors := errors + 1;
+      end if;
+    end check;
 
   begin
     wait until rising_edge(leds(0));
@@ -37,12 +48,18 @@ begin
     wait until rising_edge(leds(0));
     endtime := now;
 
-    report "Time elapsed for one cycle: " & to_string(endtime - starttime);
-    
-    -- Use 1001 ms becuase of integer rounding
-    report "Resulting frequency is: " & to_string(1001 ms / (endtime - starttime)) & " Hz";
+    dt := endtime - starttime;
+    report "Time elapsed for one cycle: " & to_string(dt, 1 us);
+    report "Resulting frequency is: " & to_string(1e6 us / dt) & " Hz";
          
-    report "Test complete. (Killing simulation with error; ignore the message)" severity failure;
+    check(dt > 100 us, "Test failed: Blink period is shorter than 100 us!");
+    check(dt < 200 us, "Test failed: Blink period is longer than 200 us!");
+
+    if errors = 0 then
+      write (output, "TEST PASSED." & LF);
+    end if;
+ 
+    std.env.finish;
 
     wait;
   end process;

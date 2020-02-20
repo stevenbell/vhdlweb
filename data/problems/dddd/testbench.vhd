@@ -18,7 +18,7 @@ component dddd is
   );
 end component;
 
-signal S : unsigned(5 downto 0);
+signal S : unsigned(5 downto 0) := 6d"0";
 signal onessegs : std_logic_vector(6 downto 0);
 signal tenssegs : std_logic_vector(6 downto 0);
 

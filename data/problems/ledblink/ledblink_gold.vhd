@@ -36,7 +36,7 @@ begin
     end if;
   end process;
 
-  leds(0) <= mcount(14);
-  leds(1) <= not mcount(14);
+  leds(0) <= mcount(11);
+  leds(1) <= not mcount(11);
 end;
 
