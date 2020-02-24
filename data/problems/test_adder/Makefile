@@ -14,7 +14,7 @@ all: run1 run2 run3 run4
 gold:
 	@$(GHDL) -a $(FLAGS) testbench_gold.vhd testbench.vhd
 	@$(GHDL) -e $(FLAGS) adder_test
-	@$(GHDL) -r $(FLAGS) adder_test --stop-time=1us
+	@$(GHDL) -r $(FLAGS) adder_test --stop-time=100us
 
 run%:
 	@echo "Running testbench with DUT #$*"
@@ -22,7 +22,7 @@ run%:
 	@rm -f work-obj08.cf # Clean old build file if it exists
 	@$(GHDL) -a $(FLAGS) dut$*.vhd submission.vhd
 	@$(GHDL) -e $(FLAGS) adder_test
-	@$(GHDL) -r $(FLAGS) adder_test --stop-time=1us | tee output$*.log
+	@$(GHDL) -r $(FLAGS) adder_test --stop-time=100us | tee output$*.log
 	@./assert $(DUT$*) output$*.log
 	@echo "\n\n"
 
