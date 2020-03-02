@@ -82,15 +82,13 @@ begin
     wait until falling_edge(clk);
     check(count = "00000001", "test failed on cycle 8.");
      
-    if errors = 0 then
-      report "Test passed.";
+   if errors = 0 then
+      write (output, "TEST PASSED." & LF);
     else
-      write (l, String'("Test failed with "));
-      write (l, errors);
-      write (l, String'(" errors."));
-      report "Test failed." severity failure;
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    writeline (output, l);
+ 
+    std.env.finish; -- All done, but clock is still going
 
     wait;
   end process;

@@ -62,17 +62,12 @@ begin
        wait until falling_edge(clk);
     end loop;
     
-    if errors = 0 then
-      write (l, String'("Test passed."));
+   if errors = 0 then
+      write (output, "TEST PASSED." & LF);
     else
-      write (l, String'("Test failed with "));
-      write (l, errors);
-      write (l, String'(" errors."));
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    writeline (output, l);
-
-    -- Kill the simulation
-    report "Simulation finished (ignore the following error message)" severity failure;
+ 
     wait;
   end process;
 end test;

@@ -1,6 +1,6 @@
 The standard way to control the brightness of LEDs is to switch them on and off very quickly and to vary the duty cycle (the percentage of the time that the LED is on).  You'll actually get to do this on the UPduino hardware.
-<br/>
+
 Create a module that takes a 24MHz clock and produces a 1 kHz signal with a 25% duty cycle.  That is, the total period should be 1 ms, and the output should be high for only 25% of the time.
-<br/>
+
 Like the previous problem, you'll need to keep track of time using the input clock.
 

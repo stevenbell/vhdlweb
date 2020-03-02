@@ -27,12 +27,9 @@ begin
 
   myreg : gene_protein port map(clk, nuc_in, nuc_out, is_protein);
 
-  process
-    variable buf : line;
-  begin
+  process begin
 
-    write(buf, string'("Test under construction"));
-    writeline(output, buf);
+    write (output, "The test for this problem has not been completed yet." & LF);
 
     wait;
   end process;

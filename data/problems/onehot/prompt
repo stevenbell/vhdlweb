@@ -1,2 +1,2 @@
-Build an 8-bit one-hot counter (i.e., one bit is high at a time, counting up from the LSB to the MSB and then repeating).<br/>
-When reset, the value should be 0000_0001.
+Build an 8-bit one-hot counter (i.e., one bit is high at a time, counting up from the LSB to the MSB and then repeating).
+When reset, the value should be `0000_0001`.

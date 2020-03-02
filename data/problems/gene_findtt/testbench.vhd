@@ -107,19 +107,21 @@ begin
         --report "Delay is now: " & to_string(delay) & " delay line: " & to_string(expected_delay);
       else
         check(foundtt = expected_delay(delay),
-              "expected tt " & to_string(expected_delay(delay)) & " but got " & to_string(foundtt));
+              "expected tt = " & to_string(expected_delay(delay)) & " but got " & to_string(foundtt));
         check(nuc_out = nuc_delay(delay),
-              "expected nuc_out " & to_string(nuc_delay(delay)) & " but got " & to_string(nuc_out));
+              "expected nuc_out = " & to_string(nuc_delay(delay)) & " but got " & to_string(nuc_out));
       end if;
 
     end loop;
 
-    if errors = 0 then
-      report "Test passed.";
+   if errors = 0 then
+      write (output, "TEST PASSED." & LF);
     else
-      report "Test failed with " & to_string(errors) & " errors.";
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
-    wait;
+
+    std.env.finish; -- Forcefully end the simulation, since the clock is still going
+ 
   end process;
 
 end;

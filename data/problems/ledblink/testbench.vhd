@@ -39,11 +39,11 @@ begin
 
   begin
     wait until rising_edge(leds(0));
-    assert leds(1) = '0' report "LED 0 and 1 are simultaneously high!";
+    check(leds(1) = '0', "LED 0 and 1 are simultaneously high!");
     starttime := now;
 
     wait until falling_edge(leds(0));
-    assert leds(1) = '1' report "LED 0 and 1 are simultaneously low!";
+    check(leds(1) = '1', "LED 0 and 1 are simultaneously low!");
 
     wait until rising_edge(leds(0));
     endtime := now;

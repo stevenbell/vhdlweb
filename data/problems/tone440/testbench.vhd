@@ -39,8 +39,19 @@ begin
 
   -- Check the results: time one output cycle and see how long it is
   process
+    variable errors : integer := 0;
     variable starttime : time;
     variable endtime : time;
+    variable dt : time;
+    variable freq : real;
+
+    procedure check(condition : boolean; message : string) is
+    begin
+      if not condition then
+        report message;
+        errors := errors + 1;
+      end if;
+    end check;
 
   begin
     wait until falling_edge(reset);
@@ -51,12 +62,22 @@ begin
     wait until rising_edge(tone);
     endtime := now;
 
-    report "Time elapsed for one cycle: " & to_string(endtime - starttime);
-    
-    -- Use 1001 ms becuase of integer rounding
-    report "Resulting frequency is: " & to_string(1001 ms / (endtime - starttime)) & " Hz";
-         
-    report "Test complete.";
+    dt := endtime - starttime;
+
+    -- Little hack to report this as a real number
+    freq := 1.0e12 / real(dt / 1 ps);
+
+    report "Time elapsed for one cycle: " & to_string(dt, 1 us);
+    report "Resulting frequency is: " & to_string(freq, 2) & " Hz";
+
+    check(freq > 439.5, "Test failed: Frequency is too low!");
+    check(freq < 440.5, "Test failed: Frequency is too high!");
+
+    if errors = 0 then
+      write (output, "TEST PASSED." & LF);
+    end if;
+ 
+    std.env.finish; -- Forcefully end the simulation, since the clock is still going
 
     wait;
   end process;

@@ -86,11 +86,14 @@ begin
 
     end loop;
 
-    if errors = 0 then
-      report "Test passed.";
+   if errors = 0 then
+      write (output, "TEST PASSED." & LF);
     else
-      report "Test failed with " & to_string(errors) & " errors.";
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
+
+    std.env.finish; -- Forcefully end the simulation, since the clock is still going
+ 
     wait;
   end process;
 

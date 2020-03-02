@@ -1,5 +1,5 @@
-A ribosome starts building a protein when it encounters the sequence 'ATG', known as a "start codon". It
-knows the protein is complete once it encounters one of three "stop codons": TAA, TAG, or TGA. Everything
+A ribosome starts building a protein when it encounters the sequence `ATG`, known as a "start codon". It
+knows the protein is complete once it encounters one of three "stop codons": `TAA`, `TAG`, or `TGA`. Everything
 in between is part of the protein code. (It’s more complicated, of course, but this is the basic gist).
 
 Write a VHDL module which streams the genome through, and asserts the `is_protein` signal every time the module emits a nucleotide which is part of a protein, including the start and end codons.

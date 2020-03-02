@@ -39,9 +39,20 @@ begin
 
   -- Check the results: time one output cycle and see how long it is
   process
+    variable errors : integer := 0;
+
     variable onstart : real; -- Times in microseconds
     variable offstart : real;
     variable endtime : real;
+
+    procedure check(condition : boolean; message : string) is
+    begin
+      if not condition then
+        report message;
+        errors := errors + 1;
+      end if;
+    end check;
+
   begin
     wait until falling_edge(reset);
 
@@ -56,13 +67,23 @@ begin
 
     report "Time elapsed for one cycle: " & to_string(endtime - onstart) & " microseconds";
 
-    -- Use 1001 ms becuase of integer rounding
     report "Resulting frequency is: " & to_string(1000.0 / (endtime - onstart)) & " kHz";
     report "Duty cycle is: " & to_string(integer(100.0 * (offstart - onstart) / (endtime - onstart))) & " %";
 
-    report "Test complete.";
+    check((endtime - onstart) < 1001.0, "Test failed: Frequency is too low!");
+    check((endtime - onstart) > 999.0, "Test failed: Frequency is too high!");
 
-    wait;
+    check((offstart - onstart) < 251.0, "Test failed: On period is too long!");
+    check((offstart - onstart) > 249.0, "Test failed: On period is too short!");
+
+    if errors = 0 then
+      write (output, "TEST PASSED." & LF);
+    else
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
+    end if;
+
+    std.env.finish; -- Forcefully end the simulation, since the clock is still going
+
   end process;
 end test;
 

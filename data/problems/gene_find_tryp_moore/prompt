@@ -1,7 +1,5 @@
-Implement a Moore state machine which detects the code 'TGG'. The output nuc_out should be a copy of the input, with no delay. The tryp output should be high for one clock cycle after the sequence is detected.
+Implement a Moore state machine which detects the code `TGG`. The output `nuc_out` should be a copy of the input, with no delay. The `tryp` output should be high for one clock cycle after the sequence is detected.
 
-<br/>
-<br/>
 <table>
 <tr><td>Adenine  </td><td>A</td><td>00</td></tr>
 <tr><td>Thymine  </td><td>T</td><td>01</td></tr>

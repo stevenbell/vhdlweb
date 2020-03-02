@@ -87,10 +87,11 @@ begin
     end loop;
 
     if errors = 0 then
-      report "Test passed.";
+      write (output, "TEST PASSED." & LF);
     else
-      report "Test failed with " & to_string(errors) & " errors.";
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
     end if;
+ 
     wait;
   end process;
 

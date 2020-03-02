@@ -1,7 +1,5 @@
 Write a VHDL module which streams the genome through, and asserts (makes high) the `found_c` signal every time the output is a C.  The output should be a copy of the input delayed by exactly one clock cycle.
 
-<br/>
-<br/>
 <table>
 <tr><td>Adenine  </td><td>A</td><td>00</td></tr>
 <tr><td>Thymine  </td><td>T</td><td>01</td></tr>
