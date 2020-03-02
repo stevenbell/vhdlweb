@@ -65,10 +65,6 @@ def logout():
   session.pop('username')
   return redirect(url_for('index'))
 
-@app.route('/sandbox')
-def sandbox():
-  return "The sandbox is still under construction."
-
 @app.route('/reference')
 def reference():
   return render_template('reference.html')
