@@ -1,3 +1,4 @@
+from flask import current_app
 import subprocess as sp
 import re
 import os
@@ -51,26 +52,27 @@ def findpath(workdir, student, problemId):
   os.mkdir(wdir)
   return wdir + '/'
 
-def runtest(config, wdir, problem):
+def runtest(wdir, problem):
     """
     Copy the files for a problem into a working directory, try to build it and
     run the test, and report the result.
-    config: The app.config object, which has SRCDIR (the problem source) and
-      MAKE_ARGS (extra command line args for Make) defined.
+    The app object must have SRCDIR (the problem source) and MAKE_ARGS (extra
+        command line args for Make) defined.
     wdir: The working directory to copy to and build in
     problem: the id for the problem we're working on
     """
  
     # Copy the files into the working directory
     try:
-      filelist = open("{path}/{problem}/filelist".format(path=config['SRCDIR'], problem=problem))
+      filelist = open("{path}/{problem}/filelist".format(path=current_app.config['SRCDIR'], problem=problem))
       for filename in filelist:
-        safe_run(["cp", "{path}/{problem}/{filename}".format(path=config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
+        safe_run(["cp", "{path}/{problem}/{filename}".format(path=current_app.config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
       # Try to jam it through GHDL and capture the result
-      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + config['MAKE_ARGS'], stderr = sp.STDOUT)
+      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
-    except:
+    except Exception as e:
+      current_app.logger.error("server error: " + str(e))
       output = "A server error occured while compiling your code."
 
     # If the build file was created, then assume build succeeded

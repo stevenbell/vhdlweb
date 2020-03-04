@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flaskext.markdown import Markdown
+from logging import FileHandler, Formatter
 import json
 import time
 from random import choices
@@ -8,6 +9,11 @@ from vhdlweb_build import *
 
 app = Flask(__name__)
 app.config.from_envvar('VHDLWEB_CONFIG')
+
+# Set up Flask to log errors to a file (in addition to the console by default)
+filelog_handler = FileHandler('vhdlweb_errors.log')
+filelog_handler.setFormatter(Formatter('[%(asctime)s] %(levelname)s in %(module)s: %(message)s'))
+app.logger.addHandler(filelog_handler)
 
 # Set up the Markdown extension
 md = Markdown(app, extensions=['fenced_code'])
@@ -95,7 +101,7 @@ def compilerequest(problemId):
     codefile.close()
 
     # Copy build files and execute the build
-    output = runtest(app.config, wdir, problemId)
+    output = runtest(wdir, problemId)
 
     # Write a metadata file into the directory
     # Username/problem are captured by the directory name
@@ -154,5 +160,4 @@ def showProblem(problemId):
   submissions.append({'id':'startercode', 'status':'new', 'time':'Starter code'})
 
   return render_template('problem.html', problemId=problemId, prompt=prompt, submissions=submissions, startercode=startercode)
-
 
