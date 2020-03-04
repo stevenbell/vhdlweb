@@ -72,7 +72,7 @@ def runtest(wdir, problem):
       output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except Exception as e:
-      current_app.logger.error("server error: " + str(e))
+      current_app.logger.error("server error with wdir=" + wdir + " :\n" + str(e))
       output = "A server error occured while compiling your code."
 
     # If the build file was created, then assume build succeeded
