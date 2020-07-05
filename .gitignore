@@ -2,3 +2,7 @@ work-obj93.cf
 work-obj08.cf
 *.swp
 *.swo
+__pycache__/
+vhdlweb_errors.log
+debug.config
+deploy.config
