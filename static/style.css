@@ -1,56 +1,81 @@
 body {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
 }
 
 #navbar {
-    height: 80px;
-    width: 800px;
-    position: fixed;
+    height: 70px;
+    width: 1000px;
+    position: relative;
     top: 0px;
     /* Leave left wherever page puts it */
-    background-color: #073642;
     z-index: 10;
 
     font-size: 20px;
-    color: #ffffff;
+    color: white;
     font-family: open-sans, sans-serif;
 
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px 16px 20px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #navbar a:link, #navbar a:visited {
     font-weight: lighter;
     text-decoration: none;
-    color: #ffffff;
+    color: white;
 }
 
 #navbar a:hover {
     text-decoration: underline;
+    text-shadow: 5px 5px 5px #000000AA;
+    transition-duration: 0.3s;
+}
+
+#navbar-container {
+    height: auto;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    background-color: #073642;
+    z-index: 10;
 }
 
 /* This should match the header */
 #footer {
-    width: 800px;
-    background-color: #073642;
-    color: #ffffff;
+    width: 1000px;
+    color: white;
     font-family: open-sans, sans-serif;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px 7px 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer-container {
+    height: auto;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    position: fixed;
+    background-color: #073642;
+    z-index: 10;
 }
 
 #footer a {
-    color: #ffffff;
+    color: white;
 }
 
 .header {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .login {
     position: absolute;
+    text-align: right;
     right: 20px;
+    bottom: 20%;
 }
 
 h1, h2 {
@@ -70,13 +95,18 @@ h1, h2 {
 }
 
 #content {
-    width: 800px;
+    width: 1000px;
+    height: auto;
+    padding-bottom: 100px;
     margin: 120px 20px 20px 20px;
     font-size: 18px;
     font-family: crimson, serif;
+
+    margin-left: auto;
+    margin-right: auto;
 }
-#editor { 
-    width: 800px;
+#editor {
+    width: 1000px;
     height: 400px;
     margin-top: 10px;
 }
@@ -98,15 +128,31 @@ input {
 
 #buildlog {
   font-size: 14px;
+  border: 2px solid grey;
+  word-wrap: normal;
 }
 
 .checklist {
   list-style: none;
 }
 
+.checklist li {
+  margin: 7px 0;
+}
+
 .checklist li:before {
   content: "\2713 ";
   padding-right: 10px;
+}
+
+.checklist a {
+    color: black;
+    text-decoration: none;
+}
+
+.checklist a:hover {
+    color: #e77817;
+    transition-duration: 0.3s;
 }
 
 .complete{
@@ -192,3 +238,17 @@ input {
   margin: 15px 0;
 }
 
+pre {
+    white-space: pre-wrap;
+}
+
+@media screen and (max-width: 1080px) {
+    #navbar, #footer, #content, #editor{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .login {
+        right: 60px;
+    }
+}

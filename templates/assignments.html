@@ -4,18 +4,17 @@
 {% block content %}
 
 {% if 'username' not in session: %}
-Please <a href="login">log in</a> to see your customized assignment list and save your progress.
+    Please <a href="login">log in</a> to see your customized assignment list and save your progress.
 {% endif %}
 
 {# For each assignment, print all of the problems #}
 {% for a in assignments %}
-<h2>{{ a }}</h2>
-<ul class="checklist">
-{% for p in assignments[a] %}
-<li class="incomplete"><a href="problem/{{p.id}}">{{ p.title }}</a>
-{% endfor %}
-</ul>
+    <h3>{{ a }}</h3>
+    <ul class="checklist">
+    {% for p in assignments[a] %}
+        <li class="incomplete"><a href="problem/{{p.id}}">{{ p.title }}</a>
+    {% endfor %}
+    </ul>
 {% endfor %}
 
 {% endblock %}
-
