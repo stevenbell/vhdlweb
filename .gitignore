@@ -3,6 +3,7 @@ work-obj08.cf
 *.swp
 *.swo
 __pycache__/
+users/
 vhdlweb_errors.log
 debug.config
 deploy.config

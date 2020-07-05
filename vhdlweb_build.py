@@ -27,7 +27,7 @@ def findpath(workdir, student, problemId):
       and problem, and return the path to it. """
   # Check that the student directory exists and create it if necessary
   # This should only happen for anonymous users
-  studentpath = workdir + '/' + student
+  studentpath = workdir + '/users/' + student
   if not os.path.isdir(studentpath):
     os.mkdir(studentpath)
 
