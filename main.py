@@ -53,7 +53,7 @@ def login():
     username = request.form['username']
     password = request.form['password']
 
-    pwfile = app.config['WORKDIR'] + '/users/' + username + '/password'
+    pwfile = app.config['WORKDIR'] + '/' + username + '/password'
     if os.path.isfile(pwfile) and readfile(pwfile).strip() == password:
       session['username'] = username
       return redirect('assignments')
@@ -133,7 +133,7 @@ def showProblem(problemId):
   prompt = readfile("data/problems/{}/prompt".format(problemId))
 
   # Build a list of the submissions
-  basepath = app.config['WORKDIR'] + '/users/' + get_user(session) + '/' + problemId
+  basepath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId
   submissions = []
   subdir = '0000' # Start at zero and count up
 
