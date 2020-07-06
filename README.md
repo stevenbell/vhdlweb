@@ -7,3 +7,6 @@ Requires flask, flask-markdown, and gunicorn, install using pip:
 Must also have [GHDL](https://github.com/ghdl/ghdl) installed.
 
 Make sure you have an appropriate `deploy.config` and `debug.config` before running `deploy` and `debug`, respectively.
+
+Useful resources:
+* https://www.vultr.com/docs/how-to-setup-gunicorn-to-serve-python-web-applications
