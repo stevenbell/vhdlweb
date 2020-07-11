@@ -1,4 +1,24 @@
+
+/* locally hosting the font stops the text from jumping when loading the page */
+@font-face { font-family: "open-sans-local"; font-weight: bold; src: url("/static/fonts/opensans/OpenSans-Bold.ttf"); }
+@font-face { font-family: "open-sans-local"; font-weight: bolder; src: url("/static/fonts/opensans/OpenSans-ExtraBold.ttf"); }
+@font-face { font-family: "open-sans-local"; font-weight: normal; src: url("/static/fonts/opensans/OpenSans-Regular.ttf"); }
+
+    /* url("/static/fonts/opensans/OpenSans-Bold.ttf"),
+    url("/static/fonts/opensans/OpenSans-BoldItalic.ttf"),
+    url("/static/fonts/opensans/OpenSans-ExtraBold.ttf"),
+    url("/static/fonts/opensans/OpenSans-ExtraBoldItalic.ttf"),
+    url("/static/fonts/opensans/OpenSans-Italic.ttf"),
+    url("/static/fonts/opensans/OpenSans-Light.ttf"),
+    url("/static/fonts/opensans/OpenSans-LightItalic.ttf"),
+    url("/static/fonts/opensans/OpenSans-Regular.ttf"),
+    url("/static/fonts/opensans/OpenSans-SemiBold.ttf"),
+    url("/static/fonts/opensans/OpenSans-SemiBoldItalic.ttf"); */
+
 body {
+    font-family: open-sans-local, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar {
@@ -71,6 +91,7 @@ body {
     font-weight: bold;
 }
 
+
 .login {
     position: absolute;
     text-align: right;
@@ -95,13 +116,14 @@ h1, h2 {
 }
 
 #content {
-    width: 1000px;
+    max-width: 1000px;
     height: auto;
     padding-bottom: 100px;
     margin: 120px 20px 20px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 18px;
     font-family: crimson, serif;
-
     margin-left: auto;
     margin-right: auto;
 }
@@ -244,11 +266,38 @@ pre {
 
 @media screen and (max-width: 1080px) {
     #navbar, #footer, #content, #editor{
-        width: 100%;
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .login {
-        right: 60px;
+        right: 20px;
     }
+
+    .ace_editor {
+        max-width: 100% !important;
+    }
+}
+
+/* for when a screen is really small */
+@media screen and (max-width: 500px) {
+    #navbar-container, #footer-container {
+        position: relative;
+    }
+
+    #navbar, #footer {
+        max-width: 90%;
+        /* padding: 10px 0 16px 0; */
+    }
+
+    #content {
+        margin-top: 20px;
+        min-height: 69vh;
+    }
+
+    #logo {
+        display: none;
+    }
+
+
+
 }

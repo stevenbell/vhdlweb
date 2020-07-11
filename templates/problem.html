@@ -60,6 +60,8 @@ function compile(buttonId) {
         xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         var blob = JSON.stringify({"code":code, "button":buttonId, "changetext":changetext, "pagetime":0});
         xmlhttp.send(blob);
+        //rollback('{{submissions[0]['id']}}'); // Need to find a way of securely refreshing this text
+                                                // and the rollback to previous dropdown
     }
 }
 </script>
@@ -121,7 +123,7 @@ function compile(buttonId) {
 <button id="b_guess" onClick="compile('guess')" style="color: #6c71c4">wild guess</button>
 <br/>
 <button onClick="compile('other')" style="color: #586e75">something else:</button>
-<input id="changetype" type="text" placeholder="describe your change...">
+<input id="changetype" type="text" placeholder="describe your change..." style="max-width: 100%">
 <hr>
 <h2 id="buildlabel">Compiler/test output:</h2>
 <div id="buildlog"></div>
