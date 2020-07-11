@@ -31,7 +31,7 @@ body {
 
     font-size: 20px;
     color: white;
-    font-family: open-sans, sans-serif;
+    /* font-family: open-sans-local, sans-serif; */
 
     padding: 10px 20px 16px 20px;
 
@@ -48,7 +48,7 @@ body {
 #navbar a:hover {
     text-decoration: underline;
     text-shadow: 5px 5px 5px #000000AA;
-    transition-duration: 0.3s;
+    transition-duration: 0.1s;
 }
 
 #navbar-container {
@@ -65,7 +65,7 @@ body {
 #footer {
     width: 1000px;
     color: white;
-    font-family: open-sans, sans-serif;
+    /* font-family: open-sans, sans-serif; */
     padding: 10px 20px 7px 20px;
 
     margin-left: auto;
@@ -96,11 +96,10 @@ body {
     position: absolute;
     text-align: right;
     right: 20px;
-    bottom: 20%;
 }
 
 h1, h2 {
-    font-family: open-sans, sans-serif;
+    /* font-family: open-sans, sans-serif; */
     font-size: 24px;
 }
 
@@ -109,7 +108,7 @@ h1, h2 {
 }
 
 .inlineheading {
-    font-family: open-sans, sans-serif;
+    /* font-family: open-sans, sans-serif; */
     font-size: 24px; /* Match H2 */
     font-weight: bold;
     margin-right: 10px;
@@ -133,7 +132,7 @@ h1, h2 {
     margin-top: 10px;
 }
 button {
-  font-family: open-sans, sans-serif;
+  /* font-family: open-sans, sans-serif; */
   font-size: 20px;
   border: 1px solid black;
   background-color: #fdf6e3;
@@ -142,7 +141,7 @@ button {
   cursor: pointer;
 }
 input {
-  font-family: open-sans, sans-serif;
+  /* font-family: open-sans, sans-serif; */
   font-size: 20px;
   border: 1px solid black;
   padding: 8px 15px 8px 15px;
@@ -211,7 +210,7 @@ input {
   text-decoration: none;
   display: block;
   font-size: 14px;
-  font-family: open-sans, sans-serif;
+  /* font-family: open-sans, sans-serif; */
 }
 
 .dropdown-content a:hover {
@@ -247,9 +246,10 @@ input {
   background-color: #f2f2f2;
 }
 
-.code {
-  font-family: monospace;
-}
+/* may be redundant */
+/* .code {
+  #font-family: monospace;
+} */
 
 /* Style items for reference and other static pages */
 .booktitle {
