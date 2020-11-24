@@ -1,50 +1,81 @@
-body {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
+/* To make footer stick to bottom */
+html {
+    min-height: 100%;
+    position: relative;
 }
 
-#navbar {
-    height: 80px;
-    width: 800px;
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#navbar-container {
+    height: auto;
+    width: 100%;
+    top: 0px;
+    left: 0px;
     position: fixed;
+    background-color: #073642;
+    z-index: 10;
+}
+
+
+#navbar {
+    height: 70px;
+    width: 1000px;
+    position: relative;
     top: 0px;
     /* Leave left wherever page puts it */
-    background-color: #073642;
     z-index: 10;
 
     font-size: 20px;
-    color: #ffffff;
+    color: white;
     font-family: open-sans, sans-serif;
 
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px 16px 20px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #navbar a:link, #navbar a:visited {
     font-weight: lighter;
     text-decoration: none;
-    color: #ffffff;
+    color: white;
 }
 
 #navbar a:hover {
     text-decoration: underline;
 }
 
+#footer-container {
+    height: auto;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    background-color: #073642;
+    z-index: 10;
+}
+
 /* This should match the header */
 #footer {
-    width: 800px;
-    background-color: #073642;
-    color: #ffffff;
+    width: 1000px;
+    color: white;
     font-family: open-sans, sans-serif;
-    padding: 10px 20px 10px 20px;
+
+    padding: 10px 20px 7px 20px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #footer a {
-    color: #ffffff;
+    color: white;
 }
 
 .header {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -70,13 +101,19 @@ h1, h2 {
 }
 
 #content {
-    width: 800px;
+    max-width: 1000px;
+    height: auto;
+    padding-bottom: 100px;
     margin: 120px 20px 20px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 18px;
     font-family: crimson, serif;
+    margin-left: auto;
+    margin-right: auto;
 }
-#editor { 
-    width: 800px;
+#editor {
+    width: 1000px;
     height: 400px;
     margin-top: 10px;
 }
@@ -98,15 +135,29 @@ input {
 
 #buildlog {
   font-size: 14px;
+  word-wrap: normal;
 }
 
 .checklist {
   list-style: none;
 }
 
+.checklist li {
+  margin: 5px 0;
+}
+
 .checklist li:before {
   content: "\2713 ";
   padding-right: 10px;
+}
+
+.checklist a {
+    color: black;
+    text-decoration: none;
+}
+
+.checklist a:hover {
+    color: #e77817;
 }
 
 .complete{
@@ -192,3 +243,44 @@ input {
   margin: 15px 0;
 }
 
+pre {
+    white-space: pre-wrap;
+}
+
+@media screen and (max-width: 1080px) {
+    #navbar, #footer, #content, #editor{
+        max-width: 90%;
+    }
+
+    .login {
+        right: 20px;
+    }
+
+    .ace_editor {
+        max-width: 100% !important;
+    }
+}
+
+/* for when a screen is really small */
+@media screen and (max-width: 500px) {
+    #navbar-container, #footer-container {
+        position: relative;
+    }
+
+    #navbar, #footer {
+        max-width: 90%;
+        /* padding: 10px 0 16px 0; */
+    }
+
+    #content {
+        margin-top: 20px;
+        min-height: 69vh;
+    }
+
+    #logo {
+        display: none;
+    }
+
+
+
+}

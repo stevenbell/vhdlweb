@@ -66,7 +66,6 @@ function compile(buttonId) {
 {% endblock %}
 
 {% block content %}
-<!--<h1>One-hot counter <span id="completecheck">&#10004;</span></h1>-->
 {{ prompt|markdown }}
 <br/>
 <div class="dropdown-container">
@@ -104,7 +103,6 @@ function compile(buttonId) {
 <span class="inlineheading">This change is a:</span> (select one to recompile) <br/>
 <br/>
 
-
 <button id="b_syntaxfix" hidden=true onClick="compile('syntax')" style="color: #b58900">syntax fix</button>
 <button id="b_typefix" hidden=true onClick="compile('type')" style="color: #dc322f">type fix</button>
 
@@ -122,4 +120,3 @@ function compile(buttonId) {
 </span>
 
 {% endblock %}
-
