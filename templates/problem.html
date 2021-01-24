@@ -5,6 +5,26 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
 
 <script>
+
+let pasteContent = [];
+let startTime = Date.now(); // Time when tab was focused
+let elapsedTime = 0; // Cumulative time
+
+function addPaste(content) {
+  pasteContent.push(content.text);
+  return content;
+}
+
+function focus() {
+  startTime = Date.now();
+}
+
+function blur() {
+  dt = Date.now() - startTime
+  elapsedTime += dt;
+}
+
+
 function configureButtons(state) {
   document.getElementById("b_syntaxfix").hidden = !(state == "buildfail");
   document.getElementById("b_typefix").hidden = !(state == "buildfail");
@@ -56,11 +76,21 @@ function compile(buttonId) {
       };
       changetext = document.getElementById("changetype").value;
 
+      dt = Date.now() - startTime;
+      elapsedTime += dt;
+
       xmlhttp.open("POST", "/compile/{{problemId}}", true);
       xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-      var blob = JSON.stringify({"code":code, "button":buttonId, "changetext":changetext, "pagetime":0});
+      var blob = JSON.stringify({"code":code, "button":buttonId, "changetext":changetext, "pagetime":elapsedTime/1000, "pastes":pasteContent});
       xmlhttp.send(blob);
+
+      pasteContent = []; // Reset for next time
+      startTime = Date.now();
+      elapsedTime = 0;
   }
+
+  window.addEventListener('focus', focus);
+  window.addEventListener('blur', blur);
 }
 </script>
 {% endblock %}
@@ -97,6 +127,7 @@ function compile(buttonId) {
     editor.setTheme("ace/theme/solarized_light");
     editor.session.setMode("ace/mode/vhdl");
     document.getElementById("editor").style.fontSize='16px';
+    editor.on("paste", addPaste);
 </script>
 
 <br/>

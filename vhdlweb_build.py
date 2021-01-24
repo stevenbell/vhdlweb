@@ -81,7 +81,7 @@ def runtest(wdir, problem):
     # See if the testbench emitted a "TEST PASSED" line
     passMatches = re.findall('TEST PASSED', output)
 
-    testPassed = len(passMatches) is 1
+    testPassed = len(passMatches) == 1
 
     if buildOk and testPassed:
       status = "pass"

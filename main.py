@@ -108,6 +108,7 @@ def compilerequest(problemId):
     metadata = {'button':requestblob['button'],
                 'changetext':requestblob['changetext'],
                 'pagetime':requestblob['pagetime'],
+                'pastes':requestblob['pastes'],
                 'time':time.ctime(),
                 'status':output['status'] }
     metafile = open(wdir + '/metadata.json', 'w')
