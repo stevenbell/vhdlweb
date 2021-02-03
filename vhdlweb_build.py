@@ -70,7 +70,7 @@ def runtest(wdir, problem):
 
         # Try to jam it through docker GHDL and capture the result
       command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
-      safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]])
+      safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]], timeout=120)
       output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except Exception as e:
