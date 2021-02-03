@@ -29,7 +29,7 @@ def findpath(workdir, student, problemId):
   # This should only happen for anonymous users
   studentpath = workdir + '/' + student
   if not os.path.isdir(studentpath):
-    os.mkdir(studentpath)
+    os.makedirs(studentpath)
 
   # Check that the problem subdirectory exists and create it if necessary
   # This will happen the first time a user attempts a problem
@@ -83,7 +83,7 @@ def runtest(wdir, problem):
     # See if the testbench emitted a "TEST PASSED" line
     passMatches = re.findall('TEST PASSED', output)
 
-    testPassed = len(passMatches) is 1
+    testPassed = len(passMatches) == 1
 
     if buildOk and testPassed:
       status = "pass"
