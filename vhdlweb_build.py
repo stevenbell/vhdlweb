@@ -61,15 +61,17 @@ def runtest(wdir, problem):
     wdir: The working directory to copy to and build in
     problem: the id for the problem we're working on
     """
- 
+
     # Copy the files into the working directory
     try:
       filelist = open("{path}/{problem}/filelist".format(path=current_app.config['SRCDIR'], problem=problem))
       for filename in filelist:
         safe_run(["cp", "{path}/{problem}/{filename}".format(path=current_app.config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
-      # Try to jam it through GHDL and capture the result
-      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
+        # Try to jam it through docker GHDL and capture the result
+      command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
+      safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]])
+      output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except Exception as e:
       current_app.logger.error("server error with wdir=" + wdir + " :\n" + str(e))
@@ -92,4 +94,3 @@ def runtest(wdir, problem):
 
     return {"status":status, "buildOutput":output}
     return output
-
