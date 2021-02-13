@@ -1,5 +1,6 @@
 from flask import current_app
 import subprocess as sp
+import json
 import re
 import os
 
@@ -64,7 +65,8 @@ def runtest(wdir, problem):
  
     # Copy the files into the working directory
     try:
-      filelist = open("{path}/{problem}/filelist".format(path=current_app.config['SRCDIR'], problem=problem))
+      problem_config = json.load(open("{path}/{problem}/config".format(path=current_app.config['SRCDIR'], problem=problem)))
+      filelist = problem_config['files']
       for filename in filelist:
         safe_run(["cp", "{path}/{problem}/{filename}".format(path=current_app.config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
@@ -91,5 +93,4 @@ def runtest(wdir, problem):
       status = "buildfail"
 
     return {"status":status, "buildOutput":output}
-    return output
 

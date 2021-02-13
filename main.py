@@ -79,6 +79,7 @@ def reference():
 def showAssignments():
   if logged_in(session):
     assignments = json.load(open('data/assignments.json'))
+    # TODO: use user-specific assignment directory
     # TODO: annotate this with the ones that are complete
   else:
     assignments = json.load(open('data/assignments.json'))
@@ -92,6 +93,8 @@ def compilerequest(problemId):
 
     username = get_user(session)
  
+    timestamp = time.ctime()
+
     # Get a working directory for this submission
     wdir = findpath(app.config['WORKDIR'], username, problemId)
 
@@ -109,11 +112,15 @@ def compilerequest(problemId):
                 'changetext':requestblob['changetext'],
                 'pagetime':requestblob['pagetime'],
                 'pastes':requestblob['pastes'],
-                'time':time.ctime(),
+                'time':timestamp,
                 'status':output['status'] }
     metafile = open(wdir + '/metadata.json', 'w')
     json.dump(metadata, metafile)
     metafile.close()
+
+    # Send the result plus a little more metadata back
+    submissionId = wdir.strip('/').rsplit('/', 1)[-1]
+    output.update({"timestamp":timestamp, "submissionId":submissionId})
 
     # TODO: If the test passed, then mark this problem as complete
     return json.dumps(output)

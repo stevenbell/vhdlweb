@@ -72,6 +72,12 @@ function compile(buttonId) {
               }
 
               document.getElementById("buildlog").innerHTML = "<pre>" + result.buildOutput + "</pre>";
+              rollbackLink = document.createElement("a");
+              rollbackLink.className = result.status;
+              rollbackLink.href = "#";
+              rollbackLink.onclick = function() { rollback(result.submissionId); }
+              rollbackLink.innerText = result.timestamp;
+              document.getElementById("rollback").prepend(rollbackLink);
           }
       };
       changetext = document.getElementById("changetype").value;
@@ -101,7 +107,7 @@ function compile(buttonId) {
 <div class="dropdown-container">
 <div class="dropdown">
   <button id="historybutton">Rollback to previous</button>
-  <div class="dropdown-content">
+  <div id="rollback" class="dropdown-content">
 {% for s in submissions %}
     <a href="#" onClick="rollback('{{s['id']}}')">{{s['time']}}
 {% if s['status'] == 'buildfail' %}

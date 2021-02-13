@@ -1,0 +1,8 @@
+{
+"files" : [
+  "Makefile",
+  "testbench.vhd"
+  ],
+"schematic": "yes"
+}
+
