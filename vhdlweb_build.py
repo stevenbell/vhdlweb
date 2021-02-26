@@ -30,7 +30,7 @@ def findpath(workdir, student, problemId):
   # This should only happen for anonymous users
   studentpath = workdir + '/' + student
   if not os.path.isdir(studentpath):
-    os.mkdir(studentpath)
+    os.makedirs(studentpath)
 
   # Check that the problem subdirectory exists and create it if necessary
   # This will happen the first time a user attempts a problem
@@ -62,7 +62,7 @@ def runtest(wdir, problem):
     wdir: The working directory to copy to and build in
     problem: the id for the problem we're working on
     """
- 
+
     # Copy the files into the working directory
     try:
       problem_config = json.load(open("{path}/{problem}/config".format(path=current_app.config['SRCDIR'], problem=problem)))
@@ -70,8 +70,10 @@ def runtest(wdir, problem):
       for filename in filelist:
         safe_run(["cp", "{path}/{problem}/{filename}".format(path=current_app.config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
-      # Try to jam it through GHDL and capture the result
-      output = safe_run(["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
+        # Try to jam it through docker GHDL and capture the result
+      command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
+      safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]], timeout=120)
+      output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except Exception as e:
       current_app.logger.error("server error with wdir=" + wdir + " :\n" + str(e))
