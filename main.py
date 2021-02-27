@@ -4,6 +4,7 @@ from logging import FileHandler, Formatter
 import json
 import time
 import re
+import os
 from random import choices
 from string import ascii_letters
 from vhdlweb_build import * 
@@ -83,8 +84,16 @@ def reference():
 @app.route('/assignments')
 def showAssignments():
   if logged_in(session):
-    assignments = json.load(open('data/assignments.json'))
-    # TODO: use user-specific assignment directory
+    username = get_user(session)
+    assignment_file = app.config['WORKDIR'] + '/' + username + '/assignments.json'
+    try:
+      assignments = json.load(open(assignment_file))
+    except:
+      # If we couldn't find the user's assignments file, or it was corrupt, then
+      # don't put any problems.  This will make the error obvious, rather than
+      # masking the problem with some default assignment file.
+      assignments = {"You appear to have no assignments. Contact the teaching staff.":[]}
+
     # TODO: annotate this with the ones that are complete
   else:
     assignments = json.load(open('data/assignments.json'))
