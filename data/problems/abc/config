@@ -3,6 +3,6 @@
   "Makefile",
   "testbench.vhd"
   ],
-"schematic": "yes"
+"netlist": "yes"
 }
 

@@ -139,6 +139,34 @@ def compilerequest(problemId):
     # TODO: If the test passed, then mark this problem as complete
     return json.dumps(output)
 
+@app.route('/netlist/<problemId>/<subId>')
+def generateNetlist(problemId, subId):
+  # If the problem exists
+  if not os.path.isdir(app.config['SRCDIR'] + '/' + problemId):
+    return "Problem {} not found.".format(problemId), 404
+
+  # and the config says we can make netlists
+  problem_config = json.load(open(app.config['SRCDIR'] + '/' + problemId + '/config'))
+  if not ('netlist' in problem_config and problem_config['netlist'] == "yes"):
+    return "Problem {} does not support netlist generation".format(problemId), 404
+
+  # and the submission exists
+  wdir = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId + '/' + subId + '/'
+  sub_metapath = wdir + 'metadata.json'
+  if not os.path.isfile(sub_metapath):
+    return "Submission {} not found".format(subId), 404
+
+  # and the submission built successfully
+  metadata = json.load(open(sub_metapath))
+  if metadata['status'] == 'buildfail':
+    return "Netlist not available because synthesis failed", 404
+
+  # then try to generate the netlist!
+  run_netlist(wdir)
+
+  # TODO: what if it fails?
+  return readfile(wdir + "netlist.svg")
+
 @app.route('/submission/<problemId>/<subId>')
 def retrieveSubmission(problemId, subId):
   if subId == 'startercode':

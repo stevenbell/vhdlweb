@@ -101,3 +101,13 @@ def runtest(wdir, problem):
 
     return {"status":status, "buildOutput":output}
 
+def run_netlist(wdir):
+  # Run synthesis and generate the netlist in the GHDL/yosys docker container
+  command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
+  synthesis_output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'] + ["netlist.json"], stderr = sp.STDOUT)
+
+  # Run netlistsvg locally
+  safe_run(["netlistsvg", wdir + "netlist.json", "-o", wdir + "netlist.svg", "--skin", current_app.config['SRCDIR'] + "/customskin.svg"])
+
+  return synthesis_output
+
