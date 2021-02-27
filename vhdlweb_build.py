@@ -70,14 +70,17 @@ def runtest(wdir, problem):
       for filename in filelist:
         safe_run(["cp", "{path}/{problem}/{filename}".format(path=current_app.config['SRCDIR'], problem=problem, filename=filename.strip()), wdir])
 
-        # Try to jam it through docker GHDL and capture the result
+      # Update the docker image (this should be very rare)
+      # TODO: this takes ~0.5 seconds even if there's no update; let's move this elsewhere
+      #safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]], timeout=120)
+
+      # Run the docker container with the working directory mapped
       command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
-      safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]], timeout=120)
       output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
       output = output.decode('utf-8')
     except Exception as e:
       current_app.logger.error("server error with wdir=" + wdir + " :\n" + str(e))
-      output = "A server error occured while compiling your code."
+      output = "A server error occured while compiling your code.  Please check with the teaching staff."
 
     # If the build file was created, then assume build succeeded
     buildOk = os.path.isfile(wdir + "work-obj08.cf")

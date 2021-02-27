@@ -1,5 +1,5 @@
 
-GHDL=/home/vhdlweb/ghdl/build/ghdl_mcode
+GHDL=ghdl
 FLAGS="--std=08"
 
 # Define the correct result for the DUTs here
