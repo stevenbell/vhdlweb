@@ -1,61 +1,11 @@
 {
-"In class problems (2/10 and 2/11)": [
+"Recitation problems (Week of 3/1)": [
     {"title":"3-variable boolean equation", "id":"abc"},
+    {"title":"A big OR", "id":"or4"},
+    {"title":"Simple mux", "id":"mux1bit"},
     {"title":"Thermometer decoder", "id":"thermometer"},
     {"title":"4-bit ALU", "id":"alu"}
-],
-
-"Homework 4 problems": [
-    {"title":"3-input NAND gate", "id":"nand3"},
-    {"title":"Majority encoder", "id":"majority"},
-    {"title":"An 8-bit multiplexer", "id":"mux21"},
-    {"title":"A 1-bit 7-segment display", "id":"sevenseg01"},
-    {"title":"Divide by two", "id":"div2"},
-    {"title":"Three bit adder", "id":"adderlogic"},
-    {"title":"Add one", "id":"add1"},
-    {"title":"Saturating adder", "id":"saturatingadd"}
-],
-
-"In class problems": [
-    {"title":"Testing an AND gate", "id":"andtest"},
-    {"title":"Testing the 3-variable boolean equation", "id":"abctest"}
-],
-
-"Lab 3 starter code": [
-    {"title":"Seven-segment decoder", "id":"sevenseg"}
-],
-
-"Homework 5 problems": [
-    {"title":"Testing a 4:1 multiplexer", "id":"test_mux41"},
-    {"title":"Testing a 4-bit adder", "id":"test_adder"}
-],
-
-"Lab 4 starter code": [
-    {"title":"Blinking LEDs", "id":"ledblink"},
-    {"title":"Dual-digit display driver", "id":"dddd"}
-],
-
-"Homework 6 problems": [
-    {"title":"One-hot counter", "id":"onehot"},
-    {"title":"4-bit LFSR", "id":"lfsr4"}
-],
-
-"State machines" : [
-    {"title":"Flagging cytosine", "id":"gene_findc"},
-    {"title":"Flagging thymine pairs", "id":"gene_findtt"},
-    {"title":"Detecting tryptophan - Moore", "id":"gene_find_tryp_moore"},
-    {"title":"Detecting tryptophan - Mealy", "id":"gene_find_tryp_mealy"},
-    {"title":"Detecting proteins", "id":"gene_protein"}
-],
-
-"Other problems" : [
-    {"title":"Creating an audible tone", "id":"tone440"},
-    {"title":"Controlling brighness of an LED", "id":"ledduty"},
-    {"title":"Testing the passcode FSM", "id":"test_passcode"}
 ]
 }
-
-
-
 
 
