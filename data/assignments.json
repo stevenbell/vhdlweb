@@ -5,6 +5,17 @@
     {"title":"Simple mux", "id":"mux1bit"},
     {"title":"Thermometer decoder", "id":"thermometer"},
     {"title":"4-bit ALU", "id":"alu"}
+],
+
+"Homework 4 problems": [
+    {"title":"3-input NAND gate", "id":"nand3"},
+    {"title":"Majority encoder", "id":"majority"},
+    {"title":"An 8-bit multiplexer", "id":"mux21"},
+    {"title":"A 1-bit 7-segment display", "id":"sevenseg01"},
+    {"title":"Divide by two", "id":"div2"},
+    {"title":"Three bit adder", "id":"adderlogic"},
+    {"title":"Add one", "id":"add1"},
+    {"title":"Saturating adder", "id":"saturatingadd"}
 ]
 }
 
