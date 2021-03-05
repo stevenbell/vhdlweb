@@ -37,11 +37,11 @@ begin
       end if;
     end check;
 
-    -- Draw a single character: '#' if true, ' ' if false
+    -- Draw a single character assuming active-low: '#' if true, ' ' if false
     -- This writes to the process variable line
     procedure dc(value : std_logic) is
     begin
-      if value = '1' then
+      if value = '0' then
         write(l, String'("#"));
       else
         write(l, String'(" "));
@@ -50,15 +50,15 @@ begin
 
     procedure draw_sevenseg(segs : std_logic_vector(6 downto 0)) is
     begin
-      dc(segs(6) or segs(1)); dc(segs(6)); dc(segs(6)); dc(segs(6) or segs(5));
+      dc(segs(6) and segs(1)); dc(segs(6)); dc(segs(6)); dc(segs(6) and segs(5));
       writeline (output, l);
-      dc(segs(1)); dc('0'); dc('0'); dc(segs(5));
+      dc(segs(1)); dc('1'); dc('1'); dc(segs(5));
       writeline (output, l);
-      dc(segs(1) or segs(0)); dc(segs(0)); dc(segs(0)); dc(segs(5) or segs(0));
+      dc(segs(1) and segs(0)); dc(segs(0)); dc(segs(0)); dc(segs(5) and segs(0));
       writeline (output, l);
-      dc(segs(2)); dc('0'); dc('0'); dc(segs(4));
+      dc(segs(2)); dc('1'); dc('1'); dc(segs(4));
       writeline (output, l);
-      dc(segs(2) or segs(3)); dc(segs(3)); dc(segs(3)); dc(segs(4) or segs(3));
+      dc(segs(2) and segs(3)); dc(segs(3)); dc(segs(3)); dc(segs(4) and segs(3));
       writeline (output, l);
     end draw_sevenseg;
 
@@ -70,6 +70,7 @@ begin
 
       S <= to_unsigned(digit, 4); wait for 10 ns;
       draw_sevenseg(segments);
+      write(l, LF);
 
     end loop;
 
