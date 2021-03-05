@@ -1,0 +1,17 @@
+As in software languages, part of the power of VHDL comes from the ability to define a large module in terms of smaller ones, known as "structural modeling" or "hierarchical modeling".
+
+This works in two parts.  First, you'll need a "component declaration", which is essentially just the entity declaration for the submodule you're instantiating.  Then you need one or more actual instantiations within the architecture, with the ports mapped to signals of the module.
+
+Complete the architecture below to implement a 4-input AND gate, by using a 4-input NAND gate which has already been created.  (Yes, this would be easier with the behavioral modeling you already know, but the point here is to practice instantiating submodules!)
+
+You'll need to use the following component declaration:
+
+    component nand4
+      port(
+	      a : in std_logic;
+	      b : in std_logic;
+	      c : in std_logic;
+	      y : out std_logic
+      );
+    end component;
+

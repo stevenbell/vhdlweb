@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity funinabox is
+  port(
+	  a : in std_logic;
+	  b : in std_logic;
+	  result : out std_logic_vector(3 downto 0)
+  );
+end funinabox;
+
+architecture synth of funinabox is
+begin
+
+end;
+

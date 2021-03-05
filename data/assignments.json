@@ -7,7 +7,7 @@
     {"title":"4-bit ALU", "id":"alu"}
 ],
 
-"Homework 4 problems": [
+"Homework 3 problems": [
     {"title":"3-input NAND gate", "id":"nand3"},
     {"title":"Majority encoder", "id":"majority"},
     {"title":"An 8-bit multiplexer", "id":"mux21"},
@@ -16,6 +16,13 @@
     {"title":"Three bit adder", "id":"adderlogic"},
     {"title":"Add one", "id":"add1"},
     {"title":"Saturating adder", "id":"saturatingadd"}
+],
+
+"Lab 4 prelab / practice": [
+    {"title":"Seven-segment display", "id":"sevenseg"},
+    {"title":"4-bit ALU (same as recitation)", "id":"alu"},
+    {"title":"Submodule instantiation", "id":"instantiation"},
+    {"title":"Structural modeling", "id":"structural1"}
 ]
 }
 

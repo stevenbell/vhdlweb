@@ -1,0 +1,23 @@
+Complete the architecture below to implement this block diagram with submodules `thing1` and `thing2`.  (Have no fear, [these things are tame](https://image.slidesharecdn.com/catinthehat-171014111223/95/the-cat-in-the-hat-by-dr-seuss-10-638.jpg?cb=1507979610).) 
+
+<img src="/static/images/funinabox.svg" height="150px"/>
+
+You'll need to base your component declarations on these entities:
+
+    entity thing1 is
+      port(
+    	  s : in std_logic;
+    	  t : in std_logic;
+    	  y : out std_logic_vector(3 downto 0)
+      );
+    end thing1;
+
+
+    entity thing2 is
+      port(
+    	  e : in std_logic_vector(3 downto 0);
+    	  f : in std_logic;
+    	  g : out std_logic_vector(3 downto 0)
+      );
+    end thing2;
+

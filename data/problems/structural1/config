@@ -1,0 +1,10 @@
+{
+"files" : [
+  "Makefile",
+  "thing1.vhd",
+  "thing2.vhd",
+  "testbench.vhd"
+  ],
+"schematic": "no"
+}
+
