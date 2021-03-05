@@ -1,1 +1,3 @@
 Write a testbench to check that the module `andgate` actually performs as an AND gate.
+
+Your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.

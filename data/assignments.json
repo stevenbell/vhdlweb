@@ -7,7 +7,7 @@
     {"title":"4-bit ALU", "id":"alu"}
 ],
 
-"Homework 3 problems": [
+"Homework 3 problems (Due 3/8)": [
     {"title":"3-input NAND gate", "id":"nand3"},
     {"title":"Majority encoder", "id":"majority"},
     {"title":"An 8-bit multiplexer", "id":"mux21"},
@@ -23,7 +23,18 @@
     {"title":"4-bit ALU (same as recitation)", "id":"alu"},
     {"title":"Submodule instantiation", "id":"instantiation"},
     {"title":"Structural modeling", "id":"structural1"}
+], 
+
+"Recitation problems (Week of 3/8)": [
+    {"title":"Testing an AND gate", "id":"andtest"},
+    {"title":"Testing the 3-variable boolean equation", "id":"abctest"}
+],
+
+"Homework 4 problems (Due 3/15)": [
+    {"title":"Testing a 4:1 multiplexer", "id":"test_mux41"},
+    {"title":"Testing a 4-bit adder", "id":"test_adder"}
 ]
+
 }
 
 

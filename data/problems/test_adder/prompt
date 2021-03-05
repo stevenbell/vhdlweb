@@ -1,11 +1,10 @@
-Write a testbench to check that the module `adder` actually performs correctly as a 4-bit adder.<br/>
-<br/>
-You probably want to use some kind of test generation, rather than writing out all the cases. A VHDl `for` loop might be useful:
-<pre>
-for INDEXVAR in MIN to MAX loop
- -- loop body, which can use INDEXVAR
-end loop;
-</pre>
+Write a testbench to check that the module `adder` actually performs correctly as a 4-bit adder.
 
-Note that INDEXVAR is an integer (not an unsigned or std_logic_vector), so you'll need to convert it to the appropriate type if you hope to do any comparisons.  Take a look at the reference sheet for how to do conversions.
-<br/>
+You probably want to use some kind of test generation, rather than writing out all the cases. A VHDL `for` loop might be useful:
+
+    for INDEXVAR in MIN to MAX loop
+     -- loop body, which can use INDEXVAR
+    end loop;
+
+
+Note that INDEXVAR is an integer (not an `unsigned` or `std_logic_vector`), so you'll need to convert it to the appropriate type if you hope to do any comparisons.  Take a look at the reference sheet for how to do conversions.
