@@ -75,8 +75,10 @@ def runtest(wdir, problem):
       #safe_run(["docker", "pull", current_app.config["DOCKER_IMAGE"]], timeout=120)
 
       # Run the docker container with the working directory mapped
-      command = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
-      output = safe_run(command + ["make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS'], stderr = sp.STDOUT)
+      dockercmd = ["docker", "run", "--rm", "-v", wdir + ":" + wdir, current_app.config["DOCKER_IMAGE"]]
+      command = ["timeout", "5", "make", "-f", wdir + "Makefile", "--directory", wdir, "--silent"] + current_app.config['MAKE_ARGS']
+      output = safe_run(dockercmd + command, stderr = sp.STDOUT)
+
       output = output.decode('utf-8')
     except Exception as e:
       current_app.logger.error("server error with wdir=" + wdir + " :\n" + str(e))
