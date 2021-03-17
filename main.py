@@ -169,3 +169,7 @@ def showProblem(problemId):
 
   return render_template('problem.html', problemId=problemId, prompt=prompt, submissions=submissions, startercode=startercode)
 
+# https://stackoverflow.com/a/29516120
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
