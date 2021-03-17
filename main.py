@@ -3,6 +3,7 @@ from flaskext.markdown import Markdown
 from logging import FileHandler, Formatter
 import json
 import time
+import re
 from random import choices
 from string import ascii_letters
 from vhdlweb_build import * 
@@ -52,6 +53,10 @@ def login():
     # If it's a POST, then validate the info and log the user in
     username = request.form['username']
     password = request.form['password']
+
+    if re.search("^[a-zA-Z0-9\._\-]+$", username) is None:
+        flash("That username or password is incorrect.")
+        return render_template('login.html')
 
     pwfile = app.config['WORKDIR'] + '/' + username + '/password'
     if os.path.isfile(pwfile) and readfile(pwfile).strip() == password:
