@@ -136,6 +136,10 @@ def compilerequest(problemId):
     submissionId = wdir.strip('/').rsplit('/', 1)[-1]
     output.update({"timestamp":timestamp, "submissionId":submissionId})
 
+    problem_config = json.load(open(app.config['SRCDIR'] + '/' + problemId + '/config'))
+    if ('netlist' in problem_config and problem_config['netlist'] == "yes" and output['status'] != "buildfail"):
+      output.update({'netlist':'/netlist/' + problemId + '/' + submissionId})
+
     # TODO: If the test passed, then mark this problem as complete
     return json.dumps(output)
 
@@ -162,10 +166,13 @@ def generateNetlist(problemId, subId):
     return "Netlist not available because synthesis failed", 404
 
   # then try to generate the netlist!
-  run_netlist(wdir)
-
-  # TODO: what if it fails?
-  return readfile(wdir + "netlist.svg")
+  try:
+    run_netlist(wdir)
+    headers = {'Content-Type':'image/svg+xml'}
+    return (readfile(wdir + "netlist.svg"), headers)
+  except Exception as e:
+    current_app.logger.error("netlist generation error with wdir=" + wdir + " :\n" + str(e))
+    return "Error generating netlist", 500
 
 @app.route('/submission/<problemId>/<subId>')
 def retrieveSubmission(problemId, subId):
