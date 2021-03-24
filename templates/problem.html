@@ -24,16 +24,6 @@ function blur() {
   elapsedTime += dt;
 }
 
-
-function configureButtons(state) {
-  document.getElementById("b_syntaxfix").hidden = !(state == "buildfail");
-  document.getElementById("b_typefix").hidden = !(state == "buildfail");
-  document.getElementById("b_bugfix").hidden = !(state == "testfail");
-  document.getElementById("b_testing").hidden = !(state == "new" | state == "pass");
-  document.getElementById("b_newcode").hidden = !(state == "new" | state == "testfail");
-  // wild guess and "other" buttons are always visible
-}
-
 function rollback(submissionId) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
@@ -49,8 +39,8 @@ function compile(buttonId) {
   // Set the build text to "building"
   outputlog = document.getElementById("buildlog");
   outputlog.innerHTML = "Building...";
-  document.getElementById("schematicblock").hidden = true;
   document.getElementById("schematic").src = "/static/images/schematic_loading.svg";
+  document.getElementById("schematicblock").hidden = true;
 
   // Read the code from the form
   var code = editor.getValue();
@@ -64,7 +54,6 @@ function compile(buttonId) {
       xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
               result = JSON.parse(this.responseText);
-              configureButtons(result.status);
               if(result.status == "buildfail"){
                 document.getElementById("buildlabel").innerHTML = "Build failed:";
               } else if(result.status == "testfail"){
@@ -86,14 +75,13 @@ function compile(buttonId) {
               document.getElementById("rollback").prepend(rollbackLink);
           }
       };
-      changetext = document.getElementById("changetype").value;
 
       dt = Date.now() - startTime;
       elapsedTime += dt;
 
       xmlhttp.open("POST", "/compile/{{problemId}}", true);
       xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-      var blob = JSON.stringify({"code":code, "button":buttonId, "changetext":changetext, "pagetime":elapsedTime/1000, "pastes":pasteContent});
+      var blob = JSON.stringify({"code":code, "button":buttonId, "pagetime":elapsedTime/1000, "pastes":pasteContent});
       xmlhttp.send(blob);
 
       pasteContent = []; // Reset for next time
@@ -143,20 +131,11 @@ function compile(buttonId) {
 </script>
 
 <br/>
-<span class="inlineheading">This change is a:</span> (select one to recompile) <br/>
+<span class="inlineheading">Are you confident about this change?</span> (select one to recompile) <br/>
 <br/>
 
-<button id="b_syntaxfix" hidden=true onClick="compile('syntax')" style="color: #b58900">syntax fix</button>
-<button id="b_typefix" hidden=true onClick="compile('type')" style="color: #dc322f">type fix</button>
-
-<button id="b_bugfix" hidden=true onClick="compile('bug')" style="color: #2aa198">bug fix</button>
-<button id="b_newcode" onClick="compile('newcode')" style="color: #859900">new functionality</button>
-
-<button id="b_testing" onClick="compile('testing')" style="color: #268bd2">just testing</button>
-<button id="b_guess" onClick="compile('guess')" style="color: #6c71c4">wild guess</button>
-<br/>
-<button onClick="compile('other')" style="color: #586e75">something else:</button>
-<input id="changetype" type="text" placeholder="describe your change...">
+<button id="b_confident" onClick="compile('confident')" style="color: white; background-color: #101010" title="Select 'Yes' if you're confident this change fixes the error and/or moves you toward the solution.">Yes</button>
+<button id="b_notconfident" onClick="compile('notconfident')" style="color: black; background-color: #e0e0e0" title="Select 'Not really' if you're unsure whether this change will work.">Not really</button>
 
 <div id="schematicblock" hidden="true">
 <h2>Logic diagram:</h2>

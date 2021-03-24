@@ -124,6 +124,7 @@ button {
   background-color: #fdf6e3;
   padding: 8px 15px 8px 15px;
   margin: 5px 5px 5px 0px;
+  min-width: 120px;
   cursor: pointer;
 }
 input {

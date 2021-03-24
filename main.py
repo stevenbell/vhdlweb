@@ -123,7 +123,6 @@ def compilerequest(problemId):
     # Write a metadata file into the directory
     # Username/problem are captured by the directory name
     metadata = {'button':requestblob['button'],
-                'changetext':requestblob['changetext'],
                 'pagetime':requestblob['pagetime'],
                 'pastes':requestblob['pastes'],
                 'time':timestamp,
