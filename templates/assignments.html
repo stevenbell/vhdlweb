@@ -12,7 +12,7 @@ Please <a href="login">log in</a> to see your customized assignment list and sav
 <h2>{{ a }}</h2>
 <ul class="checklist">
 {% for p in assignments[a] %}
-<li class="incomplete"><a href="problem/{{p.id}}">{{ p.title }}</a>
+<li class="{{p.status}}"><a href="problem/{{p.id}}">{{ p.title }}</a>
 {% endfor %}
 </ul>
 {% endfor %}

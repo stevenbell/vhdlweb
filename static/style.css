@@ -145,6 +145,7 @@ input {
 
 .checklist li {
   margin: 5px 0;
+  color: #C0C0C0;
 }
 
 .checklist li:before {
@@ -161,12 +162,8 @@ input {
     color: #e77817;
 }
 
-.complete{
+li.complete{
   color: #009000;
-}
-
-.incomplete{
-  color: #C0C0C0;
 }
 
 /* TODO: This relies a bit too much on pixel-perfect positioning... make it better. */

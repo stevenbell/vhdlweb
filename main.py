@@ -93,12 +93,22 @@ def showAssignments():
       # don't put any problems.  This will make the error obvious, rather than
       # masking the problem with some default assignment file.
       assignments = {"You appear to have no assignments. Contact the teaching staff.":[]}
-
-    # TODO: annotate this with the ones that are complete
   else:
     assignments = json.load(open('data/assignments.json'))
 
   return render_template('assignments.html', assignments = assignments)
+
+def mark_assignment(username, assignmentId):
+  assignment_file = '/tmp/vhdlweb' + '/' + username + '/assignments.json'
+  try:
+    assignments = json.load(open(assignment_file))
+    for section in assignments:
+      for idx,problem in enumerate(assignments[section]):
+        if problem['id'] == assignmentId:
+          assignments[section][idx]['status'] = 'complete'
+          json.dump(assignments, open(assignment_file, 'w'))
+  except Exception as e:
+    current_app.logger.error("failed to mark problem complete for student :\n" + str(e))
 
 @app.route('/compile/<problemId>', methods=['POST'])
 def compilerequest(problemId):
@@ -139,7 +149,8 @@ def compilerequest(problemId):
     if ('netlist' in problem_config and problem_config['netlist'] == "yes" and output['status'] != "buildfail"):
       output.update({'netlist':'/netlist/' + problemId + '/' + submissionId})
 
-    # TODO: If the test passed, then mark this problem as complete
+    if output['status'] == 'pass' and logged_in(session):
+      mark_assignment(username, problemId)
     return json.dumps(output)
 
 @app.route('/netlist/<problemId>/<subId>')
