@@ -33,6 +33,28 @@
 "Homework 4 problems (Due 3/15)": [
     {"title":"Testing a 4:1 multiplexer", "id":"test_mux41"},
     {"title":"Testing a 4-bit adder", "id":"test_adder"}
+],
+
+"Lab 5 prelab" : [
+    {"title":"Dual-digit display decoder", "id":"dddd"},
+    {"title":"Blinking LEDs", "id":"ledblink"}
+],
+
+"Recitation problems (Week of 3/29)" : [
+    {"title":"A 2-high detector", "id":"twohigh"},
+    {"title":"Synchronous reset", "id":"lfsr2_reset"},
+    {"title":"One-hot counter", "id":"onehot"}
+],
+
+"Homework 5 problems" : [
+    {"title":"Johnson counter", "id":"johnson"},
+    {"title":"Binary counter with enable", "id":"counter_enable"},
+    {"title":"Linear-feedback shift register", "id":"lfsr4"},
+    {"title":"Binary counter with rollover", "id":"countto"}
+],
+
+"Recitation problems (Week of 4/5)" : [
+    {"title":"2-bit Gray counter", "id":"gray2"}
 ]
 
 }

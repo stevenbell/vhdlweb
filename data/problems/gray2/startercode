@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity gray2 is
+  port(
+	  clk : in std_logic;
+	  reset : in std_logic;
+	  count : out std_logic_vector(1 downto 0)
+  );
+end gray2;
+
+architecture synth of gray2 is
+begin
+  count <= 2d"0";
+end;
+

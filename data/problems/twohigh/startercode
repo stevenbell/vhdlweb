@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity twohigh is
+  port(
+	  clk : in std_logic;
+    input : in std_logic;
+	  two : out std_logic
+  );
+end twohigh;
+
+architecture synth of twohigh is
+begin
+  -- You got this.
+end;
+

@@ -1,0 +1,17 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity lfsr2 is
+  port(
+    clk : in std_logic;
+    reset : in std_logic;
+    b : out std_logic
+  );
+end lfsr2;
+
+architecture synth of lfsr2 is
+begin
+  -- Q: How do you eat a digital elephant?
+  -- A: One byte at a time.
+end;
+

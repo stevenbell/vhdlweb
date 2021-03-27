@@ -1,0 +1,11 @@
+
+When a circuit is first powered up, the output values of the flip-flops are random and need to be initialized to a known state.
+
+In the previous problem, we did this simply by waiting a few clock cycles before examining the output.
+But in circuits that have feedback, the unknown values are passed back to the inputs, producing unknown values indefinitely.
+
+The solution is to include a "reset" signal.  If a clock edge occurs while the reset signal is high, then the circuit assigns known values to the flip-flops instead of performing its normal operation.  Once the reset goes low, the circuit resumes its normal operation, but this time starting from a known state.
+
+Complete the architecture to describe the circuit below, which uses a synchronous reset to initialize both flip-flops to 1.  (If you leave them at zero, the circuit just stays stuck at zero, but otherwise it follows an interesting pattern.)
+
+<img src="/static/images/lfsr2_reset.svg" height="250px"/>

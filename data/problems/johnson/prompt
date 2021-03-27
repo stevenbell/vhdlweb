@@ -1,0 +1,17 @@
+Build a 4-bit Johnson counter, sometimes also called a "twisted ring" counter.  This is similar to a one-hot counter, except that the feedback bit is inverted, giving a sequence of values containing 1s as well as 0s:
+
+    0000
+    0001
+    0011
+    0111
+    1111
+    1110
+    1100
+    1000
+
+This has the nice advantage that it encodes twice as many states as a one-hot counter for the same number of flip-flops plus an inverter.
+
+When reset, the value should be `0000`, and subsequent values should follow the pattern above.
+
+<img src="/static/images/johnson.svg" height="180px"/>
+

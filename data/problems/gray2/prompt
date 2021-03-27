@@ -1,0 +1,12 @@
+Build a 2-bit Gray counter which counts in the usual sequence:
+
+    00
+    01
+    11
+    10
+
+The counter should have a synchronous reset signal which resets the value to 0.
+
+While it is possible to define a Gray code using the bits of a binary counter, you should solve this problem by defining a state machine where each value is a state and the transitions are unconditional.
+You'll probably want to use a `case` statement to define the states and the corresponding transitions.  Don't forget the `when others` term!
+

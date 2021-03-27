@@ -1,0 +1,6 @@
+Complete the architecture to describe the sequential circuit shown below:
+
+<img src="/static/images/twohigh.svg" height="150px"/>
+
+The output `two` should go high if the input has been high on both of the past two clock cycles, otherwise it will be low.
+
