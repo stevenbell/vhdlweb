@@ -99,7 +99,7 @@ def showAssignments():
   return render_template('assignments.html', assignments = assignments)
 
 def mark_assignment(username, assignmentId):
-  assignment_file = '/tmp/vhdlweb' + '/' + username + '/assignments.json'
+  assignment_file = app.config['WORKDIR'] + '/' + username + '/assignments.json'
   try:
     assignments = json.load(open(assignment_file))
     for section in assignments:
