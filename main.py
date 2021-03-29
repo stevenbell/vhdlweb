@@ -177,11 +177,11 @@ def generateNetlist(problemId, subId):
 
   # then try to generate the netlist!
   try:
-    run_netlist(wdir)
+    output = run_netlist(wdir)
     headers = {'Content-Type':'image/svg+xml'}
     return (readfile(wdir + "netlist.svg"), headers)
   except Exception as e:
-    current_app.logger.error("netlist generation error with wdir=" + wdir + " :\n" + str(e))
+    current_app.logger.error("netlist generation error with wdir=" + wdir + " :\n" + output + '\n\n' + str(e))
     return "Error generating netlist", 500
 
 @app.route('/submission/<problemId>/<subId>')
