@@ -13,6 +13,7 @@ gold:
 run:
 	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
 	@$(GHDL) -e $(FLAGS) twohigh_test
+	@$(GHDL) synth $(FLAGS) twohigh >> /dev/null || (rm work-obj08.cf && false)
 	@$(GHDL) -r $(FLAGS) twohigh_test --stop-time=1us
 
 $(NETLIST):

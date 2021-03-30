@@ -13,6 +13,7 @@ gold:
 run:
 	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
 	@$(GHDL) -e $(FLAGS) onehot_test
+	@$(GHDL) synth $(FLAGS) onehot >> /dev/null || (rm work-obj08.cf && false)
 	@$(GHDL) -r $(FLAGS) onehot_test --stop-time=1us
 
 $(NETLIST):

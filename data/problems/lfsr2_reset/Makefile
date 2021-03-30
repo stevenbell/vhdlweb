@@ -13,6 +13,7 @@ gold:
 run:
 	@$(GHDL) -a $(FLAGS) testbench.vhd submission.vhd
 	@$(GHDL) -e $(FLAGS) lfsr2_test
+	@$(GHDL) synth $(FLAGS) lfsr2 >> /dev/null || (rm work-obj08.cf && false)
 	@$(GHDL) -r $(FLAGS) lfsr2_test --stop-time=1us
 
 $(NETLIST):
