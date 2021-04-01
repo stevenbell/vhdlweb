@@ -35,6 +35,17 @@ function rollback(submissionId) {
       xmlhttp.send();
 }
 
+function findDiffLine(str1, str2) {
+    let line = 1;
+    for (i = 0; i < str2.length; i++) {
+        if (str2.charAt(i) !== str1.charAt(i))
+            return line;
+        if (str1.charAt(i) === "\n")
+            line++;
+    }
+    return -1;
+}
+
 function compile(buttonId) {
   // Set the build text to "building"
   outputlog = document.getElementById("buildlog");
@@ -44,6 +55,25 @@ function compile(buttonId) {
 
   // Read the code from the form
   var code = editor.getValue();
+  var code_clean = code;
+
+  // Replace &nbsp; space with normal space
+  code = code.replace(/\u00a0/g, ' ');
+  if (code !== code_clean) {
+      var diffLine = findDiffLine(code, code_clean);
+      outputlog.innerHTML = `Replaced nbsp on line ${diffLine} with normal space`;
+      editor.setValue(code);
+      code_clean = code;
+  }
+
+  // check for other weird characters and stop of they exist
+  code = code.replace(/[^\x00-\x7F]/g, "");
+  console.log(code_clean);
+  if (code !== code_clean) {
+      var diffLine = findDiffLine(code, code_clean);
+      outputlog.innerHTML = `Cannot replace non-ASCII character on line ${diffLine}!`;
+      return;
+  }
 
   // Send the code to the server
   if (code.length == 0) {
@@ -111,7 +141,7 @@ function compile(buttonId) {
 &#9654;
 </span>
 {% elif s['status'] == 'pass' %}
-&#9989; 
+&#9989;
 {% endif %}
 </a>
 {% endfor %}
