@@ -68,7 +68,6 @@ function compile(buttonId) {
 
   // check for other weird characters and stop of they exist
   code = code.replace(/[^\x00-\x7F]/g, "");
-  console.log(code_clean);
   if (code !== code_clean) {
       var diffLine = findDiffLine(code, code_clean);
       outputlog.innerHTML = `Cannot replace non-ASCII character on line ${diffLine}!`;
