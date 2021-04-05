@@ -54,6 +54,7 @@
 ],
 
 "Recitation problems (Week of 4/5)" : [
+    {"title":"Sequence detector", "id":"detect001"},
     {"title":"2-bit Gray counter", "id":"gray2"}
 ]
 

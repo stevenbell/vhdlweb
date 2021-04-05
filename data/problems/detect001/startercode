@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity detect001 is
+  port(
+    clk : in std_logic;
+    input : in std_logic;
+    result : out std_logic
+  );
+end detect001;
+
+architecture synth of detect001 is
+begin
+  result <= '0';
+end;
+

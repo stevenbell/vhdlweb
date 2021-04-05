@@ -1,0 +1,12 @@
+Build a Moore FSM which accepts an input which could change on each clock cyle, and outputs a `1` after detecting the pattern `001` on the input stream (meaning that on the previous three clock cycles, the input bit was 0, then 0, then 1.)
+
+You can define a new type (similar to a C `enum`) in VHDL using the syntax:
+
+    type State is (ONE, TWO, THREE, FOUR, ETC);
+
+With the type defined, you can then create a signal with this type, and use it like any other signal.
+
+    signal s : State;
+
+A reset signal isn't necessary here; your state machine should reset itself back to a known starting state any time the current state is invalid.  The `when others` clause of a `case` statement will be helpful here.
+
