@@ -61,7 +61,7 @@ function compile(buttonId) {
   code = code.replace(/\u00a0/g, ' ');
   if (code !== code_clean) {
       var diffLine = findDiffLine(code, code_clean);
-      outputlog.innerHTML = `Replaced nbsp on line ${diffLine} with normal space`;
+      outputlog.innerHTML = `Automatically replaced nbsp on line ${diffLine} with ASCII space`;
       editor.setValue(code);
       code_clean = code;
   }
@@ -70,7 +70,7 @@ function compile(buttonId) {
   code = code.replace(/[^\x00-\x7F]/g, "");
   if (code !== code_clean) {
       var diffLine = findDiffLine(code, code_clean);
-      outputlog.innerHTML = `Cannot replace non-ASCII character on line ${diffLine}!`;
+      outputlog.innerHTML = `Found non-ASCII character(s) on line ${diffLine}! This is not legal in VHDL; please remove or replace them.`;
       return;
   }
 
