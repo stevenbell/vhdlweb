@@ -52,6 +52,7 @@ begin
 end function;
 
 signal ram : ramtype := init_ram;
+signal ramgold : ramtype := init_ram;
 
 begin
 
@@ -72,6 +73,16 @@ begin
   end process;
 
   process
+    variable errors : natural := 0;
+
+    procedure check(condition : boolean; message : string) is
+    begin
+      if not condition then
+        report message;
+        errors := errors + 1;
+      end if;
+    end check;
+
     procedure print_ram(message : string) is
     begin
       write(output, message & LF);
@@ -101,6 +112,16 @@ begin
 
     print_ram("--- RAM contents at end of test ---");
 
+    for i in 0 to RAM_DEPTH - 1 loop
+      check(unsigned(ram(i)) = unsigned(ramgold(i)) - 1, "Memory location " & to_hstring(to_unsigned(i, ADDR_WIDTH)) & " incorrect.");
+    end loop;
+
+    if errors = 0 then
+      write (output, "TEST PASSED." & LF);
+    else
+      write (output, "Test failed with " & to_string(errors) &  " errors." & LF);
+    end if;
+ 
     std.env.finish; -- All done, but clock is still going
 
     wait;
