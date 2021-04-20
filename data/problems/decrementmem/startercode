@@ -1,0 +1,26 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity decrementmem is
+  port(
+    clk : in std_logic;
+    run : in std_logic; -- When this is asserted, begin one pass through the memory
+
+    -- Signals below are connected to the RAM inside the testbench
+    addr : out unsigned(3 downto 0);
+    dataRead : out std_logic_vector(7 downto 0);
+    dataWrite : out std_logic_vector(7 downto 0);
+    writeEnable : out std_logic
+  );
+end;
+
+architecture synth of decrementmem is
+
+constant ADDR_WIDTH : natural := 4;
+constant RAM_DEPTH : natural := 2**ADDR_WIDTH;
+
+begin
+
+end;
+

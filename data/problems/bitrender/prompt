@@ -1,0 +1,11 @@
+Build a simple module which "renders" "pixels" from data stored in a ROM.  The input to your module is a row and column of the virtual screen; the output is a single bit indicating whether or not to color the pixel at that location.
+The ROM packs the pixels into 8-bit words, stored in row-major order.  The first (leftmost) bit is bit 7 (the MSB), as shown below:
+
+                 [byte 0] [byte 1] [byte 2] ...
+    [bytes 0-7 ] 76543210 76543210 76543210 ...
+    [bytes 8-15] ...      ...      ...
+
+Your task is simply to read the correct row of the ROM and pick out the bit corresponding to the pixel being rendered.
+
+You may find the `to_integer` function helpful if you need to use an unsigned value where you'd normally use an integer (e.g., as an index).
+

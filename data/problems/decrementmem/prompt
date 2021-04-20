@@ -1,0 +1,9 @@
+
+Build a module which decrements all of the values stored in a 16-word x 8-bit RAM by 1.  Your module should not modify memory until the `run` signal is high; then it should go through each word in the memory and decrement its value.  After working through the entire RAM, it should halt until the `run` signal is asserted again.
+
+The RAM is single-ported, so you you can't read and write simultaneously.  You'll need to read the value and write it back on the next clock cycle (or later, if you prefer).
+
+This is a tricky problem so you might start just by reading all of the memory values, or by writing a constant value to each address.  Once you've got a handle on reading and writing, you can build the state machine to put it all together.
+
+Note that you don't need to instantiate the RAM; the testbench will do that and connect it to your module.
+
