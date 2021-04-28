@@ -1,0 +1,12 @@
+Write VHDL code to describe a parity-checking circuit, which checks that an incoming sequence of 8 bits has "even parity".  That is, the value of `data` on the rising edge of each clock cycle represents one bit, and the circuit should check whether this sequence of 8 bits has an even number of 1s.  This can be used to provide a basic form of error detection: the transmitter sends 7 bits of data and computes the eighth bit such that the whole sequence has even parity.  The receiver checks the parity of the incoming bits, and if any one is flipped then the parity will be odd and the receiver can respond appropriately.  You can read more [about parity bits on Wikipedia](https://en.wikipedia.org/wiki/Parity_bit).
+
+On the 8th rising edge, the circuit asserts the `complete` signal, indicating that a full sequence of 8 bits has been received.  If the parity is even (i.e., an even number of 1s), then the `valid` bit should also be set.  The outputs should be low otherwise.
+
+An example waveform for the sequence `10001110` is shown below:
+
+![parity checking timing diagram](/static/images/paritycheck_wave.svg)
+
+You can see [the schematic for a possible implementation here](/static/images/paritycheck_netlist.svg).
+
+We'll assume some other part of the circuit takes care of storing the bits and does something useful with them if the parity check passes.
+

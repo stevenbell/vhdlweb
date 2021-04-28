@@ -1,0 +1,13 @@
+{signal: [
+  {name: 'clk', wave: 'P..........'},
+  {name: 'reset', wave: '01.0..................', 'period':0.5},
+  {name: 'data', wave:  'x.10..1..0..', 'phase':1},
+  {},
+  {name: 'complete', wave: 'l........10', data:["0"]},
+  {name: 'valid', wave: 'l........10', data:["0"]},
+],
+   head:{
+   tick:-2,
+ },
+   config: { hscale: 2 }
+}

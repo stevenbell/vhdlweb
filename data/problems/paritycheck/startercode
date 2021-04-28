@@ -1,0 +1,19 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity paritycheck is
+  port(
+	  clk : in std_logic;
+	  reset : in std_logic;
+	  data : in std_logic;
+	  complete : out std_logic;
+	  valid : out std_logic
+  );
+end paritycheck;
+
+architecture synth of paritycheck is
+begin
+  -- You can do this!
+end;
+
