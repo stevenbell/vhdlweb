@@ -1,0 +1,21 @@
+--  Testbench for AB+!BC
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity playground is
+-- No ports, since this is a testbench
+end playground;
+
+architecture sim of playground is
+begin
+
+  -- Put whatever code you'd like here
+
+  process begin
+    report "Hello, world!";
+    wait; -- stop here forever
+  end process;
+
+end sim;
+
