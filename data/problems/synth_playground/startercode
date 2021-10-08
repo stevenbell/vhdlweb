@@ -1,0 +1,18 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity playground is
+port(
+    a : in std_logic;
+    b : out std_logic
+);
+end;
+
+architecture synth of playground is
+begin
+
+b <= not a;
+
+end;
+
