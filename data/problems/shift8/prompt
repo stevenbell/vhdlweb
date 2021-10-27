@@ -1,0 +1,7 @@
+Complete the architecture to describe the 8-bit shift register shown below:
+
+<img src="/static/images/shift8.svg" height="150px"/>
+
+After 8 clock cycles, the output `result` should hold the value of `input` from the previous 8 clock cycles.
+The MSB (bit 7) should contain the *first* bit shifted in (i.e., the value on the first rising clock edge).
+
