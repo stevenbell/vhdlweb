@@ -1,0 +1,4 @@
+Write a testbench to check that the module `dff` actually performs correctly as a D flip-flop.
+
+Your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.
+

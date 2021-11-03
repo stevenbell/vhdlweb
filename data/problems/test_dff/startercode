@@ -1,0 +1,25 @@
+--  Testbench for D flip-flop
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity dff_test is
+-- No ports, since this is a testbench
+end dff_test;
+
+architecture test of dff_test is
+
+component dff is
+  port(
+	  d : in std_logic;
+	  clk : in std_logic;
+	  q : out std_logic
+  );
+end component;
+
+begin
+
+  -- Good luck!
+
+end test;
+
