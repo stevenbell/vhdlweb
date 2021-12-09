@@ -45,5 +45,14 @@ begin
   b_select <= '1' when state = SQUARE else '0';
   valid_out <= '1' when state = CUBE else '0';
 
+  -- Here's a hack that almost works!
+  --process(clk) is
+  --begin
+  --  if rising_edge(clk) then
+  --    b_select <= valid_in;
+  --    valid_out <= b_select;
+  --  end if;
+  --end process;
+
 end;
 

@@ -92,6 +92,25 @@ begin
     wait until falling_edge(clk);
     print_and_check('0', '1');
 
+    -- Check that it ignores valid_in on the second cycle
+    -- i.e., b_select is using the state, not just registering valid_in
+    valid_in <= '0';
+    wait until falling_edge(clk);
+    print_and_check('0', '0');
+
+    valid_in <= '1';
+    wait until falling_edge(clk);
+    print_and_check('1', '0');
+
+    valid_in <= '1';
+    wait until falling_edge(clk);
+    print_and_check('0', '1');
+
+    valid_in <= '0';
+    wait until falling_edge(clk);
+    print_and_check('0', '0');
+
+
   
     if errors = 0 then
       write (output, "TEST PASSED." & LF);
