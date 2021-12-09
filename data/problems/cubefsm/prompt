@@ -1,0 +1,8 @@
+Below is the state machine which controls the `cubeit` circuit. It waits for an input signal (`valid_in`)
+indicating that data in is valid and should be cubed, performs the operation (by controlling `b_select`),
+and asserts an output (`valid_out`) when the cubed result is ready.
+
+<img src="/static/images/cubefsm_states.svg" height="180px"/>
+
+Complete the VHDL architecture to implement this state machine.
+
