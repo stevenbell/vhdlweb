@@ -1,0 +1,5 @@
+Design a circuit which takes a clock signal `clk` and a data input `D`, and produces an output `flag` which is high for one cycle whenever the data has a rising edge (i.e., was low for the previous clock cycle and high for this cycle).
+Note that pulses on D which are too short to be caught by a rising clock edge should be ignored.
+
+There are some simple and elegant circuit designs that do this; work out a design on paper and try to describe that with VHDL, rather than attacking the problem with a coding mindset.
+

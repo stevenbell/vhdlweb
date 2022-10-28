@@ -1,0 +1,4 @@
+Build a circuit which produces a '1' on the output every 5th clock cycle and 0 otherwise.  There are several ways to do this, so draw a logic diagram on paper first, and then try to implement it in VHDL and see if your synthesized circuit matches.
+
+You'll want to use the `reset` signal to set the circuit in a known state; otherwise it'll just sit in an uninitialized state forever.
+

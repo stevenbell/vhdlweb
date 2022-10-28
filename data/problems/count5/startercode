@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity count5 is
+  port(
+	  clk : in std_logic;
+	  reset : in std_logic;
+	  flag : out std_logic
+  );
+end count5;
+
+architecture synth of count5 is
+begin
+  flag <= "0";
+end;
+
