@@ -11,6 +11,6 @@ end count5;
 
 architecture synth of count5 is
 begin
-  flag <= "0";
+  flag <= '0';
 end;
 

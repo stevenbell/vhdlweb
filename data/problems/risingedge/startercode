@@ -10,6 +10,7 @@ entity risingedge is
 end risingedge;
 
 architecture synth of risingedge is
+begin
 -- Fill me in!
 end;
 
