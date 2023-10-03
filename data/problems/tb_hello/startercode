@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity hello is
+-- No ports, since this is a testbench
+end hello;
+
+architecture sim of hello is
+begin
+
+  -- Your code here!
+
+end sim;
+

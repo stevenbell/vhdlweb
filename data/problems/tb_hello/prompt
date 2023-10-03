@@ -1,0 +1,11 @@
+
+The VHDL command `report` prints a message to the console log:
+
+```
+report "MESSAGE";
+```
+
+Complete the architecture to print the message "Hello, world!", and then "Goodbye!" 200ns later.
+
+(Note that VHDLweb does not currently check your output; you'll need to examine it yourself to see if it's correct.)
+
