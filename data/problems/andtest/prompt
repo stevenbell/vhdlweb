@@ -1,3 +1,6 @@
 Write a testbench to check that the module `andgate` actually performs as an AND gate.
 
-Your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.
+Your code should print the word "failed" if the DUT fails any of your tests (i.e., the DUT doesn't perform as an AND gate for one or more sets of inputs).  If the testbench does not print the word "failed", the test is assumed to pass (i.e., you're saying the DUT is a fully-functional AND gate).
+
+To check whether you're writing a good testbench, VHDLweb will run your testbench on multiple DUTs, some of which are correct and some of which are broken.  To complete this problem successfully, your testbench should identify every time the DUT is broken by printing a failure message.
+
