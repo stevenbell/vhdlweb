@@ -1,0 +1,25 @@
+--  Testbench for lab 2, Y is 1 when M > N
+library IEEE;
+use IEEE.std_logic_1164.all;
+use std.textio.all;
+
+entity lab2_test is
+-- No ports, since this is a testbench
+end lab2_test;
+
+architecture test of lab2_test is
+
+component lab2 is
+  port(
+    m : in std_logic_vector(1 downto 0);
+    n : in std_logic_vector(1 downto 0);
+    y : out std_logic
+  );
+end component;
+
+begin
+
+  -- Test away!
+
+end test;
+

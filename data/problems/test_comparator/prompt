@@ -1,0 +1,4 @@
+Several students have written VHDL implementations of lab 2, and your job is to write a testbench to check their work.
+The module takes two 2-bit numbers (M and N) as inputs, and returns Y = 1 if M > N.
+
+As before, your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.
