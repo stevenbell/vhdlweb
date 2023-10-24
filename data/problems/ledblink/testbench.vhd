@@ -38,7 +38,12 @@ begin
     end check;
 
   begin
+    wait for 10 ns;
+    report "Beginning test: leds(0) = " & to_string(leds(0)) & "  leds(1) = " & to_string(leds(1));
+    report "Waiting for rising edge on leds(0) ...";
+
     wait until rising_edge(leds(0));
+    report "Found rising edge, waiting for falling edge on leds(0) ...";
     check(leds(1) = '0', "LED 0 and 1 are simultaneously high!");
     starttime := now;
 
