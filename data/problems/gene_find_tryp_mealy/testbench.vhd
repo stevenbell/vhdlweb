@@ -82,6 +82,8 @@ begin
       -- Just before the next rising edge would be ideal, but after the falling
       -- edge works just as well.
       wait until falling_edge(clk);
+      write(output, "nuc_in: " & to_string(nuc_in) & " (" & nuc & ")  nuc_out: " & to_string(nuc_out) & " tryp: " & to_string(tryp) & LF);
+
       check(tryp = expected, "expected " & to_string(expected) & " but got " & to_string(tryp));
 
     end loop;
