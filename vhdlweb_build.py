@@ -85,7 +85,7 @@ def runtest(wdir, problem):
       output = "A server error occured while compiling your code.  Please check with the teaching staff."
 
     # If the build file was created, then assume build succeeded
-    buildOk = os.path.isfile(wdir + "work-obj08.cf")
+    buildOk = os.path.isfile(wdir + "a.out")
 
     # See if the testbench emitted a "TEST PASSED" line
     passMatches = re.findall('TEST PASSED', output)

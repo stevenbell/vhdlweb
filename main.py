@@ -123,7 +123,7 @@ def compilerequest(problemId):
     wdir = findpath(app.config['WORKDIR'], username, problemId)
 
     # Write the code file into the directory
-    codefile = open(wdir + '/submission.vhd', 'w')
+    codefile = open(wdir + '/submission.sv', 'w')
     codefile.write(requestblob['code'])# code.decode('utf-8')
     codefile.close()
 
@@ -187,9 +187,9 @@ def generateNetlist(problemId, subId):
 @app.route('/submission/<problemId>/<subId>')
 def retrieveSubmission(problemId, subId):
   if subId == 'startercode':
-    return readfile("data/problems/{}/startercode".format(problemId))
+    return readfile(app.config["SRCDIR"] + f"/{problemId}/startercode")
   else:
-    subpath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId + '/' + subId + '/submission.vhd'
+    subpath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId + '/' + subId + '/submission.sv'
     if os.path.isfile(subpath):
       return readfile(subpath)
     else:
@@ -197,7 +197,7 @@ def retrieveSubmission(problemId, subId):
 
 @app.route('/problem/<problemId>')
 def showProblem(problemId):
-  prompt = readfile("data/problems/{}/prompt".format(problemId))
+  prompt = readfile(app.config["SRCDIR"] + f"/{problemId}/prompt")
 
   # Build a list of the submissions
   basepath = app.config['WORKDIR'] + '/' + get_user(session) + '/' + problemId
@@ -217,11 +217,11 @@ def showProblem(problemId):
 
   if len(submissions) > 0:
     # If the user has already tried this problem, give them their last attempt
-    startercode = readfile(basepath + '/' + submissions[0]['id'] + '/submission.vhd')
+    startercode = readfile(basepath + '/' + submissions[0]['id'] + '/submission.sv')
 
   else:
     # Otherwise, use the starter code
-    startercode = readfile("data/problems/{}/startercode".format(problemId))
+    startercode = readfile(app.config["SRCDIR"] + f"/{problemId}/startercode")
 
   # Finally, put the starter code in the list
   submissions.append({'id':'startercode', 'status':'new', 'time':'Starter code'})
