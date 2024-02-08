@@ -1,0 +1,8 @@
+{
+"files" : [
+  "Makefile",
+  "testbench.sv"
+  ],
+"netlist": "yes"
+}
+

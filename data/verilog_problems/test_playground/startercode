@@ -1,0 +1,11 @@
+module playground;
+
+  initial
+  begin
+
+    $display("Hello, testbench!");
+
+  end
+
+endmodule
+

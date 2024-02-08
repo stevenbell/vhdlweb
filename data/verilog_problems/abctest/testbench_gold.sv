@@ -39,7 +39,7 @@ module abc_test;
     check("111", 1, y);
 
     if (errors == 0) begin
-      $display("TEST PASSED.");
+      $display("Test passed.");
     end
     else begin
       $display("Test failed with %0d errors.", errors);

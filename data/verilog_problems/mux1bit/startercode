@@ -1,0 +1,7 @@
+module mux1bit (input logic a, b,
+                input logic s,
+                output logic y);
+
+// Your code here...
+
+endmodule

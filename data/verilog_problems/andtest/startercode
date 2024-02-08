@@ -1,0 +1,10 @@
+//  Testbench for AND gate
+module and_test
+
+  logic a, b, y;
+  andgate dut(a, b, y);
+
+  // Fill in the rest!
+
+endmodule
+

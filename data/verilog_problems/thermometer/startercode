@@ -1,0 +1,6 @@
+module thermometer (input logic[2:0] value,
+                    output logic[6:0] therm);
+
+  // Your code here!
+
+endmodule

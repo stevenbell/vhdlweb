@@ -1,0 +1,35 @@
+#! /bin/bash
+# This script checks the output of a testbench run which has been written to a file,
+# and returns 0 (true) if it matches the pass/fail condition which was specified.
+
+if (( $# != 2 )); then
+  echo "USAGE: assert [pass|fail] FILE"
+  exit
+fi
+
+grep --silent -i "fail" $2
+RESULT=$? # Get the return status
+
+if [ $1 == "pass" ]; then
+  if [ $RESULT == "0" ]; then # grep returned 0, meaning it found the word "fail"
+    echo "Tesbench reported DUT as failing, but should have passed."
+    exit 1
+  else
+    echo "Tesbench correctly reported DUT as passing."
+    exit 0
+  fi
+
+elif [ $1 == "fail" ]; then
+  if [ $RESULT == "0" ]; then
+    echo "Tesbench correctly reported DUT as failing."
+    exit 0
+  else
+    echo "Tesbench reported DUT as passing, but should have failed."
+    exit 1
+  fi
+
+else
+  echo "First argument must be either \"pass\" or \"fail\"."
+fi
+
+

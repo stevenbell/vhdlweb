@@ -1,0 +1,7 @@
+A powerful construct for specifying combinational logic is the "ternary operator":
+<pre>
+assign OUTPUT = CONDITION ? TRUE VALUE : OTHER_VALUE;
+</pre>
+
+Complete the architecture below to build a 2:1 multiplexer.  The inputs A and B are each 1 bit, and the select line S is a single bit.  When S is low, Y should have the value of A; when S is high, it should have the value of B.
+
