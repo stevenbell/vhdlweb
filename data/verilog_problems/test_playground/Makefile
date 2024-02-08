@@ -11,6 +11,6 @@ all: run
 
 run:
 	@$(VERILATOR) $(VERILATOR_FLAGS) submission.sv
-	@$(IVERILOG) $(IVERILOG_FLAGS) testbench.sv submission.sv
+	@$(IVERILOG) $(IVERILOG_FLAGS) submission.sv
 	@$(VVP) a.out
 

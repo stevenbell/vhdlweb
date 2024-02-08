@@ -1,5 +1,5 @@
 //  Testbench for AND gate
-module and_test
+module and_test;
 
   logic a, b, y;
   andgate dut(a, b, y);
