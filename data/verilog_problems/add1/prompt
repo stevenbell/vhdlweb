@@ -1,0 +1,4 @@
+Doing math by writing out all the logic gets pretty tedious, so SystemVerilog includes the ability to treat vectors as binary numbers and do math with them.  The normal operators (`+`, `-`, `*`, `/`, and `%`) all work like you'd expect.  Just be warned that multiplication and mod are often quite costly in hardware, and division may not be possible at all depending on the operands and the implementation constraints.
+
+Complete the architecture below to add 1 to the 8-bit input.  It should overflow to 0 after it reaches the maximum value.
+

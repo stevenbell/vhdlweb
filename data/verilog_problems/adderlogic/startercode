@@ -1,0 +1,9 @@
+module adderlogic (input logic[2:0] a,
+                   input logic[2:0] b,
+                   output logic[3:0] sum);
+
+    assign sum = 0;
+
+endmodule
+
+

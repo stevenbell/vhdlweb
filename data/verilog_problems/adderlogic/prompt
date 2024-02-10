@@ -1,0 +1,14 @@
+
+Just as it's helpful to define intermediate variables in a software program, it is often useful to define intermediate signals to represent part of a hardware computation.
+
+Declaring a signal is just like declaring an input or output port, except that it occurs within the body of the module, and doesn't have the keyword `input` or `output`.
+
+<pre>
+  logic onebit;
+  logic[2:0] mybus;
+</pre>
+
+Implement a 3-bit adder without using the addition operator, by writing boolean assignments for each bit.  A and B are 3-bit inputs; the result should be a 4-bit output (so there should be no overflow.)
+
+Use intermediate signals for the carry bits.
+

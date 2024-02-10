@@ -1,0 +1,7 @@
+module nand3 (input logic a, b, c,
+              output logic y);
+
+    // Your code here
+
+endmodule
+

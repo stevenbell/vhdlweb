@@ -1,0 +1,10 @@
+SystemVerilog uses the keyword `assign` to indicate a combinational assignment.
+In the assignment statement
+
+    assign y = a & b;
+
+any change to `a` or `b` will immediately cause `y` to be updated, which describes
+the behavior of an AND gate.
+
+Complete the module below to implement a three-input NAND gate: \\(Y = \overline{ABC}\\)
+

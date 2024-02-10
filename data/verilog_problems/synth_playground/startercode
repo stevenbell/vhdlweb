@@ -1,0 +1,7 @@
+module playground(input logic a,
+                  output logic b);
+
+  assign b = ~a;
+
+end;
+

@@ -1,0 +1,7 @@
+You can use the `{  }` operator to concatenate signals and buses together.  For example, the following assignment makes a 7-bit result, where the top two bits are '1', the bottom bit is 0, and the remaining 4 are from the vector `value`.
+<pre>
+    assign y = { 2'b11, value[3:0], 1'b0 };
+</pre>
+
+Complete the module below to divide the 8-bit unsigned input by 2, truncating (ignoring) any fraction.  The output should also be 8 bits.  Do *not* use the SystemVerilog division or shift operators &mdash; instead, think about what happens when you divide a binary number by 2, and figure out how do that by manipulating bits.  If you're stuck, start by writing down a few cases on paper.
+
