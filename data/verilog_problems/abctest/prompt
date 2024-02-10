@@ -1,3 +1,8 @@
 Write a testbench to check that the module `abc` computes \\(Y = AB + \overline{B}C\\)
 
+The module has the following declaration:
+
+    module abc (input logic a, b, c,
+                output logic y);
+
 As before, your code should print the word "failed" if the DUT fails any of your tests.  If the testbench does not print the word "failed", the test is assumed to pass.

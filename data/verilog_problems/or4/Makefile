@@ -22,5 +22,5 @@ run:
 	@$(VVP) a.out
 
 $(NETLIST):
-	@yosys submission.sv -p "write_json $(NETLIST)"
+	@yosys submission.sv -p "prep -auto-top; write_json $(NETLIST)"
 

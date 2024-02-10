@@ -4,7 +4,7 @@ IVERILOG_FLAGS="-g2012"
 VVP=vvp
 
 VERILATOR=verilator
-VERILATOR_FLAGS=--lint-only -Wno-STMTDLY -Wno-UNOPTFLAT
+VERILATOR_FLAGS=--lint-only -Wno-STMTDLY -Wno-UNOPTFLAT --timing
 
 
 all: run

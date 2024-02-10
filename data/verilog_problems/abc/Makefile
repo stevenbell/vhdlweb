@@ -1,4 +1,4 @@
-
+ 
 IVERILOG=iverilog
 IVERILOG_FLAGS="-g2012"
 VVP=vvp
@@ -22,5 +22,5 @@ run:
 	@$(VVP) a.out
 
 $(NETLIST):
-	@yosys submission.sv -p "write_json $(NETLIST)"
+	@yosys submission.sv -p "prep -auto-top; write_json $(NETLIST)"
 

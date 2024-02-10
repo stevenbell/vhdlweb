@@ -1,1 +1,2 @@
-{"files": ["Makefile", "testbench.sv"]}
+{"files": ["Makefile", "testbench.sv"],
+ "netlist":"yes"}
