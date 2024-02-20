@@ -1,0 +1,9 @@
+module lfsr2 ( input logic clk,
+               input logic reset,
+               output logic b );
+
+  // Q: How do you eat a digital elephant?
+  // A: One byte at a time.
+
+endmodule
+

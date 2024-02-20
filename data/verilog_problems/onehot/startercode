@@ -1,0 +1,8 @@
+module onehot ( input logic clk,
+                input logic reset,
+                output logic[7:0] count );
+
+  // Slide to the left... one hot this time!
+
+endmodule
+

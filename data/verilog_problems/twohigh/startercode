@@ -1,0 +1,8 @@
+module twohigh ( input logic clk,
+                 input logic data,
+                 output logic two );
+
+  // You got this!
+
+endmodule
+

@@ -1,0 +1,8 @@
+module shift8 ( input logic clk,
+                input logic data_in,
+                output logic[7:0] result );
+
+  // Everybody slide to the left!
+
+endmodule
+

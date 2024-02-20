@@ -1,0 +1,1 @@
+Build a 3-bit binary counter with a synchronous reset and an `enable` signal.  The counter should increment on each clock cycle when `enable` is high; otherwise it should remain the same.  When reset, the counter should be `000`.
