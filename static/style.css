@@ -15,7 +15,7 @@ body {
     top: 0px;
     left: 0px;
     position: fixed;
-    background-color: #073642;
+    background-color: #a44621;
     z-index: 10;
 }
 
@@ -54,7 +54,7 @@ body {
     bottom: 0px;
     left: 0px;
     position: absolute;
-    background-color: #073642;
+    background-color: #a44621;
     z-index: 10;
 }
 
