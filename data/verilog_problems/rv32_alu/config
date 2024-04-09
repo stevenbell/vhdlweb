@@ -1,0 +1,8 @@
+{
+"files" : [
+  "Makefile",
+  "testbench.sv",
+  "alu_vectors.csv"
+  ]
+}
+

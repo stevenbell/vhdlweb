@@ -1,0 +1,20 @@
+
+Fill in the architecture to build a functional ALU for RV32I.  The operands are 32 bits each.<br/>
+
+The operation should be performed according the 4-bit input `operation`, which is made up of `{imm7[5], imm3}` from the instruction.
+
+This is summarized in the following table (note that these are listed in order shown on the instruction reference, not in binary order):
+
+<table class="truthtable">
+<tr><td>0000</td><td>ADD  </td><td>(add)</td></tr>
+<tr><td>1000</td><td>SUB  </td><td>(subtract)</td></tr>
+<tr><td>0001</td><td>SLL  </td><td>(shift left logical)</td></tr>
+<tr><td>0010</td><td>SLT  </td><td>(set if less than)</td></tr>
+<tr><td>0011</td><td>SLTU </td><td>(set if less than unsigned)</td></tr>
+<tr><td>0100</td><td>XOR  </td><td>(bitwise XOR)</td></tr>
+<tr><td>0101</td><td>SRL  </td><td>(shift right logical)</td></tr>
+<tr><td>1101</td><td>SRA  </td><td>(shift right arithmetic)</td></tr>
+<tr><td>0110</td><td>OR   </td><td>(bitwise OR)</td></tr>
+<tr><td>0111</td><td>AND  </td><td>(bitwise AND)</td></tr>
+</table>
+
