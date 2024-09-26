@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from flaskext.markdown import Markdown
+from flask_misaka import Misaka
 from logging import FileHandler, Formatter
 import json
 import time
@@ -18,7 +18,7 @@ filelog_handler.setFormatter(Formatter('[%(asctime)s] %(levelname)s in %(module)
 app.logger.addHandler(filelog_handler)
 
 # Set up the Markdown extension
-md = Markdown(app, extensions=['fenced_code'])
+Misaka(app)
 
 def readfile(filename):
   """ Read a file's contents into a string. """
