@@ -7,6 +7,6 @@ all: run
 
 run:
 	@$(GHDL) -a $(FLAGS) submission.vhd
-	@$(GHDL) -e $(FLAGS) playground
-	@$(GHDL) -r $(FLAGS) playground --stop-time=1us
+	@$(GHDL) -e $(FLAGS) hello
+	@$(GHDL) -r $(FLAGS) hello --stop-time=1us
 
