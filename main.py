@@ -39,6 +39,18 @@ def get_user(session):
     session['tempId'] = tempId
     return tempId
 
+def get_user_config(session):
+  """ Returns the user configuration data. """
+  username = get_user(session)
+  configfile = app.config['WORKDIR'] + '/' + username + '/config'
+  print(configfile)
+  try:
+    userconfig = json.load(open(configfile))
+  except:
+    userconfig = {}
+
+  return userconfig
+
 def logged_in(session):
   """ Returns true if the user is logged in (and has a valid submission directory).
       Returns false if the user just has a temporary identifier. """
@@ -55,11 +67,12 @@ def login():
     username = request.form['username']
     password = request.form['password']
 
-    if re.search("^[a-zA-Z0-9\._\-]+$", username) is None:
+    if re.search(r"^[a-zA-Z0-9\._\-]+$", username) is None:
         flash("That username or password is incorrect.")
         return render_template('login.html')
 
     pwfile = app.config['WORKDIR'] + '/' + username + '/password'
+    print(pwfile)
     if os.path.isfile(pwfile) and readfile(pwfile).strip() == password:
       session['username'] = username
       return redirect('assignments')
@@ -227,6 +240,30 @@ def showProblem(problemId):
   submissions.append({'id':'startercode', 'status':'new', 'time':'Starter code'})
 
   return render_template('problem.html', problemId=problemId, prompt=prompt, submissions=submissions, startercode=startercode)
+
+# Dashboard to see current progress
+@app.route('/dashboard/<problemId>')
+def dashboard(problemId):
+  userconfig = get_user_config(session)
+  if 'students' in userconfig:
+    students = userconfig['students']
+    summary = []
+    for s in students:
+      # For each student, get their most recent submission
+      basepath = app.config['WORKDIR'] + '/' + s + '/' + problemId
+      subs = os.listdir(basepath)
+      subs.sort()
+      if len(subs) > 0:
+        subdata = json.load(open(basepath + '/' + subs[-1] + '/metadata.json'))
+        summary.append({"name":s, "status":subdata['status'], "time":subdata['time'], "lastsub":subs[-1]})
+      else:
+        summary.append({"name":s, "status":"notstarted", "time":"---", "lastsub":""})
+
+      # And send that to the template
+    return render_template('dashboard.html', students=summary, problemId=problemId)
+
+  # Otherwise, 404 (like github does, rather than access denied)
+  return render_template('404.html'), 404
 
 # https://stackoverflow.com/a/29516120
 @app.errorhandler(404)

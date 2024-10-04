@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<h2>Instructor status dashboard for {{ problemId }}</h2>
+
+<table>
+<th>Name</th><th>Last #</th><th>Time</th><th>Status</th>
+{% for s in students %}
+<tr>
+<td>{{ s.name }}</td><td>{{ s.lastsub }}</td><td>{{ s.time }}</td><td>{{ s.status }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+
