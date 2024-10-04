@@ -249,8 +249,12 @@ def dashboard(problemId):
     for s in students:
       # For each student, get their most recent submission
       basepath = app.config['WORKDIR'] + '/' + s + '/' + problemId
-      subs = os.listdir(basepath)
-      subs.sort()
+      if os.path.isdir(basepath):
+        subs = os.listdir(basepath)
+        subs.sort()
+      else:
+        subs = [] # Handle the case where the student hasn't tried the problem yet
+
       if len(subs) > 0:
         subdata = json.load(open(basepath + '/' + subs[-1] + '/metadata.json'))
         summary.append({"name":s, "status":subdata['status'], "time":subdata['time'], "lastsub":subs[-1]})
