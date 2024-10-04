@@ -43,7 +43,6 @@ def get_user_config(session):
   """ Returns the user configuration data. """
   username = get_user(session)
   configfile = app.config['WORKDIR'] + '/' + username + '/config'
-  print(configfile)
   try:
     userconfig = json.load(open(configfile))
   except:
@@ -72,7 +71,6 @@ def login():
         return render_template('login.html')
 
     pwfile = app.config['WORKDIR'] + '/' + username + '/password'
-    print(pwfile)
     if os.path.isfile(pwfile) and readfile(pwfile).strip() == password:
       session['username'] = username
       return redirect('assignments')
