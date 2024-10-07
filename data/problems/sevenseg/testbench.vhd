@@ -17,7 +17,7 @@ component sevenseg is
   );
 end component;
 
-signal S : unsigned(3 downto 0);
+signal S : unsigned(3 downto 0) := "0000";
 signal segments : std_logic_vector(6 downto 0);
 
 begin
